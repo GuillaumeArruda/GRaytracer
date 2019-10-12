@@ -19,8 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\gmath\internal\units_helper.hpp" />
+    <ClInclude Include="src\gmath\units.hpp" />
     <ClInclude Include="src\GMath\internal\vector_impl.hpp" />
-    <ClInclude Include="src\gmath\utils.h" />
+    <ClInclude Include="src\gmath\utils.hpp" />
     <ClInclude Include="src\GMath\vec3f.hpp" />
     <ClInclude Include="src\GMath\vec4f.hpp" />
   </ItemGroup>

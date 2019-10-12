@@ -17,7 +17,6 @@
         using super = vector_impl<vec4f, false>;
         using value_type = super::value_type;
 
-        vec4f(no_init_t) noexcept {}
         vec4f(value_type x = {}, value_type y = {}, value_type z = {}, value_type w = {}) noexcept : m_values{x,y,z,w} {}
 		vec4f(vec3f const& copy) : m_values{ copy[0], copy[1], copy[2], 1.f } {}
 

@@ -3,6 +3,10 @@
 #include <limits>
 namespace gmath
 {
+	static constexpr float pi = 3.14159265358979323846f;
+	static constexpr float pi_2 = pi / 2.f;
+	static constexpr float pi_4 = pi / 4.f;
+
 	// Taken from https://en.cppreference.com/w/cpp/types/numeric_limits
 	template<class T>
 	typename std::enable_if<!std::numeric_limits<T>::is_integer, bool>::type

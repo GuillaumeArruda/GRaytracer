@@ -1,6 +1,10 @@
-#include "Catch2/catch.hpp"
-#include "gmath/vec3f.hpp"
 #include <utility>
+
+#include "Catch2/catch.hpp"
+
+#include "gmath/vec3f.hpp"
+
+#include "static_assert_helper.hpp"
 
 TEST_CASE("gmath.vec3f.construction", "[gmath::vec3f]")
 {
@@ -294,4 +298,9 @@ TEST_CASE("gmath.vec3f.cross", "[gmath::vec3f]")
 		REQUIRE(v.cross(v1) == gmath::vec3f(0.f,0.f,1.f));
 		REQUIRE(v1.cross(v) == gmath::vec3f(0.f, 0.f, -1.f));
 	}
+}
+
+TEST_CASE("gmath.vec3f.static_assert", "[gmath::vec3f]")
+{
+	trivial_static_assert<gmath::vec3f>();
 }

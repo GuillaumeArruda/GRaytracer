@@ -15,7 +15,6 @@
         using super = vector_impl<vec3f, false>;
         using value_type = super::value_type;
 
-        vec3f(no_init_t) noexcept {}
 		constexpr vec3f(value_type x = {}, value_type y = {}, value_type z = {}) noexcept : m_values{x,y,z} {}
 		 
         constexpr vec3f(vec3f const&) = default;

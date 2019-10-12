@@ -1,5 +1,5 @@
 #include <cmath>
-#include "gmath/utils.h"
+#include "gmath/utils.hpp"
 
 namespace gmath
 {
@@ -8,11 +8,6 @@ namespace gmath
 
     template<class T>
     struct vector_typetraits;
-
-    enum class no_init_t
-    {
-        no_init
-    };
 
     template<class T>
     struct vector_impl<T, false>

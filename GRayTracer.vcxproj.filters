@@ -24,7 +24,13 @@
     <ClInclude Include="src\GMath\vec4f.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gmath\utils.h">
+    <ClInclude Include="src\gmath\internal\units_helper.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\units.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
