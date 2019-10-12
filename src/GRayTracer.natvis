@@ -8,4 +8,26 @@
       <Item Name="z">m_values[2]</Item>
     </Expand>
   </Type>
+  <Type Name="gmath::radian">
+    <DisplayString>{{{ m_value * 180.f / gmath::pi }}}</DisplayString>
+    <Expand>
+      <Item Name="rad">m_value</Item>
+      <Item Name="degree">m_value * 180.f / gmath::pi</Item>
+    </Expand>
+  </Type>
+  <Type Name="gmath::degree">
+    <DisplayString>{{degree = { m_value }}}</DisplayString>
+    <Expand>
+      <Item Name="degree">m_value</Item>
+      <Item Name="rad">m_value * gmath::pi / 180.f</Item>
+    </Expand>
+  </Type>
+  <Type Name="gmath::hpbangles">
+    <DisplayString>{{ heading = {m_values[0]}, pitch = {m_values[1]}, bank = {m_values[2]}}}</DisplayString>
+    <Expand>
+      <Item Name="heading">m_values[0]</Item>
+      <Item Name="pitch">m_values[1]</Item>
+      <Item Name="bank">m_values[2]</Item>
+    </Expand>
+  </Type>
 </AutoVisualizer>
