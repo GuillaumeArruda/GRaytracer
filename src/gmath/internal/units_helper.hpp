@@ -63,32 +63,32 @@ namespace gmath
 				return result *= rhs;
 			}
 
-			friend bool operator==(T const& lhs, T const& rhs) noexcept
+			friend constexpr bool operator==(T const& lhs, T const& rhs) noexcept
 			{
 				return lhs.value() == rhs.value();
 			}
 
-			friend bool operator!=(T const& lhs, T const& rhs) noexcept
+			friend constexpr bool operator!=(T const& lhs, T const& rhs) noexcept
 			{
 				return !(lhs == rhs);
 			}
 
-			friend bool operator<(T const& lhs, T const& rhs) noexcept
+			friend constexpr bool operator<(T const& lhs, T const& rhs) noexcept
 			{
 				return lhs.value() < rhs.value();
 			}
 			
-			friend bool operator>(T const& lhs, T const& rhs) noexcept
+			friend constexpr bool operator>(T const& lhs, T const& rhs) noexcept
 			{
 				return lhs.value() > rhs.value();
 			}
 
-			friend bool operator<=(T const& lhs, T const& rhs) noexcept
+			friend constexpr bool operator<=(T const& lhs, T const& rhs) noexcept
 			{
 				return lhs.value() <= rhs.value();
 			}
 
-			friend bool operator>=(T const& lhs, T const& rhs) noexcept
+			friend bool constexpr operator>=(T const& lhs, T const& rhs) noexcept
 			{
 				return lhs.value() >= rhs.value();
 			}

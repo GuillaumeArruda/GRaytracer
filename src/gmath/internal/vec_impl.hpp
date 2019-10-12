@@ -4,13 +4,13 @@
 namespace gmath
 {
     template<class T, bool UseSIMD>
-    struct vector_impl;
+    struct vec_impl;
 
     template<class T>
     struct vector_typetraits;
 
     template<class T>
-    struct vector_impl<T, false>
+    struct vec_impl<T, false>
     {
         using type_traits = vector_typetraits<T>;
         using value_type = typename type_traits::value_type;

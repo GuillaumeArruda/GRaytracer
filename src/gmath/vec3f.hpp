@@ -1,4 +1,4 @@
-#include "gmath/internal/vector_impl.hpp"
+#include "gmath/internal/vec_impl.hpp"
 
  namespace gmath
  {
@@ -10,9 +10,9 @@
        static constexpr std::size_t size = 3; 
     };
 
-    struct vec3f : vector_impl<vec3f, false>
+    struct vec3f : vec_impl<vec3f, false>
     {
-        using super = vector_impl<vec3f, false>;
+        using super = vec_impl<vec3f, false>;
         using value_type = super::value_type;
 
 		constexpr vec3f(value_type x = {}, value_type y = {}, value_type z = {}) noexcept : m_values{x,y,z} {}
