@@ -72,7 +72,7 @@ TEST_CASE("gmath.degree.radian_transformation", "[gmath::degree]")
 	REQUIRE(gmath::radian(d) == r);
 	REQUIRE(gmath::radian(d2) == r2);
 	constexpr gmath::degree d3(r);
-	REQUIRE(d3 == d);
+	REQUIRE(gmath::almost_equal(d3.value(),d.value()));
 }
 
 TEST_CASE("gmath.degree.static_assert", "[gmath::degree]")
