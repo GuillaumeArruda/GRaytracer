@@ -30,10 +30,13 @@
     <ClInclude Include="src\gmath\units.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gmath\hpbangles.hpp">
+    <ClInclude Include="src\GMath\internal\vec_impl.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GMath\internal\vec_impl.hpp">
+    <ClInclude Include="src\gmath\quaternion.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\yprangles.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

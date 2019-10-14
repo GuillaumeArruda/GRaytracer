@@ -92,6 +92,16 @@ namespace gmath
 			{
 				return lhs.value() >= rhs.value();
 			}
+
+			friend constexpr bool almost_equal(T const& lhs, T const& rhs, int ulp = 1) noexcept
+			{
+				return almost_equal(lhs.value(), rhs.value(), ulp);
+			}
+
+			friend constexpr bool within_epsilon(T const& lhs, T const& rhs, float epsilon =  1e-6f ) noexcept
+			{
+				return within_epsilon(lhs.value(), rhs.value(), epsilon);
+			}
 		private:
 			constexpr T& selff() noexcept { return static_cast<T&>(*this); }
 			constexpr const T& selff() const noexcept { return static_cast<const T&>(*this); }

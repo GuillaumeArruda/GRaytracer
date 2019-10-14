@@ -124,6 +124,7 @@
     <ClCompile Include="test\gmath\degree_test.cpp" />
     <ClCompile Include="test\gmath\hpbangles_test.cpp" />
     <ClCompile Include="test\gmath\normalized_vec3f_test.cpp" />
+    <ClCompile Include="test\gmath\quaternion_test.cpp" />
     <ClCompile Include="test\gmath\radian_test.cpp" />
     <ClCompile Include="test\main.cpp" />
     <ClCompile Include="test\gmath\vec3f_test.cpp" />

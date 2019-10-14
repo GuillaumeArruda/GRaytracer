@@ -33,6 +33,9 @@
     <ClCompile Include="test\gmath\hpbangles_test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="test\gmath\quaternion_test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="test\static_assert_helper.hpp">

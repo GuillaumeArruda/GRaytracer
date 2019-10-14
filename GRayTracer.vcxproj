@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\gmath\hpbangles.hpp" />
+    <ClInclude Include="src\gmath\yprangles.hpp" />
     <ClInclude Include="src\gmath\internal\units_helper.hpp" />
+    <ClInclude Include="src\gmath\quaternion.hpp" />
     <ClInclude Include="src\gmath\units.hpp" />
     <ClInclude Include="src\GMath\internal\vec_impl.hpp" />
     <ClInclude Include="src\gmath\utils.hpp" />

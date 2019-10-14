@@ -1,3 +1,4 @@
+#pragma  once
 #include <cmath>
 #include "gmath/utils.hpp"
 
@@ -72,7 +73,7 @@ namespace gmath
 
 		bool is_normalized() const noexcept
 		{
-			return almost_equal(1.f, length_squared());
+			return within_epsilon(1.f, length_squared());
 		}
 
          constexpr void normalize() noexcept
@@ -114,6 +115,12 @@ namespace gmath
 			 return result *= rhs;
 		 }
 
+		 friend constexpr T operator*(value_type const& lhs, T const& rhs) noexcept
+		 {
+			 T result(rhs);
+			 return result *= lhs;
+		 }
+
 		 friend constexpr bool operator==(T const& lhs, T const& rhs) noexcept
 		 {
 			 bool areEqual = true;
@@ -125,6 +132,22 @@ namespace gmath
 		 friend constexpr bool operator!=(T const& lhs, T const& rhs) noexcept
 		 {
 			 return !(lhs == rhs);
+		 }
+
+		 friend constexpr bool almost_equal(T const& lhs, T const& rhs, int ulp = 1) noexcept
+		 {
+			 bool equalish = true;
+			 for (std::size_t i = 0; i < type_traits::size; ++i)
+				 equalish = equalish && almost_equal(lhs[i], rhs[i], ulp);
+			 return equalish;
+		 }
+
+		 friend constexpr bool within_epsilon(T const& lhs, T const& rhs, value_type epsilon = value_type{ 1e-6f }) noexcept
+		 {
+			 bool within_eps = true;
+			 for (std::size_t i = 0; i < type_traits::size; ++i)
+				 within_eps = within_eps && within_epsilon(lhs[i], rhs[i], static_cast<float>(epsilon));
+			 return within_eps;
 		 }
 
         private:

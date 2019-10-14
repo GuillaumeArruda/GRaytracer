@@ -17,6 +17,8 @@ namespace gmath
 
 		constexpr float value() const noexcept { return m_value; }
 		constexpr float& value() noexcept { return m_value; }
+
+		constexpr explicit operator float() const noexcept { return m_value; }
 	private:
 		float m_value;
 	};
@@ -30,7 +32,7 @@ namespace gmath
 		constexpr explicit degree(radian const& rad) noexcept : m_value(rad.value() * radtodegree) {}
 		~degree() noexcept = default;
 
-		explicit constexpr operator radian() const noexcept
+		constexpr operator radian() const noexcept
 		{
 			return radian(m_value * degreetorad);
 		}
@@ -42,6 +44,8 @@ namespace gmath
 
 		constexpr float value() const noexcept { return m_value; }
 		constexpr float& value() noexcept { return m_value; }
+
+		constexpr explicit operator float() const noexcept { return m_value; }
 	private:
 		float m_value;
 	};

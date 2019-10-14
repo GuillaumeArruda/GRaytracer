@@ -1,6 +1,6 @@
 #pragma once
 
-template<typename T>
+template<class T>
 void trivial_static_assert()
 {
 

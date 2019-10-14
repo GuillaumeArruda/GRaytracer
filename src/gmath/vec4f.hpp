@@ -1,3 +1,4 @@
+#pragma once
 #include "gmath/internal/vec_impl.hpp"
 #include "gmath/vec3f.hpp"
 
@@ -17,14 +18,15 @@
         using super = vec_impl<vec4f, false>;
         using value_type = super::value_type;
 
-        vec4f(value_type x = {}, value_type y = {}, value_type z = {}, value_type w = {}) noexcept : m_values{x,y,z,w} {}
-		vec4f(vec3f const& copy) : m_values{ copy[0], copy[1], copy[2], 1.f } {}
+		vec4f(no_init_t) {}
+        constexpr vec4f(value_type x = {}, value_type y = {}, value_type z = {}, value_type w = {}) noexcept : m_values{x,y,z,w} {}
+		constexpr vec4f(vec3f const& copy) : m_values{ copy[0], copy[1], copy[2], 1.f } {}
 
 
-        vec4f(vec4f const&) = default;
-        vec4f& operator=(vec4f const&) = default;
-        vec4f(vec4f&&) = default;
-        vec4f& operator=(vec4f&&) = default;
+        constexpr vec4f(vec4f const&) = default;
+        constexpr vec4f& operator=(vec4f const&) = default;
+        constexpr vec4f(vec4f&&) = default;
+        constexpr vec4f& operator=(vec4f&&) = default;
 
         ~vec4f() = default;
 

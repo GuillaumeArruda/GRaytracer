@@ -30,4 +30,22 @@
       <Item Name="bank">m_values[2]</Item>
     </Expand>
   </Type>
+  <Type Name="gmath::vec4f">
+    <DisplayString>{{ x = {m_values[0]}, y = {m_values[1]}, z = {m_values[2]}, w = {m_values[3]}}}</DisplayString>
+    <Expand>
+      <Item Name="x">m_values[0]</Item>
+      <Item Name="y">m_values[1]</Item>
+      <Item Name="z">m_values[2]</Item>
+      <Item Name="w">m_values[3]</Item>
+    </Expand>
+  </Type>
+  <Type Name="gmath::quaternion">
+    <DisplayString>{{ x = {m_storage.m_values[0]}, y = {m_storage.m_values[1]}, z = {m_storage.m_values[2]}, w = {m_storage.m_values[3]}}}</DisplayString>
+    <Expand>
+      <Item Name="x">m_storage.m_values[0]</Item>
+      <Item Name="y">m_storage.m_values[1]</Item>
+      <Item Name="z">m_storage.m_values[2]</Item>
+      <Item Name="w">m_storage.m_values[3]</Item>
+    </Expand>
+  </Type>
 </AutoVisualizer>

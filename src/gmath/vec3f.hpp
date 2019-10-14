@@ -1,3 +1,4 @@
+#pragma once
 #include "gmath/internal/vec_impl.hpp"
 
  namespace gmath
@@ -39,7 +40,7 @@
 		constexpr vec3f cross(vec3f const& rhs) const
 		{
 			return vec3f((m_values[1] * rhs[2]) - (m_values[2] * rhs[1])
-						, -(m_values[0] * rhs[2]) + (m_values[2] * rhs[0])
+						, (m_values[2] * rhs[0]) - (m_values[0] * rhs[2])
 						, (m_values[0] * rhs[1]) - (m_values[1] * rhs[0]));
 		}
 
@@ -59,6 +60,10 @@
 
 	struct normalized_vec3f : vec3f
 	{
+		static constexpr normalized_vec3f forward() noexcept { return normalized_vec3f(vec3f(1.f, 0.f, 0.f), garanty_normal_t::garanty_normal); }
+		static constexpr normalized_vec3f right() noexcept { return normalized_vec3f(vec3f(0.f, 1.f, 0.f), garanty_normal_t::garanty_normal); }
+		static constexpr normalized_vec3f up() noexcept { return normalized_vec3f(vec3f(0.f, 0.f, 1.f), garanty_normal_t::garanty_normal); }
+
 		constexpr normalized_vec3f(vec3f const& vec) noexcept : vec3f(vec) { normalize(); }
 
 		constexpr normalized_vec3f(normalized_vec3f const&) noexcept = default;
