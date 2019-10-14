@@ -31,6 +31,9 @@
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gmath\quaternion.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{8F144D01-A9CF-4048-BFEF-7CDCA70DF6E2}</ProjectGuid>
@@ -52,7 +55,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>

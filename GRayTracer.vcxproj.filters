@@ -43,4 +43,9 @@
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gmath\quaternion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>
