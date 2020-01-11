@@ -4,6 +4,11 @@
 
 namespace gmath
 {
+    struct world_space {};
+    struct model_space {};
+    struct camera_space {};
+    struct projection_space {};
+
 	static constexpr float pi = 3.14159265358979323846f;
 	static constexpr float pi_2 = pi / 2.f;
 	static constexpr float pi_4 = pi / 4.f;
@@ -28,8 +33,6 @@ namespace gmath
 	template<class T>
 	constexpr auto within_epsilon(T x, T y, T epsilon = 1e-6f) noexcept -> typename std::enable_if_t<std::numeric_limits<T>::is_iec559, bool>
 	{
-		// the machine epsilon has to be scaled to the magnitude of the values used
-		// and multiplied by the desired precision in ULPs (units in the last place)
 		return std::abs(x - y) <= epsilon;
 	} 
 }

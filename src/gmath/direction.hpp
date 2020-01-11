@@ -1,0 +1,61 @@
+#pragma once
+
+#include "glm/vec3.hpp"
+
+#include "gmath/utils.hpp"
+
+namespace gmath
+{
+    // Always normalized vector
+    template<class Space>
+    struct direction
+    {
+        using space = Space;
+        using glm_vector_type = glm::vec3;
+        enum class garantee_normal_t
+        {
+            garantee_normal
+        };
+
+        static constexpr direction forward() noexcept { return direction(garantee_normal_t::garantee_normal, 0.f, 0.f, 1.f); }
+        static constexpr direction up() noexcept { return direction(garantee_normal_t::garantee_normal, 0.f, 1.f, 0.f); }
+        static constexpr direction right() noexcept { return direction(garantee_normal_t::garantee_normal, 1.f, 0.f, 0.f); }
+
+        constexpr direction(float x = 1.f, float y = 0.f, float z = 0.f) noexcept : m_direction(x, y, z) { normalize(); }
+        constexpr direction(garantee_normal_t, float x, float y, float z) noexcept : m_direction(x,y,z) {}
+        constexpr explicit direction(glm_vector_type const& vector) : m_direction(vector) { normalize(); }
+        constexpr direction(direction&&) noexcept = default;
+        constexpr direction(direction const&) noexcept = default;
+        constexpr direction& operator=(direction const&) = default;
+        constexpr direction& operator=(direction&&) = default;
+
+        constexpr explicit operator glm_vector_type() const noexcept { return m_direction; }
+
+        friend constexpr bool operator==(direction const& lhs, direction const& rhs) noexcept { return lhs.m_direction == rhs.m_direction; }
+        friend constexpr bool operator!=(direction const& lhs, direction const& rhs) noexcept { return !(lhs == rhs); }
+
+        constexpr float dot(direction const& rhs) const noexcept { return glm::dot(m_direction, rhs.m_direction); }
+        constexpr float distance(direction const& rhs) const noexcept { return glm::distance(direction, rhs.m_direction); }
+
+        constexpr direction cross(direction const& rhs) const noexcept { return glm::cross(m_direction, rhs.m_direction); }
+
+        constexpr float x() const noexcept { return m_direction[0]; }
+        constexpr float y() const noexcept { return m_direction[1]; }
+        constexpr float z() const noexcept { return m_direction[2]; }
+    private:
+        constexpr void normalize() noexcept { m_direction = glm::normalize(m_direction); }
+        glm_vector_type m_direction;
+    };
+
+    template<class Space>
+    bool almost_equal(direction<Space> const& lhs, direction<Space> const& rhs, int ulp = 1) noexcept
+    {
+        return almost_equal(lhs.x(), rhs.x(), ulp) && almost_equal(lhs.y(), lhs.y(), ulp) && almost_equal(lhs.z(), rhs.z(), ulp);
+    }
+
+    template<class Space>
+    bool within_epsilon(direction<Space> const& lhs, direction<Space> const& rhs, float epsilon = 1e-6f) noexcept
+    {
+        return within_epsilon(lhs.x(), rhs.x(), epsilon) && within_epsilon(lhs.y(), rhs.y(), epsilon) && within_epsilon(lhs.z(), rhs.z(), epsilon);
+    }
+}

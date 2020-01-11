@@ -1,4 +1,5 @@
 #pragma once
+
 #include "gmath/internal/units_helper.hpp"
 #include "gmath/utils.hpp"
 

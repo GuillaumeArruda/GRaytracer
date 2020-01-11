@@ -19,20 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\gmath\yprangles.hpp" />
-    <ClInclude Include="src\gmath\internal\units_helper.hpp" />
-    <ClInclude Include="src\gmath\quaternion.hpp" />
+    <ClInclude Include="src\gmath\direction.hpp" />
+    <ClInclude Include="src\gmath\position.hpp" />
     <ClInclude Include="src\gmath\units.hpp" />
-    <ClInclude Include="src\GMath\internal\vec_impl.hpp" />
     <ClInclude Include="src\gmath\utils.hpp" />
-    <ClInclude Include="src\GMath\vec3f.hpp" />
-    <ClInclude Include="src\GMath\vec4f.hpp" />
+    <ClInclude Include="src\gmath\Transform.hpp" />
+    <ClInclude Include="src\gmath\vector.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\gmath\quaternion.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

@@ -21,7 +21,6 @@
     <StackTracePointReplacement>,</StackTracePointReplacement>
     <TestCaseTimeout>20000</TestCaseTimeout><!-- Milliseconds -->
     <WorkingDirectory></WorkingDirectory>
-    <WorkingDirectoryRoot>bin</WorkingDirectoryRoot>
+    <WorkingDirectoryRoot>bin/$(Configuration)</WorkingDirectoryRoot>
   </Catch2Adapter>
-
 </RunSettings>

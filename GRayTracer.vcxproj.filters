@@ -15,37 +15,26 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\GMath\vec3f.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GMath\vec4f.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\internal\units_helper.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\gmath\utils.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gmath\units.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\GMath\internal\vec_impl.hpp">
+    <ClInclude Include="src\gmath\position.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gmath\quaternion.hpp">
+    <ClInclude Include="src\gmath\transform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gmath\yprangles.hpp">
+    <ClInclude Include="src\gmath\vector.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\direction.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\gmath\quaternion.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

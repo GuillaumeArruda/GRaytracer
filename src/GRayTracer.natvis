@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <AutoVisualizer xmlns="http://schemas.microsoft.com/vstudio/debugger/natvis/2010">
-  <Type Name="gmath::vec3f">
-    <DisplayString>{{ x = {m_values[0]}, y = {m_values[1]}, z = {m_values[2]}}}</DisplayString>
-    <Expand>
-      <Item Name="x">m_values[0]</Item>
-      <Item Name="y">m_values[1]</Item>
-      <Item Name="z">m_values[2]</Item>
-    </Expand>
-  </Type>
   <Type Name="gmath::radian">
     <DisplayString>{{{ m_value * 180.f / gmath::pi }}}</DisplayString>
     <Expand>
@@ -20,32 +12,6 @@
     <Expand>
       <Item Name="degree">m_value</Item>
       <Item Name="rad">m_value * gmath::pi / 180.f</Item>
-    </Expand>
-  </Type>
-  <Type Name="gmath::hpbangles">
-    <DisplayString>{{ heading = {m_values[0]}, pitch = {m_values[1]}, bank = {m_values[2]}}}</DisplayString>
-    <Expand>
-      <Item Name="heading">m_values[0]</Item>
-      <Item Name="pitch">m_values[1]</Item>
-      <Item Name="bank">m_values[2]</Item>
-    </Expand>
-  </Type>
-  <Type Name="gmath::vec4f">
-    <DisplayString>{{ x = {m_values[0]}, y = {m_values[1]}, z = {m_values[2]}, w = {m_values[3]}}}</DisplayString>
-    <Expand>
-      <Item Name="x">m_values[0]</Item>
-      <Item Name="y">m_values[1]</Item>
-      <Item Name="z">m_values[2]</Item>
-      <Item Name="w">m_values[3]</Item>
-    </Expand>
-  </Type>
-  <Type Name="gmath::quaternion">
-    <DisplayString>{{ x = {m_storage.m_values[0]}, y = {m_storage.m_values[1]}, z = {m_storage.m_values[2]}, w = {m_storage.m_values[3]}}}</DisplayString>
-    <Expand>
-      <Item Name="x">m_storage.m_values[0]</Item>
-      <Item Name="y">m_storage.m_values[1]</Item>
-      <Item Name="z">m_storage.m_values[2]</Item>
-      <Item Name="w">m_storage.m_values[3]</Item>
     </Expand>
   </Type>
 </AutoVisualizer>
