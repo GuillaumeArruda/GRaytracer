@@ -3,7 +3,10 @@
 #include "gmath/transform.hpp"
 #include "gmath/position.hpp"
 #include "gmath/vector.hpp"
+#include "gmath/ray.h"
 #include "static_assert_helper.hpp"
+
+#include "gthread/thread_group.h"
 
 TEST_CASE("gmath.transform.construction", "[gmath::transform]")
 {
@@ -16,7 +19,10 @@ TEST_CASE("gmath.transform.construction", "[gmath::transform]")
         constexpr gmath::position<gmath::model_space> model_space_pos;
         gmath::position<gmath::projection_space> projection_space_pos = mvp * model_space_pos;
         gmath::vector<gmath::projection_space> vec = projection_space_pos - gmath::position<gmath::projection_space>();
-        constexpr gmath::direction up = gmath::direction<gmath::model_space>::up();
+        constexpr gmath::direction<gmath::world_space> up = gmath::direction<gmath::world_space>::up();
+
+        gmath::ray<gmath::world_space> ray(gmath::position<gmath::world_space>(10.f, 1.f, 100.f), up);
+        //ray(10.f);
         REQUIRE(world_from_model == world_from_model);
     }
 

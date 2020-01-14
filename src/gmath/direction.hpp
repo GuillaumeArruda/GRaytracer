@@ -21,9 +21,9 @@ namespace gmath
         static constexpr direction up() noexcept { return direction(garantee_normal_t::garantee_normal, 0.f, 1.f, 0.f); }
         static constexpr direction right() noexcept { return direction(garantee_normal_t::garantee_normal, 1.f, 0.f, 0.f); }
 
+        constexpr explicit direction(glm_vector_type const& vector) : m_direction(vector) { normalize(); }
         constexpr direction(float x = 1.f, float y = 0.f, float z = 0.f) noexcept : m_direction(x, y, z) { normalize(); }
         constexpr direction(garantee_normal_t, float x, float y, float z) noexcept : m_direction(x,y,z) {}
-        constexpr explicit direction(glm_vector_type const& vector) : m_direction(vector) { normalize(); }
         constexpr direction(direction&&) noexcept = default;
         constexpr direction(direction const&) noexcept = default;
         constexpr direction& operator=(direction const&) = default;
