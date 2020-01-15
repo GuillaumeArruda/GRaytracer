@@ -67,4 +67,12 @@
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gthread\job_manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gthread\latch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
 </Project>

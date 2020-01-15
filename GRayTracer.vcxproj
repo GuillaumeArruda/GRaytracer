@@ -39,6 +39,10 @@
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gthread\job_manager.cpp" />
+    <ClCompile Include="src\gthread\latch.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{8F144D01-A9CF-4048-BFEF-7CDCA70DF6E2}</ProjectGuid>

@@ -10,6 +10,7 @@ namespace gthread
         template<class T, class ... Args>
         thread_group(unsigned int number_of_thread, T&& callable, Args&& ... args)
         {
+            m_threads.reserve(number_of_thread);
             for (unsigned int i = 0; i < number_of_thread; ++i)
             {
                 m_threads.emplace_back(std::forward<T>(callable), std::forward<Args>(args)...);
