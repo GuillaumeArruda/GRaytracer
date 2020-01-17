@@ -24,7 +24,7 @@ namespace gthread
 
         bool try_acquire()
         {
-            std::scoped_lock lock(m_lock);
+            std::unique_lock lock(m_lock);
             if (m_count == 0) return false;
             --m_count;
             return true;
@@ -32,8 +32,10 @@ namespace gthread
 
         void release()
         {
-            std::scoped_lock lock(m_lock);
-            m_count++;
+            {
+                std::unique_lock lock(m_lock);
+                m_count++;
+            }
             m_condVar.notify_one();
         }
 

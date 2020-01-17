@@ -18,7 +18,7 @@ namespace gthread
         {
             m_spaces.acquire();
             {
-                std::scoped_lock lock(m_item_lock);
+                std::unique_lock lock(m_item_lock);
                 m_elements.emplace_back(std::forward<TLike>(obj));
             }
             m_produced.release();
@@ -43,10 +43,13 @@ namespace gthread
     private:
         T pop()
         {
-            std::scoped_lock lock(m_item_lock);
-            T tmp = std::move(m_elements.front());
-            m_elements.pop_front();
-            return std::move(tmp);
+            std::optional<T> tmp;
+            {
+                std::unique_lock lock(m_item_lock);
+                tmp = std::move(m_elements.front());
+                m_elements.pop_front();
+            }
+            return std::move(*tmp);
         }
 
         counting_semaphore<QueueDepth> m_produced{ 0 };

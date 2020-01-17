@@ -5,10 +5,10 @@
 
 int main(int argc, const char** argv)
 {
-    gthread::job_manager jobs(8);
-    for (int i = 0; i < 10000000; ++i)
+    gthread::job_manager jobs(3);
+    for (int i = 0; i < 100000000; ++i)
     {
-        jobs.submit([]{});
+        jobs.submit([] {});
     }
 
     return 0;

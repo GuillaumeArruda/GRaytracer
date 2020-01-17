@@ -13,7 +13,7 @@ namespace gthread
             m_threads.reserve(number_of_thread);
             for (unsigned int i = 0; i < number_of_thread; ++i)
             {
-                m_threads.emplace_back(std::forward<T>(callable), std::forward<Args>(args)...);
+                m_threads.emplace_back(std::forward<T>(callable), i, std::forward<Args>(args)...);
             }
         }
         thread_group(thread_group const&) = delete;
@@ -22,13 +22,7 @@ namespace gthread
         thread_group& operator=(thread_group const&) = delete;
         thread_group& operator=(thread_group&&) noexcept = default;
 
-        ~thread_group()
-        {
-            for (std::thread& thread : m_threads)
-            {
-                thread.join();
-            }
-        }
+        ~thread_group();
 
         std::size_t size() const noexcept { return m_threads.size(); }
     private:

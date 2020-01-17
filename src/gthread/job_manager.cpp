@@ -4,22 +4,20 @@ namespace gthread
 {
     job_manager::~job_manager()
     {
-        gthread::latch l(static_cast<int>(m_threads.size() + 1));
-        for (std::size_t i = 0; i < m_threads.size(); ++i)
-            submit([&] { l.count_down_and_wait(); });
-        m_stop_flag = true;
-        l.count_down();
+        for (auto& queue : m_job_queues)
+            queue.done();
     }
 
-    void job_manager::process_job()
+    void job_manager::process_job(unsigned index)
     {
-        while (!m_stop_flag)
+        while (true)
         {
-            m_jobs.dequeue()();
-        }
-        while (auto job = m_jobs.try_dequeue())
-        {
-            std::move((*job))();
+            std::function<void()> job;
+            for (unsigned i = 0; i < m_job_queues.size(); ++i)
+                if (m_job_queues[(static_cast<std::size_t>(i) + index) % m_job_queues.size()].try_dequeue(job)) break;
+
+            if (!job && !m_job_queues[index].dequeue(job)) break;
+            job();
         }
     }
 }

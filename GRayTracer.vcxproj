@@ -30,6 +30,7 @@
     <ClInclude Include="src\gscene\aggregator.h" />
     <ClInclude Include="src\gscene\light.h" />
     <ClInclude Include="src\gscene\scene.h" />
+    <ClInclude Include="src\gthread\concurrent_queue.h" />
     <ClInclude Include="src\gthread\concurrent_bounded_queue.h" />
     <ClInclude Include="src\gthread\job_manager.h" />
     <ClInclude Include="src\gthread\latch.h" />
@@ -42,6 +43,7 @@
   <ItemGroup>
     <ClCompile Include="src\gthread\job_manager.cpp" />
     <ClCompile Include="src\gthread\latch.cpp" />
+    <ClCompile Include="src\gthread\thread_group.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
