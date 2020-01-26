@@ -1,6 +1,6 @@
 #pragma once
 
-#include "glm/vec3.hpp"
+#include "glm/glm.hpp"
 
 #include "gmath/utils.hpp"
 
@@ -26,6 +26,8 @@ namespace gmath
         constexpr direction(garantee_normal_t, float x, float y, float z) noexcept : m_direction(x,y,z) {}
         constexpr direction(direction&&) noexcept = default;
         constexpr direction(direction const&) noexcept = default;
+        ~direction() noexcept = default;
+
         constexpr direction& operator=(direction const&) = default;
         constexpr direction& operator=(direction&&) = default;
 

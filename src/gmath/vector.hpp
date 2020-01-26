@@ -23,23 +23,24 @@ namespace gmath
         constexpr vector(float x = 0.f, float y = 0.f, float z = 0.f) noexcept : m_vector(x,y,z) {}
         constexpr vector(vector const&) noexcept = default;
         constexpr vector(vector&&) noexcept = default;
+        ~vector() noexcept = default;
 
         constexpr vector& operator=(vector const&) noexcept = default;
         constexpr vector& operator=(vector&&) noexcept = default;
 
         constexpr explicit operator glm_vector_type() const noexcept { return m_vector; }
         constexpr explicit operator position<space>() const noexcept{ return gmath::position<space>(m_vector); }
-        constexpr operator direction<space>() const noexcept { return normalize(); }
+        constexpr operator direction<space>() const noexcept { return direction<space>(m_vector); }
 
         constexpr vector& operator+=(vector const& rhs) noexcept { m_vector += rhs.m_vector; return *this; }
         friend constexpr vector operator+(vector const& lhs, vector const& rhs) noexcept { return vector(lhs.m_vector + rhs.m_vector); }
-        friend constexpr position<space> operator+(vector const& lhs, position<space> const& rhs) noexcept { return position<space>(lhs.m_vector + static_cast<glm::vec4>(rhs)); }
-        friend constexpr position<space> operator+(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(position) + rhs.m_vector); }
+        friend constexpr position<space> operator+(vector const& lhs, position<space> const& rhs) noexcept { return position<space>(glm::vec4(lhs.m_vector,0.f) + static_cast<glm::vec4>(rhs)); }
+        friend constexpr position<space> operator+(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(lhs) + glm::vec4(rhs.m_vector, 0.f)); }
 
         constexpr vector& operator-=(vector const& rhs) noexcept { m_vector -= rhs.m_vector; return *this; }
         friend constexpr vector operator-(vector const& lhs, vector const& rhs) noexcept { return vector(lhs.m_vector - rhs.m_vector); }
-        friend constexpr position<space> operator-(vector const& lhs, position<space> const& rhs) noexcept { return position<space>(lhs.m_vector - static_cast<glm::vec4>(rhs)); }
-        friend constexpr position<space> operator-(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(position) - rhs.m_vector); }
+        friend constexpr position<space> operator-(vector const& lhs, position<space> const& rhs) noexcept { return position<space>(glm::vec4(lhs.m_vector,0.f) - static_cast<glm::vec4>(rhs)); }
+        friend constexpr position<space> operator-(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(lhs) - glm::vec4(rhs.m_vector,0.f)); }
 
         constexpr vector& operator*=(float rhs) noexcept { m_vector *= rhs; return *this; }
         friend constexpr vector operator*(vector const& lhs, float rhs) noexcept { return vector(lhs.m_vector * rhs); }
@@ -56,8 +57,8 @@ namespace gmath
         constexpr float distance(vector const& rhs) const noexcept { return glm::distance(m_vector, rhs.m_vector); }
         constexpr float dot(vector const& rhs) const noexcept { return glm::dot(m_vector, rhs.m_vector); }
 
-        constexpr vector cross(vector const& rhs) const noexcept { return glm::cross(m_vector, rhs.m_vector); }
-        constexpr vector normalize() const noexcept { return glm::normalize(m_vector); }
+        constexpr vector cross(vector const& rhs) const noexcept { return vector(glm::cross(m_vector, rhs.m_vector)); }
+        constexpr vector normalize() const noexcept { return vector(glm::normalize(m_vector)); }
 
         constexpr float& x() noexcept { return m_vector[0]; }
         constexpr float& y() noexcept { return m_vector[1]; }

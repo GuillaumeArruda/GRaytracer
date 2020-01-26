@@ -1,4 +1,4 @@
-#include "gthread/thread_group.h"
+#include "gthread/thread_group.hpp"
 
 namespace gthread
 {

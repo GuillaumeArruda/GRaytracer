@@ -4,12 +4,10 @@
 #include <optional>
 #include <mutex>
 
-#include "gthread\semaphore.h"
+#include "gthread\semaphore.hpp"
 
 namespace gthread
 {
-
-
     template<class T, std::uint64_t QueueDepth>
     struct concurrent_bonded_queue
     {

@@ -18,6 +18,7 @@ namespace gmath
         constexpr explicit position(glm::vec4 const& position) noexcept: m_position(position) {};
         constexpr position(position const&) noexcept = default;
         constexpr position(position&&) noexcept = default;
+        ~position() noexcept = default;
 
         constexpr position& operator=(position const&) noexcept = default;
         constexpr position& operator=(position&&) noexcept = default;

@@ -1,4 +1,4 @@
-#include "gthread\latch.h"
+#include "gthread\latch.hpp"
 
 namespace gthread
 {

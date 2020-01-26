@@ -2,6 +2,8 @@
 
 #include "glm/mat4x4.hpp"
 #include "gmath/utils.hpp"
+#include "gmath/position.hpp"
+#include <type_traits>
 
 namespace gmath
 {
@@ -16,16 +18,24 @@ namespace gmath
         constexpr explicit transform(glm::mat4 const& transform) noexcept : m_transform(transform) {}
         constexpr transform(transform const&) noexcept = default;
         constexpr transform(transform&&) noexcept = default;
+        ~transform() noexcept = default;
 
         constexpr transform& operator=(transform const&) noexcept = default;
         constexpr transform& operator=(transform&&) noexcept = default;
-
+        
         constexpr explicit operator glm::mat4() const noexcept { return m_transform; }
 
-        template<template<typename> class Vector> 
+        template<template<typename> class Vector, class glm_vector_type = Vector<from_space>::glm_vector_type> 
         friend constexpr auto operator*(transform const& transform, Vector<from_space> const& rhs) noexcept
         {
-            return Vector<to_space>(transform.m_transform * static_cast<typename Vector<from_space>::glm_vector_type>(rhs));
+            if constexpr (std::is_same_v<glm_vector_type, glm::vec3>)
+            {
+                return Vector<to_space>(static_cast<glm::mat3>(transform.m_transform) * static_cast<glm_vector_type>(rhs));
+            }
+            else
+            {
+                return Vector<to_space>(transform.m_transform * static_cast<glm_vector_type>(rhs));
+            }
         }
 
         template<class LHSToSpace>
@@ -34,7 +44,9 @@ namespace gmath
             return transform<LHSToSpace, from_space>(static_cast<glm::mat4>(lhs) * rhs.m_transform);
         }
 
-        constexpr transform<from_space, to_space> inverse() const noexcept { return transform(glm::inverse(m_transform)); }
+        position<to_space> get_translation() const noexcept { return position<to_space>(m_transform[3]); }
+
+        constexpr transform<from_space, to_space> inverse() const noexcept { return transform<from_space, to_space>(glm::inverse(m_transform)); }
 
         friend constexpr bool operator==(transform const& lhs, transform const& rhs) noexcept { return lhs.m_transform == rhs.m_transform; }
         friend constexpr bool operator!=(transform const& lhs, transform const& rhs) noexcept { return !(lhs == rhs); }
