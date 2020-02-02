@@ -5,9 +5,11 @@
 #include <string_view>
 #include <optional>
 
-#include "gmath\ray.hpp"
-#include "gscene\ray_hit.hpp"
-#include "gscene\object.hpp"
+#include "gtl/span.h"
+
+#include "gmath\ray.h"
+#include "gscene\ray_hit.h"
+#include "gscene\object.h"
 
 namespace gscene
 {
@@ -23,6 +25,8 @@ namespace gscene
         scene& operator=(scene&&) = default;
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> ray) const noexcept;
+
+        gtl::span<const std::unique_ptr<light>> get_lights() const noexcept { return m_lights; }
 
     private:
         std::vector<std::unique_ptr<light>> m_lights;

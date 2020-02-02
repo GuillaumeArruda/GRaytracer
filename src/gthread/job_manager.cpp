@@ -1,4 +1,4 @@
-#include "gthread\job_manager.hpp"
+#include "gthread\job_manager.h"
 
 namespace gthread
 {

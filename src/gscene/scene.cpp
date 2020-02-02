@@ -1,9 +1,9 @@
-#include "gscene\scene.hpp"
-#include "gscene\light.hpp"
-#include "gscene\material.hpp"
-#include "gscene\shape.hpp"
+#include "gscene\scene.h"
+#include "gscene\light.h"
+#include "gscene\material.h"
+#include "gscene\shape.h"
 
-#include "gscene\shapes\sphere.hpp"
+#include "gscene\shapes\sphere.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 

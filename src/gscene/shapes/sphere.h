@@ -1,6 +1,6 @@
 #pragma once
 
-#include "gscene\shape.hpp"
+#include "gscene\shape.h"
 
 namespace gscene
 {

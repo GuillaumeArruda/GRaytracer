@@ -1,6 +1,6 @@
-#include "gscene\object.hpp"
-#include "gscene\shape.hpp"
-#include "gscene\material.hpp"
+#include "gscene\object.h"
+#include "gscene\shape.h"
+#include "gscene\material.h"
 
 namespace gscene
 {

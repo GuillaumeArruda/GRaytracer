@@ -15,46 +15,64 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\gmath\utils.hpp">
+    <ClInclude Include="src\gscene\camera.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gmath\units.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\position.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\transform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\vector.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\direction.hpp">
+    <ClInclude Include="src\gscene\shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gscene\scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gscene\ray_hit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\object.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="src\gscene\light.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\internal\units_helper.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\gmath\ray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gscene\aggregator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gthread\thread_group.h">
+    <ClInclude Include="src\gscene\shapes\sphere.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gthread\semaphore.h">
+    <ClInclude Include="src\gmath\direction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\position.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\ray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\units.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\internal\units_helper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gthread\concurrent_bounded_queue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gthread\concurrent_queue.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gthread\job_manager.h">
@@ -63,7 +81,13 @@
     <ClInclude Include="src\gthread\latch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gthread\concurrent_queue.h">
+    <ClInclude Include="src\gthread\semaphore.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gthread\thread_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gtl\span.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -78,6 +102,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gthread\thread_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\shapes\sphere.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

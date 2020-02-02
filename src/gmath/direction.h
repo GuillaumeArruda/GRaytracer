@@ -2,7 +2,7 @@
 
 #include "glm/glm.hpp"
 
-#include "gmath/utils.hpp"
+#include "gmath/utils.h"
 
 namespace gmath
 {

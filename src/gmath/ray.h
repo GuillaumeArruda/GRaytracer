@@ -2,9 +2,9 @@
 
 #include <algorithm>
 
-#include "gmath/utils.hpp"
-#include "gmath/vector.hpp"
-#include "gmath/transform.hpp"
+#include "gmath/utils.h"
+#include "gmath/vector.h"
+#include "gmath/transform.h"
 
 namespace gmath
 {

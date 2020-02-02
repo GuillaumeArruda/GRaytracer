@@ -4,7 +4,7 @@
 #include <optional>
 #include <mutex>
 
-#include "gthread\semaphore.hpp"
+#include "gthread\semaphore.h"
 
 namespace gthread
 {

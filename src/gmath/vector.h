@@ -2,11 +2,9 @@
 
 #include "glm/vec3.hpp"
 
-#include "gmath/utils.hpp"
-#include "gmath/position.hpp"
-#include "gmath/direction.hpp"
-
-
+#include "gmath/utils.h"
+#include "gmath/position.h"
+#include "gmath/direction.h"
 
 namespace gmath
 {

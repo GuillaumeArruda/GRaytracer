@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gmath/position.hpp"
-#include "gmath/direction.hpp"
+#include "gmath/position.h"
+#include "gmath/direction.h"
 
 namespace gscene
 {

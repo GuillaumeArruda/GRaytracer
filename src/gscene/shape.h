@@ -2,12 +2,12 @@
 
 #include <optional>
 
-#include "gmath\transform.hpp"
-#include "gmath\ray.hpp"
+#include "gmath\transform.h"
+#include "gmath\ray.h"
 
-#include "gscene\material.hpp"
-#include "gscene\ray_hit.hpp"
-#include "gscene\common.hpp"
+#include "gscene\material.h"
+#include "gscene\ray_hit.h"
+#include "gscene\common.h"
 namespace gscene
 {
     struct object;

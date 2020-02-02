@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gmath/internal/units_helper.hpp"
-#include "gmath/utils.hpp"
+#include "gmath/internal/units_helper.h"
+#include "gmath/utils.h"
 
 namespace gmath
 {
