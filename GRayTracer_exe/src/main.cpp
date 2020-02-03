@@ -17,7 +17,7 @@ int main(int argc, const char** argv)
     std::size_t constexpr image_width_resolution = 3440;
     std::size_t constexpr image_height_resolution = 1440;
     std::size_t constexpr image_resolution = image_width_resolution * image_height_resolution;
-    std::size_t constexpr pixel_per_batch = 7000;
+    std::size_t constexpr pixel_per_batch = 1000;
     std::size_t constexpr nb_aliasing_iteration = 8;
     std::size_t constexpr number_of_ray_per_pixel = nb_aliasing_iteration * nb_aliasing_iteration;
 
@@ -29,7 +29,7 @@ int main(int argc, const char** argv)
     cimg_library::CImg<unsigned char> image(image_width_resolution, image_height_resolution,1 ,1, 0);
 
     gscene::scene scene("");
-    auto lense = std::make_unique<gscene::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
+    auto lense = std::make_unique<gscene::pinhole_lense>(90.0_d, 1.f, std::numeric_limits<float>::max());
     gscene::camera camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f,0.f,-10.f))), std::move(lense));
     
     {
@@ -69,7 +69,7 @@ int main(int argc, const char** argv)
                                 gmath::ray<gmath::world_space> const ray_to_light(hit->m_position + gmath::vector<gmath::world_space>(hit->m_normal) * 0.0001f, (light->get_transform().get_translation() - hit->m_position).normalize());
                                 if (scene.raycast(ray_to_light)) // We hit something there is no direct path to the light.
                                 {
-                                    image[image_index] += static_cast<unsigned char>(raycolor_contribution * 0.1f);
+                                    image[image_index] += std::max<unsigned char>(static_cast<unsigned char>(raycolor_contribution * 0.1f), 1);
                                 }
                                 else
                                 {
@@ -78,13 +78,16 @@ int main(int argc, const char** argv)
                             }
                         }
                     }
-
                 }
             }
             );
         }
+        cimg_library::CImgDisplay display(image);
+        while (!display.is_closed())
+        {
+            display.display(image);
+        }
     }
-    
     image.save("output.bmp");
     return 0;
 }
