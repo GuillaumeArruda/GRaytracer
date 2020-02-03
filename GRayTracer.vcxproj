@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\gscene\shapes\plane.h" />
     <ClInclude Include="src\gmath\direction.h" />
     <ClInclude Include="src\gmath\internal\units_helper.h" />
     <ClInclude Include="src\gmath\position.h" />
@@ -28,8 +29,10 @@
     <ClInclude Include="src\gmath\Transform.h" />
     <ClInclude Include="src\gmath\vector.h" />
     <ClInclude Include="src\gscene\aggregator.h" />
-    <ClInclude Include="src\gscene\camera.hpp" />
+    <ClInclude Include="src\gscene\camera.h" />
     <ClInclude Include="src\gscene\common.h" />
+    <ClInclude Include="src\gscene\lense.h" />
+    <ClInclude Include="src\gscene\lenses\pinhole_lense.h" />
     <ClInclude Include="src\gscene\light.h" />
     <ClInclude Include="src\gscene\material.h" />
     <ClInclude Include="src\gscene\object.h" />
@@ -49,6 +52,9 @@
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\gscene\shapes\plane.cpp" />
+    <ClCompile Include="src\gscene\camera.cpp" />
+    <ClCompile Include="src\gscene\lenses\pinhole_lense.cpp" />
     <ClCompile Include="src\gscene\object.cpp" />
     <ClCompile Include="src\gscene\scene.cpp" />
     <ClCompile Include="src\gscene\shapes\sphere.cpp" />
