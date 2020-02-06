@@ -30,8 +30,8 @@ int main(int argc, const char** argv)
     
     cimg_library::CImg<float> image(image_width_resolution, image_height_resolution, 1, 3, 0.f);
 
-    gscene::scene scene("");
-    auto lense = std::make_unique<gscene::pinhole_lense>(90.0_d, 1.f, std::numeric_limits<float>::max());
+    gscene::scene const scene("");
+    auto lense = std::make_unique<gscene::pinhole_lense>(30.0_d, 1.f, std::numeric_limits<float>::max());
     gscene::camera camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f,0.f,-10.f))), std::move(lense));
     
     {
@@ -41,7 +41,6 @@ int main(int argc, const char** argv)
             job_manager.submit(
                 [&, batch_id, batch_size]()
             {
-
                 float constexpr raycolor_contribution = 1.f / number_of_ray_per_pixel;
 
                 gscene::camera::generate_rays_params params;
@@ -59,8 +58,9 @@ int main(int argc, const char** argv)
                 for (std::size_t i = 0; i < params.number_of_pixel; ++i)
                 {
                     std::size_t const base_index = i * number_of_ray_per_pixel;
-                    std::size_t const x_index = (params.start_pixel + i) % params.x_resolution;
-                    std::size_t const y_index = (params.start_pixel + i) / params.x_resolution;
+                    std::size_t const current_index = params.start_pixel + i;
+                    std::size_t const y_index = current_index / params.x_resolution;
+                    std::size_t const x_index = current_index % params.x_resolution;
                     std::size_t const red_index = (x_index + y_index * params.x_resolution);
                     std::size_t const green_index = red_index + image_resolution;
                     std::size_t const blue_index = green_index + image_resolution;
@@ -70,7 +70,7 @@ int main(int argc, const char** argv)
                         {
                             for (auto const& light : scene.get_lights())
                             {
-                                gmath::ray<gmath::world_space> const ray_to_light(hit->m_position + gmath::vector<gmath::world_space>(hit->m_normal) * 0.0001f, (light->get_transform().get_translation() - hit->m_position).normalize());
+                                gmath::ray<gmath::world_space> const ray_to_light(hit->m_position + gmath::vector(hit->m_normal) * 0.0001f, (light->get_transform().get_translation() - hit->m_position).normalize());
                                 float const color_contribution = scene.raycast(ray_to_light) ? raycolor_contribution * 0.1f : raycolor_contribution;
                                 image[red_index] += color_contribution * hit->m_object->get_material().m_color[0];
                                 image[green_index] += color_contribution * hit->m_object->get_material().m_color[1];
@@ -92,7 +92,5 @@ int main(int argc, const char** argv)
             }
         }
     }
-
-    image.save("output.bmp");
     return 0;
 }

@@ -17,17 +17,20 @@ namespace gscene
         gmath::position<gmath::world_space> const origin = transform.get_translation();
         for (std::size_t i = 0; i < params.number_of_pixel; ++i)
         {
-            std::size_t const x_index = (params.start_pixel + i) % params.x_resolution;
-            std::size_t const y_index = (params.start_pixel + i) / params.x_resolution;
+            std::size_t const current_index = params.start_pixel + i;
+            std::size_t const y_index = current_index / params.x_resolution;
+            std::size_t const x_index = current_index % params.x_resolution;
             for (std::size_t k = 0; k < params.axis_aliasing_sample; ++k)
             {
                 float const k_sign = (k & 1) == 0 ? 1.f : -1.f;
+                float const x_pos = (2.f * (x_index + (k * k_sign * inverse_aliasing)) * inverse_width - 1) * half_w;
                 for (std::size_t l = 0; l < params.axis_aliasing_sample; ++l)
                 {
                     float const l_sign = (l & 1) == 0 ? 1.f : -1.f;
+                    float const y_pos = (2.f * (y_index + (l * l_sign * inverse_aliasing)) * inverse_height - 1) * half_h;
                     gmath::vector<gmath::model_space> const local_direction(
-                        (2.f * (x_index + (k * k_sign * inverse_aliasing)) * inverse_width - 1) * half_w,
-                        (2.f * (y_index + (l * l_sign * inverse_aliasing)) * inverse_height - 1) * half_h,
+                        x_pos,
+                        y_pos,
                         1.f);
                     rays.emplace_back(origin, (transform * local_direction).normalize());
                 }
