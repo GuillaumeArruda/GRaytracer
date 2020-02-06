@@ -4,6 +4,6 @@ namespace gscene
 {
     struct material
     {
-        virtual ~material() {};
+        glm::vec3 m_color;
     };
 }

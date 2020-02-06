@@ -24,7 +24,7 @@ namespace gscene
         scene& operator=(scene const&) = delete;
         scene& operator=(scene&&) = default;
 
-        std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> ray) const noexcept;
+        std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
 
         gtl::span<const std::unique_ptr<light>> get_lights() const noexcept { return m_lights; }
 

@@ -7,7 +7,7 @@ namespace gscene
     struct sphere final : shape
     {
         sphere(float radius)
-            : m_radius(radius) {}
+            : m_radius2(radius * radius) {}
         sphere(sphere const&) noexcept = default;
         sphere(sphere&&) noexcept = default;
         ~sphere() noexcept = default;
@@ -18,6 +18,6 @@ namespace gscene
     private:
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept final;
              
-        float m_radius;
+        float m_radius2;
     };
 }

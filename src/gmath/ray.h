@@ -37,8 +37,10 @@ namespace gmath
         vector<space>& dir() noexcept { return m_direction; }
         void set_minT(float minT) noexcept { m_minT = minT; if (m_minT > m_maxT) std::swap(m_minT, m_maxT); }
         void set_maxT(float maxT) noexcept { m_maxT = minT; if (m_maxT < m_minT) std::swap(m_minT, m_maxT); }
+        
+        bool is_valid_t(float t) const noexcept { return t >= m_minT && t <= m_maxT; }
 
-        constexpr position<space> operator()(float time) const noexcept { return m_start + m_direction * std::clamp(time, m_minT, m_maxT); }
+        constexpr position<space> operator()(float time) const noexcept { return m_start + m_direction * time; }
 
         template<class ToSpace>
         friend ray<ToSpace> operator*(transform<ToSpace,Space> const& lhs, ray const& rhs) noexcept

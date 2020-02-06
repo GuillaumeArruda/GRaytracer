@@ -26,6 +26,7 @@ namespace gscene
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
     
+        material const& get_material() const noexcept { return *m_material; }
     private:
         world_transform m_transform;
         model_transform m_inverseTransform;

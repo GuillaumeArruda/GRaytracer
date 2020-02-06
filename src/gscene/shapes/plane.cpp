@@ -13,7 +13,7 @@ namespace gscene
         gmath::vector<gmath::world_space> const ray_to_plane = obj.get_transform().get_translation() - ray.start();
         float const t = ray_to_plane.dot(m_normal) / denom;
 
-        if (t < ray.minT() || t > ray.maxT())
+        if (!ray.is_valid_t(t))
             return {};
 
         return ray_hit{ ray(t), m_normal, &obj, t };
