@@ -72,9 +72,9 @@ int main(int argc, const char** argv)
                             {
                                 gmath::ray<gmath::world_space> const ray_to_light(hit->m_position + gmath::vector<gmath::world_space>(hit->m_normal) * 0.0001f, (light->get_transform().get_translation() - hit->m_position).normalize());
                                 float const color_contribution = scene.raycast(ray_to_light) ? raycolor_contribution * 0.1f : raycolor_contribution;
-                                image[red_index] = color_contribution * hit->m_object->get_material().m_color[0];
-                                image[green_index] = color_contribution * hit->m_object->get_material().m_color[1];
-                                image[blue_index] = color_contribution * hit->m_object->get_material().m_color[2];
+                                image[red_index] += color_contribution * hit->m_object->get_material().m_color[0];
+                                image[green_index] += color_contribution * hit->m_object->get_material().m_color[1];
+                                image[blue_index] += color_contribution * hit->m_object->get_material().m_color[2];
                             }
                         }
                     }
