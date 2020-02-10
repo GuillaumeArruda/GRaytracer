@@ -13,7 +13,7 @@ namespace gscene
     struct object;
     struct shape
     {
-        virtual ~shape() {};
+        virtual ~shape() = 0 {};
 
         virtual std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept = 0;
 

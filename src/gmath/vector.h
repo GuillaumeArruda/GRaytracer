@@ -36,6 +36,7 @@ namespace gmath
         friend constexpr position<space> operator+(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(lhs) + glm::vec4(rhs.m_vector, 0.f)); }
 
         constexpr vector& operator-=(vector const& rhs) noexcept { m_vector -= rhs.m_vector; return *this; }
+        friend constexpr vector operator-(vector const& lhs) noexcept { return vector(-lhs.m_vector); }
         friend constexpr vector operator-(vector const& lhs, vector const& rhs) noexcept { return vector(lhs.m_vector - rhs.m_vector); }
         friend constexpr position<space> operator-(vector const& lhs, position<space> const& rhs) noexcept { return position<space>(glm::vec4(lhs.m_vector,0.f) - static_cast<glm::vec4>(rhs)); }
         friend constexpr position<space> operator-(position<space> const& lhs, vector const& rhs) noexcept { return position<space>(static_cast<glm::vec4>(lhs) - glm::vec4(rhs.m_vector,0.f)); }
@@ -47,6 +48,7 @@ namespace gmath
         constexpr vector& operator/=(float rhs) noexcept { m_vector /= rhs; return *this; }
         friend constexpr vector operator/(vector const& lhs, float rhs) noexcept { return vector(lhs.m_vector / rhs); }
 
+
         friend constexpr bool operator==(vector const& lhs, vector const& rhs) noexcept { return lhs.m_vector == rhs.m_vector; }
         friend constexpr bool operator!=(vector const& lhs, vector const& rhs) noexcept { return !(lhs == rhs); }
 
@@ -56,7 +58,9 @@ namespace gmath
         constexpr float dot(vector const& rhs) const noexcept { return glm::dot(m_vector, rhs.m_vector); }
 
         constexpr vector cross(vector const& rhs) const noexcept { return vector(glm::cross(m_vector, rhs.m_vector)); }
-        constexpr vector normalize() const noexcept { return vector(glm::normalize(m_vector)); }
+        constexpr direction<space> normalize() const noexcept { return static_cast<direction<space>>(m_vector); }
+        constexpr vector reflect(direction<space> const& normal) const noexcept { return glm::reflect(m_vector, normal.m_direction); }
+        constexpr vector refract(direction<space> const& normal, float eta) const noexcept { return glm::refract(m_vector, normal.m_direction, eta); }
 
         constexpr float& x() noexcept { return m_vector[0]; }
         constexpr float& y() noexcept { return m_vector[1]; }

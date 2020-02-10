@@ -51,8 +51,8 @@ namespace gmath
 		float const t0 = q / a;
 		float const t1 = c / q;
 		if (t0 < t1)
-			return quadatric_result{ t0,t1 };
+			return quadatric_result{ t0, t1 };
 		else
-			return quadatric_result{ t1,t0 };
+			return quadatric_result{ t1, t0 };
 	}
 }

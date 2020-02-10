@@ -3,11 +3,13 @@
 #include <memory>
 #include <vector>
 
-#include "gscene/common.h"
-
 #include "gmath/ray.h"
 
-namespace gscene
+#include "gscene/common.h"
+
+#include "grender/sensor.h"
+
+namespace grender
 {
     struct lense;
     struct camera
@@ -15,13 +17,11 @@ namespace gscene
         struct generate_rays_params
         {
             std::size_t start_pixel = 0;
-            std::size_t number_of_pixel = 1920 * 1080;
-            std::size_t x_resolution = 1920;
-            std::size_t y_resolution = 1080;
+            std::size_t number_of_pixel = 0;
             std::size_t axis_aliasing_sample = 1;
         };
 
-        camera(world_transform const& transform, std::unique_ptr<lense> lense) noexcept;
+        camera(gscene::world_transform const& transform, std::unique_ptr<lense> lense, std::size_t width, std::size_t height) noexcept;
         camera(camera const&) = delete;
         camera(camera&&) noexcept = default;
         ~camera() = default;
@@ -30,9 +30,15 @@ namespace gscene
         camera& operator=(camera&&) noexcept = default;
 
         std::vector<gmath::ray<gmath::world_space>> generate_rays(camera::generate_rays_params const& params) const;
+
+        sensor& get_sensor() const noexcept { return m_sensor; }
+        gscene::world_transform const& get_world_transform() const noexcept { return m_world_transform; }
+        gscene::camera_transform const& get_camera_transform() const noexcept { return m_camera_transform; }
+
     private:
-        camera_transform m_camera_transform;
-        world_transform m_world_transform;
+        gscene::camera_transform m_camera_transform;
+        gscene::world_transform m_world_transform;
         std::unique_ptr<lense> m_lense;
+        mutable sensor m_sensor;
     };
 }

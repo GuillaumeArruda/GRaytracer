@@ -24,6 +24,7 @@ namespace gmath
         constexpr explicit direction(glm_vector_type const& vector) : m_direction(vector) { normalize(); }
         constexpr direction(float x = 1.f, float y = 0.f, float z = 0.f) noexcept : m_direction(x, y, z) { normalize(); }
         constexpr direction(garantee_normal_t, float x, float y, float z) noexcept : m_direction(x,y,z) {}
+        constexpr direction(garantee_normal_t, glm_vector_type const& vector) noexcept : m_direction(vector) {}
         constexpr direction(direction&&) noexcept = default;
         constexpr direction(direction const&) noexcept = default;
         ~direction() noexcept = default;
@@ -39,7 +40,11 @@ namespace gmath
         constexpr float dot(direction const& rhs) const noexcept { return glm::dot(m_direction, rhs.m_direction); }
         constexpr float distance(direction const& rhs) const noexcept { return glm::distance(direction, rhs.m_direction); }
 
+        friend constexpr direction operator-(direction const& lhs) { return direction(garantee_normal_t::garantee_normal, -lhs.m_direction); }
+
         constexpr direction cross(direction const& rhs) const noexcept { return glm::cross(m_direction, rhs.m_direction); }
+        constexpr direction reflect(direction const& normal) const noexcept { return direction(garantee_normal_t::garantee_normal, glm::reflect(m_direction, normal.m_direction)); }
+        constexpr direction refract(direction const& normal, float eta) const noexcept { return glm::refract(m_direction, normal.m_direction, eta); }
 
         constexpr float x() const noexcept { return m_direction[0]; }
         constexpr float y() const noexcept { return m_direction[1]; }

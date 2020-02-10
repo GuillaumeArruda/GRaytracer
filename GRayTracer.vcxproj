@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\grender\integrator.h" />
+    <ClInclude Include="src\grender\integrators\blinn_phong_integrator.h" />
+    <ClInclude Include="src\grender\sensor.h" />
     <ClInclude Include="src\gscene\shapes\plane.h" />
     <ClInclude Include="src\gmath\direction.h" />
     <ClInclude Include="src\gmath\internal\units_helper.h" />
@@ -29,10 +32,10 @@
     <ClInclude Include="src\gmath\Transform.h" />
     <ClInclude Include="src\gmath\vector.h" />
     <ClInclude Include="src\gscene\aggregator.h" />
-    <ClInclude Include="src\gscene\camera.h" />
+    <ClInclude Include="src\grender\camera.h" />
     <ClInclude Include="src\gscene\common.h" />
-    <ClInclude Include="src\gscene\lense.h" />
-    <ClInclude Include="src\gscene\lenses\pinhole_lense.h" />
+    <ClInclude Include="src\grender\lense.h" />
+    <ClInclude Include="src\grender\lenses\pinhole_lense.h" />
     <ClInclude Include="src\gscene\light.h" />
     <ClInclude Include="src\gscene\material.h" />
     <ClInclude Include="src\gscene\object.h" />
@@ -52,9 +55,11 @@
     <Natvis Include="src\GRayTracer.natvis" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\grender\integrators\blinn_phong_integrator.cpp" />
+    <ClCompile Include="src\grender\sensor.cpp" />
     <ClCompile Include="src\gscene\shapes\plane.cpp" />
-    <ClCompile Include="src\gscene\camera.cpp" />
-    <ClCompile Include="src\gscene\lenses\pinhole_lense.cpp" />
+    <ClCompile Include="src\grender\camera.cpp" />
+    <ClCompile Include="src\grender\lenses\pinhole_lense.cpp" />
     <ClCompile Include="src\gscene\object.cpp" />
     <ClCompile Include="src\gscene\scene.cpp" />
     <ClCompile Include="src\gscene\shapes\sphere.cpp" />
