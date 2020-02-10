@@ -49,7 +49,8 @@ namespace grender
         float const max_t = world_light_dir.length();
         gmath::ray<gmath::world_space> const ray_to_light(hit.m_position + gmath::vector(hit.m_normal) * 0.0001f, world_light_dir, std::numeric_limits<float>::epsilon(), max_t, 0);
         constexpr glm::vec3 ambient_light(0.05f, 0.05f, 0.05f);
-        glm::vec3 const ambient_color = ambient_light * hit.m_object->get_material().m_color;
+        gscene::material const& material = hit.m_object->get_material();
+        glm::vec3 const ambient_color = ambient_light * material.m_color;
         if (scene.raycast(ray_to_light))
         {
             return ambient_color;
@@ -64,11 +65,11 @@ namespace grender
             gmath::direction<gmath::camera_space> const view_dir = -gmath::vector(camera.get_camera_transform() * hit.m_position);
             gmath::direction<gmath::camera_space> const reflect_dir = -(light_dir).reflect(normal);
             float const specular_angle = std::max(view_dir.dot(reflect_dir), 0.f);
-            specular_coefficient = std::pow(specular_angle, 4.f) * lambertian;
+            specular_coefficient = std::pow(specular_angle, material.m_specular_exponent) * lambertian;
         }
 
-        glm::vec3 const diffuse_color = hit.m_object->get_material().m_color * lambertian;
-        glm::vec3 const specular_color = hit.m_object->get_material().m_color * specular_coefficient;
+        glm::vec3 const diffuse_color = material.m_color * lambertian;
+        glm::vec3 const specular_color = material.m_color * specular_coefficient;
         
         return glm::clamp(diffuse_color + specular_color + ambient_color, 0.f, 1.f);
     }
