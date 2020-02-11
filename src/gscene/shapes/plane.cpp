@@ -2,6 +2,7 @@
 #include "gscene\material.h"
 #include "gscene\object.h"
 
+
 namespace gscene
 {
     std::optional<ray_hit> plane::raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept

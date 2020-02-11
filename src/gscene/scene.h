@@ -16,7 +16,7 @@ namespace gscene
     struct light;
     struct scene
     {
-        scene(std::string_view filename);
+        scene() noexcept = default;
         scene(scene const&) = delete;
         scene(scene&&) noexcept = default;
         ~scene();
@@ -27,6 +27,12 @@ namespace gscene
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
 
         gtl::span<const std::unique_ptr<light>> get_lights() const noexcept { return m_lights; }
+
+        template<typename Archive>
+        void serialize(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights));
+        }
 
     private:
         std::vector<std::unique_ptr<light>> m_lights;

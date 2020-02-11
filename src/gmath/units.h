@@ -20,6 +20,13 @@ namespace gmath
 		constexpr float& value() noexcept { return m_value; }
 
 		constexpr explicit operator float() const noexcept { return m_value; }
+
+		template<typename Archive>
+		void serialize(Archive& ar)
+		{
+			ar(CEREAL_NVP(m_value));
+		}
+
 	private:
 		float m_value;
 	};
@@ -47,6 +54,12 @@ namespace gmath
 		constexpr float& value() noexcept { return m_value; }
 
 		constexpr explicit operator float() const noexcept { return m_value; }
+
+		template<typename Archive>
+		void serialize(Archive& ar)
+		{
+			ar(CEREAL_NVP(m_value));
+		}
 	private:
 		float m_value;
 	};

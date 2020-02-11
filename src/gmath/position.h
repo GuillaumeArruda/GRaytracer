@@ -37,6 +37,12 @@ namespace gmath
         constexpr float& w() noexcept { return m_position[3]; }
 
         constexpr explicit operator glm::vec4() const noexcept { return m_position; }
+
+        template<typename Archive>
+        void serialize(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_position));
+        }
     private:
         glm::vec4 m_position;
     };

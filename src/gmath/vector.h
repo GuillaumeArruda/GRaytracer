@@ -69,6 +69,12 @@ namespace gmath
         constexpr float x() const noexcept { return m_vector[0]; }
         constexpr float y() const noexcept { return m_vector[1]; }
         constexpr float z() const noexcept { return m_vector[2]; }
+
+        template<typename Archive>
+        void serialize(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_vector));
+        }
     private:
         glm_vector_type m_vector;
     };

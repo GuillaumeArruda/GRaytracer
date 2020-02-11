@@ -50,6 +50,12 @@ namespace gmath
 
         friend constexpr bool operator==(transform const& lhs, transform const& rhs) noexcept { return lhs.m_transform == rhs.m_transform; }
         friend constexpr bool operator!=(transform const& lhs, transform const& rhs) noexcept { return !(lhs == rhs); }
+
+        template<typename Archive>
+        void serialize(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_transform));
+        }
     private:
         glm::mat4 m_transform;
     };

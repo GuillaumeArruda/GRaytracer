@@ -4,6 +4,9 @@
 #include <optional>
 #include <cmath>
 
+#include <glm/glm.hpp>
+#include <cereal/cereal.hpp>
+
 namespace gmath
 {
     struct world_space {};
@@ -54,5 +57,26 @@ namespace gmath
 			return quadatric_result{ t0, t1 };
 		else
 			return quadatric_result{ t1, t0 };
+	}
+}
+
+namespace glm
+{
+	template<typename Archive>
+	void serialize(Archive& ar, vec3& vec)
+	{
+		ar(cereal::make_nvp("x", vec.x), cereal::make_nvp("y", vec.y), cereal::make_nvp("z", vec.z));
+	}
+
+	template<typename Archive>
+	void serialize(Archive& ar, vec4& vec)
+	{
+		ar(cereal::make_nvp("x", vec.x), cereal::make_nvp("y", vec.y), cereal::make_nvp("z", vec.z), cereal::make_nvp("w", vec.w));
+	}
+
+	template<typename Archive>
+	void serialize(Archive& ar, mat4& mat)
+	{
+		ar(cereal::make_nvp("[0]", mat[0]), cereal::make_nvp("[1]", mat[1]), cereal::make_nvp("[2]", mat[2]), cereal::make_nvp("[3]", mat[3]));
 	}
 }

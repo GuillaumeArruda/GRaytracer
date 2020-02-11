@@ -14,6 +14,7 @@ namespace gscene
     struct object
     {
         object(world_transform const& transform, std::unique_ptr<shape> shape, std::unique_ptr<material> material);
+        object() noexcept = default;
         object(object const&) = delete;
         object(object&&) noexcept = default;
         ~object();
@@ -27,6 +28,12 @@ namespace gscene
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
     
         material const& get_material() const noexcept { return *m_material; }
+
+        template<typename Archive>
+        void serialize(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_inverseTransform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material));
+        }
     private:
         world_transform m_transform;
         model_transform m_inverseTransform;
