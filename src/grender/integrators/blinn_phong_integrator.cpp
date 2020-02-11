@@ -10,7 +10,7 @@ namespace grender
 {
     void blinn_phong_integrator::render(gscene::scene const& scene, grender::camera const& camera, glm::uvec2 bounds) const
     {
-        std::size_t constexpr nb_aliasing_iteration = 4;
+        std::size_t constexpr nb_aliasing_iteration = 8;
         std::size_t constexpr number_of_ray_per_pixel = nb_aliasing_iteration * nb_aliasing_iteration;
         float constexpr raycolor_contribution = 1.f / number_of_ray_per_pixel;
         grender::camera::generate_rays_params const params
@@ -45,8 +45,9 @@ namespace grender
 
     glm::vec3 blinn_phong_integrator::compute_radiance(gscene::ray_hit const& hit, gscene::light const& light, gscene::scene const& scene, grender::camera const& camera) const noexcept
     {
-        gmath::vector<gmath::world_space> const world_light_dir = light.get_transform().get_translation() - hit.m_position;
-        float const max_t = world_light_dir.length();
+        gmath::vector<gmath::world_space> const world_light_vec = light.get_transform().get_translation() - hit.m_position;
+        float const max_t = world_light_vec .length();
+        gmath::direction<gmath::world_space> const world_light_dir(gmath::direction<gmath::world_space>::garantee_normal_t::garantee_normal,  static_cast<glm::vec3>(world_light_vec / max_t));
         gmath::ray<gmath::world_space> const ray_to_light(hit.m_position + gmath::vector(hit.m_normal) * 0.0001f, world_light_dir, std::numeric_limits<float>::epsilon(), max_t, 0);
         constexpr glm::vec3 ambient_light(0.05f, 0.05f, 0.05f);
         gscene::material const& material = hit.m_object->get_material();
