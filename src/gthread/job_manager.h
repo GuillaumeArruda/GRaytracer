@@ -38,14 +38,28 @@ namespace gthread
             using ReturnType = std::decay_t<std::invoke_result_t<Invocable>>;
             std::shared_ptr<std::promise<ReturnType>> promise = std::make_shared<std::promise<ReturnType>>();
             std::future<ReturnType> returnValue = promise->get_future();
-            if constexpr (std::is_same_v<std::invoke_result_t<Invocable>, void>)
-            {
-                submit([i = std::forward<Invocable>(invocable), p = std::move(promise)]() mutable { i(); p->set_value(); });
-            }
-            else
-            {
-                submit([i = std::forward<Invocable>(invocable), p = std::move(promise)]() mutable { p->set_value(i()); });
-            }
+            submit([i = std::forward<Invocable>(invocable), p = std::move(promise)]() mutable 
+            {   
+                try
+                {
+                    if constexpr (std::is_same_v<std::invoke_result_t<Invocable>, void>)
+                    {
+                        i(); p->set_value();
+                    }
+                    else
+                    {
+                        p->set_value(i());
+                    }
+                }
+                catch (...)
+                {
+                    try
+{
+                        p->set_exception(std::current_exception());
+                    }
+                    catch (...) {}
+                }
+            });
             return returnValue;
         }
 
