@@ -19,7 +19,7 @@ namespace gscene
         }
         glm::vec3 m_diffuse_color;
         glm::vec3 m_specular_color;
-        float m_specular_exponent = 1.f;
+        float m_specular_exponent;
     };
 }
 
