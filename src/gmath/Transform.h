@@ -1,9 +1,11 @@
 #pragma once
 
-#include "glm/mat4x4.hpp"
+#include <type_traits>
+
+#include <glm/mat4x4.hpp>
+
 #include "gmath/utils.h"
 #include "gmath/position.h"
-#include <type_traits>
 
 namespace gmath
 {

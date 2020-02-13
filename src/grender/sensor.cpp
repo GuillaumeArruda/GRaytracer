@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "grender/sensor.h"
 
 namespace grender

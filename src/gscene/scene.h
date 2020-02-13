@@ -7,9 +7,10 @@
 
 #include "gtl/span.h"
 
-#include "gmath\ray.h"
-#include "gscene\ray_hit.h"
-#include "gscene\object.h"
+#include "gmath/ray.h"
+
+#include "gscene/ray_hit.h"
+#include "gscene/object.h"
 
 namespace gscene
 {

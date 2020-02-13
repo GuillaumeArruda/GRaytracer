@@ -53,6 +53,7 @@
     <ClInclude Include="src\gthread\thread_group.h" />
     <ClInclude Include="src\gtl\span.h" />
     <ClInclude Include="src\gtl\cast.h" />
+    <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
@@ -69,6 +70,9 @@
     <ClCompile Include="src\gthread\job_manager.cpp" />
     <ClCompile Include="src\gthread\latch.cpp" />
     <ClCompile Include="src\gthread\thread_group.cpp" />
+    <ClCompile Include="src\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

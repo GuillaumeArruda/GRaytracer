@@ -1,8 +1,8 @@
 #pragma once
 
-#include "gmath\units.h"
+#include "gmath/units.h"
 
-#include "grender\lense.h"
+#include "grender/lense.h"
 
 namespace grender
 {

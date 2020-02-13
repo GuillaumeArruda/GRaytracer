@@ -1,25 +1,24 @@
-
 #include <fstream>
 
-#include "gthread\job_manager.h"
+#include "gthread/job_manager.h"
 
-#include "gscene\scene.h"
-#include "gscene\light.h"
-#include "gscene\material.h"
-#include "gscene\shape.h"
+#include "gscene/scene.h"
+#include "gscene/light.h"
+#include "gscene/material.h"
+#include "gscene/shape.h"
 
-#include "gscene\serialization_headers.h"
+#include "gscene/serialization_headers.h"
 
-#include "grender\lenses\pinhole_lense.h"
-#include "grender\camera.h"
-#include "grender\integrators\blinn_phong_integrator.h"
+#include "grender/lenses/pinhole_lense.h"
+#include "grender/camera.h"
+#include "grender/integrators/blinn_phong_integrator.h"
 
-#include "glm\gtc\matrix_transform.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 
 #include <fstream>
-#include <cereal\archives\json.hpp>
-#include <cereal\types\vector.hpp>
-#include <cereal\types\memory.hpp>
+#include <cereal/archives/json.hpp>
+#include <cereal/types/vector.hpp>
+#include <cereal/types/memory.hpp>
 
 int main(int argc, const char** argv)
 {

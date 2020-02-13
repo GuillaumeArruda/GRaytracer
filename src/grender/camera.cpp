@@ -1,5 +1,8 @@
+#include "stdafx.h"
+
 #include "grender/camera.h"
 #include "grender/lense.h"
+
 namespace grender
 {
     camera::camera(gscene::world_transform const& transform, std::unique_ptr<lense> lense, std::size_t width, std::size_t height) noexcept

@@ -1,10 +1,9 @@
 #pragma once
 
-#include "gscene\shape.h"
-
-
 #include <cereal/types/polymorphic.hpp>
 #include <cereal/archives/json.hpp>
+
+#include "gscene/shape.h"
 
 namespace gscene
 {

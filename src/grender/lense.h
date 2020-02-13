@@ -1,12 +1,11 @@
 #pragma once
 #include <vector>
 
-#include "gmath\ray.h"
+#include "gmath/ray.h"
 
-#include "grender\camera.h"
+#include "gscene/common.h"
 
-#include "gscene\common.h"
-
+#include "grender/camera.h"
 
 namespace grender
 {

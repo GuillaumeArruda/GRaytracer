@@ -2,10 +2,10 @@
 #include <memory>
 #include <optional>
 
-#include "gmath\ray.h"
+#include "gmath/ray.h"
 
-#include "gscene\common.h"
-#include "gscene\ray_hit.h"
+#include "gscene/common.h"
+#include "gscene/ray_hit.h"
 
 namespace gscene
 {

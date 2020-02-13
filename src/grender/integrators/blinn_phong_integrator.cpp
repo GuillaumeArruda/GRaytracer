@@ -1,12 +1,14 @@
-#include "grender\integrators\blinn_phong_integrator.h"
+#include "stdafx.h"
 
-#include "gtl\cast.h"
+#include "grender/integrators/blinn_phong_integrator.h"
 
-#include "gscene\scene.h"
-#include "gscene\light.h"
-#include "gscene\materials\blinn_phong_material.h"
+#include "gtl/cast.h"
 
-#include "grender\camera.h"
+#include "gscene/scene.h"
+#include "gscene/light.h"
+#include "gscene/materials/blinn_phong_material.h"
+
+#include "grender/camera.h"
 
 namespace grender
 {

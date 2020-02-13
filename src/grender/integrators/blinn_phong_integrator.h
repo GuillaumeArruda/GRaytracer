@@ -1,6 +1,6 @@
 #pragma once
 
-#include "grender\integrator.h"
+#include "grender/integrator.h"
 
 namespace gscene
 {

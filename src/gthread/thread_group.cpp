@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "gthread/thread_group.h"
 
 namespace gthread

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "gmath/utils.h"
+#include <glm/vec4.hpp>
 
-#include "glm/vec4.hpp"
+#include "gmath/utils.h"
 
 namespace gmath
 {

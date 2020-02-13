@@ -1,6 +1,8 @@
-#include "gscene\object.h"
-#include "gscene\shape.h"
-#include "gscene\material.h"
+#include "stdafx.h"
+
+#include "gscene/object.h"
+#include "gscene/shape.h"
+#include "gscene/material.h"
 
 namespace gscene
 {

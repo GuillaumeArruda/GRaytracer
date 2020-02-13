@@ -1,7 +1,10 @@
-#include "gscene\scene.h"
-#include "gscene\light.h"
+#include "stdafx.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+
+#include "gscene/scene.h"
+#include "gscene/light.h"
+
 
 namespace gscene
 {
