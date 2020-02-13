@@ -10,6 +10,8 @@ namespace grender
     struct integrator
     {
         virtual ~integrator() = 0 {};
+
+        virtual void verify_scene(gscene::scene const& scene) const = 0;
         virtual void render(gscene::scene const& scene, grender::camera const& camera, glm::uvec2 bounds) const = 0 ;
     };
 }

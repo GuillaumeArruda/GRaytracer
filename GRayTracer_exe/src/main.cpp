@@ -7,8 +7,8 @@
 #include "gscene\light.h"
 #include "gscene\material.h"
 #include "gscene\shape.h"
-#include "gscene\shapes\sphere.h"
-#include "gscene\shapes\plane.h"
+
+#include "gscene\serialization_headers.h"
 
 #include "grender\lenses\pinhole_lense.h"
 #include "grender\camera.h"
@@ -42,7 +42,7 @@ int main(int argc, const char** argv)
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
     grender::camera camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f,0.f,-14.f))), std::move(lense), image_width_resolution, image_height_resolution);
     grender::blinn_phong_integrator integrator;
-
+    integrator.verify_scene(scene);
     { 
         gthread::job_manager job_manager(static_cast<unsigned int>(number_of_thread));
 

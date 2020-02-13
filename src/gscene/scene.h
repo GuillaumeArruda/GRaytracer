@@ -26,7 +26,8 @@ namespace gscene
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
 
-        gtl::span<const std::unique_ptr<light>> get_lights() const noexcept { return m_lights; }
+        gtl::span<std::unique_ptr<light> const> get_lights() const noexcept { return m_lights; }
+        gtl::span<object const> get_objects() const noexcept { return m_objects; }
 
         template<typename Archive>
         void serialize(Archive& ar)

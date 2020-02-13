@@ -108,6 +108,15 @@
     <ClInclude Include="src\grender\sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gscene\materials\blinn_phong_material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gtl\cast.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\serialization_headers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
