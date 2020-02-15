@@ -11,6 +11,7 @@
 
 #include "gscene/ray_hit.h"
 #include "gscene/object.h"
+#include "gscene/accelerator.h"
 
 namespace gscene
 {
@@ -31,13 +32,21 @@ namespace gscene
         gtl::span<object const> get_objects() const noexcept { return m_objects; }
 
         template<typename Archive>
-        void serialize(Archive& ar)
+        void save(Archive& ar) const
         {
-            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights));
+            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
+        }
+
+        template<typename Archive>
+        void load(Archive& ar)
+        {
+            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
+            m_accelerator->build(*this);
         }
 
     private:
         std::vector<std::unique_ptr<light>> m_lights;
         std::vector<object> m_objects;
+        std::unique_ptr<accelerator> m_accelerator;
     };
 }

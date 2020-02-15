@@ -63,6 +63,7 @@
   <ItemGroup>
     <ClCompile Include="src\grender\integrators\blinn_phong_integrator.cpp" />
     <ClCompile Include="src\grender\sensor.cpp" />
+    <ClCompile Include="src\gscene\accelerators\for_each_accelerator.cpp" />
     <ClCompile Include="src\gscene\shapes\disk.cpp" />
     <ClCompile Include="src\gscene\shapes\plane.cpp" />
     <ClCompile Include="src\grender\camera.cpp" />

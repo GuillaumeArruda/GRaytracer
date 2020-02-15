@@ -170,5 +170,8 @@
     <ClCompile Include="src\gscene\shapes\disk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\gscene\accelerators\for_each_accelerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

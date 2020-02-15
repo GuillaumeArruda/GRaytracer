@@ -12,18 +12,7 @@ namespace gscene
 
     std::optional<ray_hit> scene::raycast(gmath::ray<gmath::world_space> const& ray) const noexcept
     {
-        std::optional<ray_hit> besthit;
-        for (auto const& object: m_objects)
-        {
-            std::optional<ray_hit> hit = object.raycast(ray);
-            if (hit)
-                if (!besthit)
-                    besthit = std::move(hit);
-                else
-                    if (*hit < *besthit)
-                        besthit = std::move(hit);
-        }
-        return besthit;
+        return m_accelerator->raycast(ray);
     }
 
 }
