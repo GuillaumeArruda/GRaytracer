@@ -51,7 +51,7 @@ namespace gmath
     private:
         position<space> m_start;
         vector<space> m_direction;
-        float m_minT = 1e-6f;
+        float m_minT = std::numeric_limits<float>::epsilon();
         float m_maxT = std::numeric_limits<float>::max();
         int m_depth = 0;
     };

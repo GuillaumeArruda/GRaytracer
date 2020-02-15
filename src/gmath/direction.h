@@ -54,6 +54,7 @@ namespace gmath
         void serialize(Archive& ar)
         {
             ar(CEREAL_NVP(m_direction));
+            normalize();
         }
     private:
         constexpr void normalize() noexcept { m_direction = glm::normalize(m_direction); }

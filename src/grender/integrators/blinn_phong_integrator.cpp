@@ -64,7 +64,7 @@ namespace grender
             }
 
             gscene::blinn_phong_material const& material = gtl::cast<gscene::blinn_phong_material const&>(hit->m_object->get_material());
-            if (hit->m_ray->depth() < 1 && material.m_reflection_coefficient > 0.f)
+            if (hit->m_ray->depth() < 5 && material.m_reflection_coefficient > 0.f)
             {
                 gmath::direction<gmath::world_space> const new_dir = hit->m_ray->dir().reflect(hit->m_normal);
                 gmath::ray<gmath::world_space> const reflection_ray(hit->m_position + gmath::vector(hit->m_normal) * 0.0001f, new_dir, std::numeric_limits<float>::epsilon(), std::numeric_limits<float>::max(), hit->m_ray->depth() + 1);
