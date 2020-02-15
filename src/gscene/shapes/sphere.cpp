@@ -26,7 +26,7 @@ namespace gscene
 
             gmath::position<gmath::world_space> const hitpos = ray(t);
             gmath::direction<gmath::world_space> const normal = hitpos - obj.get_transform().get_translation();
-            return ray_hit{ hitpos, normal, &obj, t };
+            return ray_hit{ hitpos, normal, &obj, &ray, t };
         }
         return {};
     }

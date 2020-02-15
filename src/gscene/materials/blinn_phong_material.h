@@ -15,11 +15,17 @@ namespace gscene
         template<class Archive>
         void serialize(Archive& ar)
         {
-            ar(CEREAL_NVP(m_diffuse_color), CEREAL_NVP(m_specular_color), CEREAL_NVP(m_specular_exponent));
+            ar(CEREAL_NVP(m_diffuse_color)
+            , CEREAL_NVP(m_specular_color)
+            , CEREAL_NVP(m_specular_exponent)
+            , CEREAL_NVP(m_reflection_coefficient)
+            , CEREAL_NVP(m_refraction_coefficient));
         }
         glm::vec3 m_diffuse_color;
         glm::vec3 m_specular_color;
         float m_specular_exponent = 1.f;
+        float m_reflection_coefficient = 0.f;
+        float m_refraction_coefficient = 0.f;
     };
 }
 

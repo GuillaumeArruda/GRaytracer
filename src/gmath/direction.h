@@ -43,7 +43,7 @@ namespace gmath
         friend constexpr direction operator-(direction const& lhs) { return direction(garantee_normal_t::garantee_normal, -lhs.m_direction); }
 
         constexpr direction cross(direction const& rhs) const noexcept { return glm::cross(m_direction, rhs.m_direction); }
-        constexpr direction reflect(direction const& normal) const noexcept { return direction(garantee_normal_t::garantee_normal, glm::reflect(m_direction, normal.m_direction)); }
+        constexpr direction reflect(direction const& incident) const noexcept { return direction(garantee_normal_t::garantee_normal, glm::reflect(m_direction, incident.m_direction)); }
         constexpr direction refract(direction const& normal, float eta) const noexcept { return glm::refract(m_direction, normal.m_direction, eta); }
 
         constexpr float x() const noexcept { return m_direction[0]; }

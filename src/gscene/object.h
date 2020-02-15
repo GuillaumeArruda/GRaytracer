@@ -32,7 +32,8 @@ namespace gscene
         template<typename Archive>
         void serialize(Archive& ar)
         {
-            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_inverseTransform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material));
+            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material));
+            m_inverseTransform = m_transform.inverse();
         }
     private:
         world_transform m_transform;

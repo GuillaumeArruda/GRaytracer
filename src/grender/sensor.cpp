@@ -13,9 +13,9 @@ namespace grender
         std::size_t const red_index = (x_index + y_index * get_width());
         std::size_t const green_index = red_index + resolution;
         std::size_t const blue_index = green_index + resolution;
-        m_image[red_index] += red;
-        m_image[green_index] += green;
-        m_image[blue_index] += blue;
+        m_image[red_index] = red;
+        m_image[green_index] = green;
+        m_image[blue_index] = blue;
     }
 }
 

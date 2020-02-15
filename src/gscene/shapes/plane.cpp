@@ -19,6 +19,6 @@ namespace gscene
         if (!ray.is_valid_t(t))
             return {};
 
-        return ray_hit{ ray(t), m_normal, &obj, t };
+        return ray_hit{ ray(t), m_normal, &obj, &ray, t };
     }
 }

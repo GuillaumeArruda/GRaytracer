@@ -59,8 +59,8 @@ namespace gmath
 
         constexpr vector cross(vector const& rhs) const noexcept { return vector(glm::cross(m_vector, rhs.m_vector)); }
         constexpr direction<space> normalize() const noexcept { return static_cast<direction<space>>(m_vector); }
-        constexpr vector reflect(direction<space> const& normal) const noexcept { return glm::reflect(m_vector, normal.m_direction); }
-        constexpr vector refract(direction<space> const& normal, float eta) const noexcept { return glm::refract(m_vector, normal.m_direction, eta); }
+        constexpr vector reflect(direction<space> const& normal) const noexcept { return vector(glm::reflect(m_vector, static_cast<glm::vec3>(normal))); }
+        constexpr vector refract(direction<space> const& normal, float eta) const noexcept { return vector(glm::refract(m_vector, normal.m_direction, eta)); }
 
         constexpr float& x() noexcept { return m_vector[0]; }
         constexpr float& y() noexcept { return m_vector[1]; }

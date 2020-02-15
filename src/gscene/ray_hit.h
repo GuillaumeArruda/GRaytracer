@@ -11,7 +11,8 @@ namespace gscene
     {
         gmath::position<gmath::world_space> m_position;
         gmath::direction<gmath::world_space> m_normal;
-        object const* m_object;
+        object const* m_object = nullptr;
+        gmath::ray<gmath::world_space> const* m_ray = nullptr;
         float m_t = 0.f;
 
         bool operator==(ray_hit const& rhs) const noexcept
