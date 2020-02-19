@@ -196,10 +196,11 @@ namespace gscene
         }
 
         std::vector<std::size_t> below_indexes;
-        std::vector<std::size_t> above_indexes;
         for (std::size_t i = 0; i < *best_offset; ++i)
             if (edges[*best_axis][i].m_type == bound_edge::type::begin)
                 below_indexes.emplace_back(edges[*best_axis][i].m_object_index);
+        
+        std::vector<std::size_t> above_indexes;
         for (std::size_t i = *best_offset + 1; i < 2 * indexes.size(); ++i)
             if (edges[*best_axis][i].m_type == bound_edge::type::end)
                 above_indexes.emplace_back(edges[*best_axis][i].m_object_index);
