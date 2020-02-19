@@ -70,6 +70,8 @@ namespace gmath
         constexpr float y() const noexcept { return m_vector[1]; }
         constexpr float z() const noexcept { return m_vector[2]; }
 
+        constexpr float operator[](std::size_t index) const noexcept { return m_vector[static_cast<glm_vector_type::length_type>(index)]; }
+
         template<typename Archive>
         void serialize(Archive& ar)
         {

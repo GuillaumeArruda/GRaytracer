@@ -19,6 +19,13 @@ namespace gscene
         if (!ray.is_valid_t(t))
             return {};
 
-        return ray_hit{ ray(t), m_normal, &obj, &ray, t };
+        return ray_hit{ {ray(t), m_normal, &ray, t},&obj };
+    }
+    gmath::axis_aligned_box<gmath::world_space> plane::world_bounds(world_transform const& transform) const noexcept
+    {
+        float constexpr extend = 10000.f;
+        gmath::position<gmath::world_space> const position = transform.get_translation();
+        gmath::vector<gmath::world_space> const on_plane_direction = m_normal.cross(gmath::vector<gmath::world_space>(-m_normal.y(), m_normal.z(), m_normal.x()));
+        return gmath::axis_aligned_box<gmath::world_space>(position - on_plane_direction * extend, position + on_plane_direction * extend);
     }
 }

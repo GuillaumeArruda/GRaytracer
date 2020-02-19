@@ -51,7 +51,7 @@ namespace gtl
         constexpr reverse_iterator rend() const noexcept { return m_begin; }
         constexpr const_reverse_iterator crend() const noexcept { return m_begin; }
 
-        constexpr size_type size() const noexcept { return std::distance(m_end, m_begin); }
+        constexpr size_type size() const noexcept { return std::distance(m_begin, m_end); }
         constexpr size_type size_bytes() const noexcept { return size() * sizeof(element_type); }
         constexpr bool empty() const noexcept { return size() == 0ull; }
 

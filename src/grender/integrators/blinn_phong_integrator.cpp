@@ -64,10 +64,10 @@ namespace grender
             }
 
             gscene::blinn_phong_material const& material = gtl::cast<gscene::blinn_phong_material const&>(hit->m_object->get_material());
-            if (hit->m_ray->depth() < 5 && material.m_reflection_coefficient > 0.f)
+            if (hit->m_ray_hit.m_ray->depth() < 5 && material.m_reflection_coefficient > 0.f)
             {
-                gmath::direction<gmath::world_space> const new_dir = hit->m_ray->dir().reflect(hit->m_normal);
-                gmath::ray<gmath::world_space> const reflection_ray(hit->m_position + gmath::vector(hit->m_normal) * 0.0001f, new_dir, std::numeric_limits<float>::epsilon(), std::numeric_limits<float>::max(), hit->m_ray->depth() + 1);
+                gmath::direction<gmath::world_space> const new_dir = hit->m_ray_hit.m_ray->dir().reflect(hit->m_ray_hit.m_normal);
+                gmath::ray<gmath::world_space> const reflection_ray(hit->m_ray_hit.m_position + gmath::vector(hit->m_ray_hit.m_normal) * 0.0001f, new_dir, std::numeric_limits<float>::epsilon(), std::numeric_limits<float>::max(), hit->m_ray_hit.m_ray->depth() + 1);
                 color += compute_radiance(reflection_ray, scene, camera) * material.m_reflection_coefficient;
             }
         }
@@ -83,10 +83,10 @@ namespace grender
     
     glm::vec3 blinn_phong_integrator::compute_blinn_phong(gscene::ray_hit const& hit, gscene::light const& light, gscene::scene const& scene, grender::camera const& camera) const noexcept
     {
-        gmath::vector<gmath::world_space> const world_light_vec = light.get_transform().get_translation() - hit.m_position;
+        gmath::vector<gmath::world_space> const world_light_vec = light.get_transform().get_translation() - hit.m_ray_hit.m_position;
         float const max_t = world_light_vec.length();
         gmath::direction<gmath::world_space> const world_light_dir(gmath::direction<gmath::world_space>::garantee_normal_t::garantee_normal, static_cast<glm::vec3>(world_light_vec / max_t));
-        gmath::ray<gmath::world_space> const ray_to_light(hit.m_position + gmath::vector(hit.m_normal) * 0.0001f, world_light_dir, std::numeric_limits<float>::epsilon(), max_t, 0);
+        gmath::ray<gmath::world_space> const ray_to_light(hit.m_ray_hit.m_position + gmath::vector(hit.m_ray_hit.m_normal) * 0.0001f, world_light_dir, std::numeric_limits<float>::epsilon(), max_t, 0);
         constexpr glm::vec3 ambient_light(0.05f, 0.05f, 0.05f);
         gscene::blinn_phong_material const& material = gtl::cast<gscene::blinn_phong_material const&>(hit.m_object->get_material());
         glm::vec3 const ambient_color = ambient_light * material.m_diffuse_color;
@@ -95,13 +95,13 @@ namespace grender
             return ambient_color;
         }
 
-        gmath::direction<gmath::camera_space> const normal = camera.get_camera_transform() * hit.m_normal;
+        gmath::direction<gmath::camera_space> const normal = camera.get_camera_transform() * hit.m_ray_hit.m_normal;
         gmath::direction<gmath::camera_space> const light_dir = camera.get_camera_transform() * world_light_dir;
         float const lambertian = std::max(light_dir.dot(normal), 0.f);
         float specular_coefficient = 0.f;
         if (lambertian > 0.f)
         {
-            gmath::direction<gmath::camera_space> const view_dir = -gmath::vector(camera.get_camera_transform() * hit.m_position);
+            gmath::direction<gmath::camera_space> const view_dir = -gmath::vector(camera.get_camera_transform() * hit.m_ray_hit.m_position);
             gmath::direction<gmath::camera_space> const reflect_dir = -(light_dir).reflect(normal);
             float const specular_angle = std::max(view_dir.dot(reflect_dir), 0.f);
             specular_coefficient = std::pow(specular_angle, material.m_specular_exponent) * lambertian;

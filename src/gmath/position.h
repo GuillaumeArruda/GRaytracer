@@ -37,6 +37,8 @@ namespace gmath
         constexpr float& w() noexcept { return m_position[3]; }
 
         constexpr explicit operator glm::vec4() const noexcept { return m_position; }
+        constexpr float operator[](std::size_t index) const noexcept { return m_position[static_cast<glm_vector_type::length_type>(index)]; }
+        constexpr float& operator[](std::size_t index) noexcept { return m_position[static_cast<glm_vector_type::length_type>(index)]; }
 
         template<typename Archive>
         void serialize(Archive& ar)

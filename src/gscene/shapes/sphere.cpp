@@ -26,9 +26,15 @@ namespace gscene
 
             gmath::position<gmath::world_space> const hitpos = ray(t);
             gmath::direction<gmath::world_space> const normal = hitpos - obj.get_transform().get_translation();
-            return ray_hit{ hitpos, normal, &obj, &ray, t };
+            return ray_hit{{hitpos, normal, &ray, t}, &obj };
         }
         return {};
+    }
+    gmath::axis_aligned_box<gmath::world_space> sphere::world_bounds(world_transform const& transform) const noexcept
+    {
+        float const radius = std::sqrt(m_radius2);
+        gmath::vector<gmath::world_space> const radius_vector(radius, radius, radius);
+        return gmath::axis_aligned_box<gmath::world_space>(transform.get_translation() - radius_vector, transform.get_translation() + radius_vector);
     }
 }
 

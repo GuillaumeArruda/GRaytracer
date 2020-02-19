@@ -126,6 +126,15 @@
     <ClInclude Include="src\gscene\accelerators\for_each_accelerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gscene\accelerators\kd_accelerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\axis_aligned_box.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gmath\ray_hit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
@@ -171,6 +180,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gscene\accelerators\for_each_accelerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\accelerators\kd_accelerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -7,3 +7,4 @@
 #include "gscene/materials/blinn_phong_material.h"
 
 #include "gscene/accelerators/for_each_accelerator.h"
+#include "gscene/accelerators/kd_accelerator.h"

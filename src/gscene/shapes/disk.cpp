@@ -24,6 +24,10 @@ namespace gscene
         if ((obj_position - hit_pos).length2() > m_radius2)
             return {};
 
-        return ray_hit{ hit_pos, m_normal, &obj, &ray, t };
+        return ray_hit{ {hit_pos, m_normal, &ray, t}, &obj };
+    }
+    gmath::axis_aligned_box<gmath::world_space> disk::world_bounds(world_transform const& transform) const noexcept
+    {
+        return gmath::axis_aligned_box<gmath::world_space>(transform.get_translation(), transform.get_translation());
     }
 }

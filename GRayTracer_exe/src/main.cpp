@@ -29,7 +29,7 @@ int main(int argc, const char** argv)
 
     bool constexpr display_image = true;
 
-    std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency() - 2 * display_image), 1ll);
+    std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency()), 1ll);
     std::size_t const number_of_batch = image_resolution / pixel_per_batch + (image_resolution % pixel_per_batch > 0);
     std::size_t const batch_size = pixel_per_batch;
     

@@ -3,6 +3,7 @@
 #include <optional>
 
 #include "gmath/ray.h"
+#include "gmath/axis_aligned_box.h"
 
 #include "gscene/common.h"
 #include "gscene/ray_hit.h"
@@ -24,6 +25,8 @@ namespace gscene
 
         world_transform const& get_transform() const noexcept { return m_transform; }
         model_transform const& get_inverse_transform() const noexcept { return m_inverseTransform; }
+        gmath::axis_aligned_box<gmath::world_space> get_world_bounds() const noexcept;
+
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
     
