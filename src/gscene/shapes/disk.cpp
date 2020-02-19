@@ -28,6 +28,9 @@ namespace gscene
     }
     gmath::axis_aligned_box<gmath::world_space> disk::world_bounds(world_transform const& transform) const noexcept
     {
-        return gmath::axis_aligned_box<gmath::world_space>(transform.get_translation(), transform.get_translation());
+        float const radius = std::sqrt(m_radius2);
+        gmath::position<gmath::world_space> const position = transform.get_translation();
+        gmath::vector<gmath::world_space> const on_plane_direction = m_normal.cross(gmath::vector<gmath::world_space>(-m_normal.y(), m_normal.z(), m_normal.x()));
+        return gmath::axis_aligned_box<gmath::world_space>(position - on_plane_direction * radius, position + on_plane_direction * radius);
     }
 }
