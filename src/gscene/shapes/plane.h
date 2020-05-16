@@ -24,11 +24,11 @@ namespace gscene
             ar(CEREAL_NVP(m_normal));
         }
 
-    private:
-        gmath::direction<gmath::world_space> m_normal;
-        
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept final;
         gmath::axis_aligned_box<gmath::world_space> world_bounds(world_transform const& transform) const noexcept final;
+   
+    private:
+        gmath::direction<gmath::world_space> m_normal;
     };
 }
 
