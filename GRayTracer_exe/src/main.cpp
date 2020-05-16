@@ -25,7 +25,7 @@ int main(int argc, const char** argv)
     std::size_t constexpr image_width_resolution = 1920;
     std::size_t constexpr image_height_resolution = 1080;
     std::size_t constexpr image_resolution = image_width_resolution * image_height_resolution;
-    std::size_t constexpr pixel_per_batch = 1000;
+    std::size_t constexpr pixel_per_batch = 128;
 
     bool constexpr display_image = true;
 
@@ -34,21 +34,24 @@ int main(int argc, const char** argv)
     std::size_t const batch_size = pixel_per_batch;
     
     gscene::scene scene;
-    std::ifstream is("scene.json");
-    cereal::JSONInputArchive iarchive(is);
-    iarchive(scene);
+    {
+        std::ifstream is("scene.json");
+        cereal::JSONInputArchive iarchive(is);
+        iarchive(scene);
+    }
+
 
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
-    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f,0.f,-14.f))), std::move(lense), image_width_resolution, image_height_resolution);
+    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f,0.f,-25.f))), std::move(lense), image_width_resolution, image_height_resolution);
     grender::blinn_phong_integrator integrator;
     integrator.verify_scene(scene);
     { 
         gthread::job_manager job_manager(static_cast<unsigned int>(number_of_thread));
 
-        for (int batch_id = 0; batch_id < number_of_batch; ++batch_id)
+        for (std::size_t batch_id = 0; batch_id < number_of_batch; ++batch_id)
         {
             job_manager.submit(
-                [&, batch_id, batch_size]()
+                [&, batch_id, batch_size]
             {
                 std::size_t const start_pixel = batch_id * batch_size;
                 std::size_t number_of_pixel = batch_size;

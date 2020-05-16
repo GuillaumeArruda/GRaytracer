@@ -20,16 +20,18 @@ namespace gscene
         if (auto bounds = m_bound.intersect(ray))
         {
             gmath::vector<gmath::world_space> const inverse_dir(1.f / static_cast<glm::vec3>(ray.dir()));
-            constexpr std::size_t max_to_do = 64;
+
             struct node_to_do
             {
-                node const* m_node = nullptr;
-                float m_t_min = 0.f;
-                float m_t_max = 0.f;
+                node const* m_node;
+                float m_t_min;
+                float m_t_max;
             };
 
             std::optional<gscene::ray_hit> best_hit;
-            static thread_local std::vector<node_to_do> to_dos;
+            std::size_t constexpr max_to_do = 64;
+            std::array<node_to_do, max_to_do> to_dos;
+            std::size_t current_to_do_index = 0;
             node_to_do current_to_do{ &m_nodes[0], bounds->t0, bounds->t1 };
             while (current_to_do.m_node != nullptr)
             {
@@ -49,10 +51,9 @@ namespace gscene
                                     best_hit = std::move(hit);
                     }
 
-                    if (to_dos.size() > 0)
+                    if (current_to_do_index > 0)
                     {
-                        current_to_do = to_dos.back();
-                        to_dos.pop_back();
+                        current_to_do = to_dos[--current_to_do_index];
                     }
                     else
                     {
@@ -85,13 +86,12 @@ namespace gscene
                         current_to_do.m_node = second_child;
                     else
                     {
-                        to_dos.emplace_back(node_to_do{second_child, t_plane, current_to_do.m_t_max});
+                        to_dos[current_to_do_index++] = node_to_do{second_child, t_plane, current_to_do.m_t_max};
                         current_to_do.m_node = first_child;
                         current_to_do.m_t_max = t_plane;
                     }
                 }
             }
-            to_dos.clear();
             return best_hit;
         }
         return {};

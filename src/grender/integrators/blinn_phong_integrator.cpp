@@ -24,7 +24,7 @@ namespace grender
     }
     void blinn_phong_integrator::render(gscene::scene const& scene, grender::camera const& camera, glm::uvec2 bounds) const
     {
-        std::size_t constexpr nb_aliasing_iteration = 8;
+        std::size_t constexpr nb_aliasing_iteration = 20;
         std::size_t constexpr number_of_ray_per_pixel = nb_aliasing_iteration * nb_aliasing_iteration;
         float constexpr raycolor_contribution = 1.f / number_of_ray_per_pixel;
         grender::camera::generate_rays_params const params
@@ -73,7 +73,7 @@ namespace grender
         }
         else
         {
-            color = glm::vec3(0.f, 0.f, 0.0f);
+            color = glm::vec3(0.f, 0.f, 0.f);
         }
        
 
