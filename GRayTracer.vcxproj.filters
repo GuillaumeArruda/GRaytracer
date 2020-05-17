@@ -27,9 +27,6 @@
     <ClInclude Include="src\gscene\object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gscene\material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\gscene\common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -105,9 +102,6 @@
     <ClInclude Include="src\grender\sensor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gscene\materials\blinn_phong_material.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\gtl\cast.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -145,6 +139,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\gscene\resources\mesh_resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\resources\material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gscene\resources\materials\blinn_phong_material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

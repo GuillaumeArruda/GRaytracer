@@ -4,7 +4,6 @@
 
 #include "gscene/scene.h"
 #include "gscene/light.h"
-#include "gscene/material.h"
 #include "gscene/shape.h"
 
 #include "gscene/serialization_headers.h"
@@ -22,12 +21,12 @@
 
 int main(int argc, const char** argv)
 {
-    std::size_t constexpr image_width_resolution = 1024;
-    std::size_t constexpr image_height_resolution = 768;
+    std::size_t constexpr image_width_resolution = 1280;
+    std::size_t constexpr image_height_resolution = 720;
     std::size_t constexpr image_resolution = image_width_resolution * image_height_resolution;
     std::size_t constexpr pixel_per_batch = 128;
 
-    bool constexpr display_image = true;
+    bool constexpr display_image = false;
 
     std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency()), 1ll);
     std::size_t const number_of_batch = image_resolution / pixel_per_batch + (image_resolution % pixel_per_batch > 0);
@@ -42,7 +41,7 @@ int main(int argc, const char** argv)
 
 
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
-    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -15.f))), std::move(lense), image_width_resolution, image_height_resolution);
+    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -4.f))), std::move(lense), image_width_resolution, image_height_resolution);
     grender::blinn_phong_integrator integrator;
 
     gthread::job_manager job_manager(static_cast<unsigned int>(number_of_thread));

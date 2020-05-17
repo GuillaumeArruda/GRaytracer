@@ -6,7 +6,6 @@
 #include "gmath/transform.h"
 #include "gmath/ray.h"
 
-#include "gscene/material.h"
 #include "gscene/ray_hit.h"
 #include "gscene/common.h"
 

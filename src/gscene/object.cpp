@@ -2,12 +2,13 @@
 
 #include "gscene/object.h"
 #include "gscene/shape.h"
-#include "gscene/material.h"
+#include "gscene/resources/material.h"
+#include "gscene/resource_library.h"
 
 namespace gscene
 {
-    object::object(world_transform const& transform, std::unique_ptr<shape> shape, std::unique_ptr<material> material)
-        : m_transform(transform), m_inverseTransform(m_transform.inverse()), m_shape(std::move(shape)), m_material(std::move(material)) {}
+    object::object(world_transform const& transform, std::unique_ptr<shape> shape, material const* material)
+        : m_transform(transform), m_inverseTransform(m_transform.inverse()), m_shape(std::move(shape)), m_material(material) {}
     object::object(object&&) noexcept = default;
     object::~object() = default;
 
@@ -24,6 +25,7 @@ namespace gscene
     }
     void object::resolve_resources(resource_library const& res_lib)
     {
+        m_material = res_lib.get_resource<material>(m_material_name);
         m_shape->resolve_resources(res_lib);
     }
 

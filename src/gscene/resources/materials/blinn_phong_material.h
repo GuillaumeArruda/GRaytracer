@@ -5,7 +5,7 @@
 #include <cereal/types/polymorphic.hpp>
 #include <cereal/archives/json.hpp>
 
-#include "gscene/material.h"
+#include "gscene/resources/material.h"
 
 namespace gscene
 {
@@ -26,9 +26,8 @@ namespace gscene
         float m_specular_exponent = 1.f;
         float m_reflection_coefficient = 0.f;
         float m_refraction_coefficient = 0.f;
-        std::unique_ptr<material> clone() const override { return std::make_unique<blinn_phong_material>(*this); }
     };
 }
 
 CEREAL_REGISTER_TYPE(gscene::blinn_phong_material);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::material, gscene::blinn_phong_material);
+CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::resource, gscene::blinn_phong_material);

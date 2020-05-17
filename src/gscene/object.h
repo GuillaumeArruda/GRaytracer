@@ -15,7 +15,7 @@ namespace gscene
     struct resource_library;
     struct object
     {
-        object(world_transform const& transform, std::unique_ptr<shape> shape, std::unique_ptr<material> material);
+        object(world_transform const& transform, std::unique_ptr<shape> shape, material const* material);
         object() noexcept = default;
         object(object const&) = delete;
         object(object&&) noexcept;
@@ -38,13 +38,14 @@ namespace gscene
         template<typename Archive>
         void serialize(Archive& ar)
         {
-            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material));
+            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material_name));
             m_inverseTransform = m_transform.inverse();
         }
     private:
+        std::unique_ptr<shape> m_shape;
         world_transform m_transform;
         model_transform m_inverseTransform;
-        std::unique_ptr<shape> m_shape;
-        std::unique_ptr<material> m_material;
+        material const* m_material;
+        std::string m_material_name;
     };
 }

@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "gscene/shapes/disk.h"
-#include "gscene/material.h"
+#include "gscene/resources/material.h"
 #include "gscene/object.h"
 
 
