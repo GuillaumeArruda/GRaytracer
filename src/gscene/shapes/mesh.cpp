@@ -14,9 +14,9 @@ namespace gscene
     {
         gmath::ray<gmath::model_space> const local_ray = obj.get_inverse_transform() * ray;
 
-        gtl::span<gmath::position<gmath::model_space> const> vertices = m_data->get_vertices_position();
-        gtl::span<gmath::direction<gmath::model_space> const> normals = m_data->get_vertices_normal();
-        gtl::span<mesh_resource::face const> faces = m_data->get_faces_index();
+        gtl::span<gmath::position<gmath::model_space> const> vertices = m_data->get_vertices_position(m_submesh_id);
+        gtl::span<gmath::direction<gmath::model_space> const> normals = m_data->get_vertices_normal(m_submesh_id);
+        gtl::span<mesh_resource::face const> faces = m_data->get_faces_index(m_submesh_id);
 
         std::optional<ray_hit> hit;
         for (mesh_resource::face const& face : faces)
@@ -67,7 +67,7 @@ namespace gscene
 
     gmath::axis_aligned_box<gmath::world_space> mesh::world_bounds(world_transform const& transform) const noexcept
     {
-        gtl::span<gmath::position<gmath::model_space> const> vertices_position = m_data->get_vertices_position();
+        gtl::span<gmath::position<gmath::model_space> const> vertices_position = m_data->get_vertices_position(m_submesh_id);
         gmath::position<gmath::world_space> min_pos(std::numeric_limits<float>::max(), std::numeric_limits<float>::max(), std::numeric_limits<float>::max());
         gmath::position<gmath::world_space> max_pos(std::numeric_limits<float>::lowest(), std::numeric_limits<float>::lowest(), std::numeric_limits<float>::lowest());
 
@@ -87,4 +87,13 @@ namespace gscene
         m_data = res_lib.get_resource<mesh_resource>(m_mesh_name);
     }
 
+    void mesh::subdivide(object const& obj, std::vector<object>& new_object) const
+    {
+        for (std::size_t i = 1; i < m_data->number_of_submeshes(); ++i)
+        {
+            std::unique_ptr new_mesh = std::make_unique<mesh>(m_mesh_name, m_data, i);
+            std::unique_ptr new_material = obj.get_material().clone();
+            new_object.emplace_back(obj.get_transform(), std::move(new_mesh), std::move(new_material));
+        }
+    }
 }

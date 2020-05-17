@@ -18,11 +18,11 @@ namespace gscene
         object(world_transform const& transform, std::unique_ptr<shape> shape, std::unique_ptr<material> material);
         object() noexcept = default;
         object(object const&) = delete;
-        object(object&&) noexcept = default;
+        object(object&&) noexcept;
         ~object();
         
         object& operator=(object const&) = delete;
-        object& operator=(object&&) = default;
+        object& operator=(object&&);
 
         world_transform const& get_transform() const noexcept { return m_transform; }
         model_transform const& get_inverse_transform() const noexcept { return m_inverseTransform; }
@@ -33,6 +33,7 @@ namespace gscene
         material const& get_material() const noexcept { return *m_material; }
 
         void resolve_resources(resource_library const& res_lib);
+        void subdivide(std::vector<object>& new_object) const;
 
         template<typename Archive>
         void serialize(Archive& ar)

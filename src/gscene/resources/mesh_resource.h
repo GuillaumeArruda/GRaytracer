@@ -32,6 +32,13 @@ namespace gscene
             float m_area2;
         };
 
+        struct submesh
+        {
+            std::vector<gmath::position<gmath::model_space>> m_vertices_position;
+            std::vector<gmath::direction<gmath::model_space>> m_vertices_normal;
+            std::vector<face> m_faces_index;
+        };
+
         mesh_resource() = default;
         ~mesh_resource() = default;
         mesh_resource(mesh_resource&&) noexcept = default;
@@ -48,13 +55,12 @@ namespace gscene
 
         void load() final;
 
-        gtl::span<gmath::position<gmath::model_space> const> get_vertices_position() const { return m_vertices_position; }
-        gtl::span<gmath::direction<gmath::model_space> const> get_vertices_normal() const { return m_vertices_normal; }
-        gtl::span<face const> get_faces_index() const { return m_faces_index; }
+        gtl::span<gmath::position<gmath::model_space> const> get_vertices_position(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_vertices_position; }
+        gtl::span<gmath::direction<gmath::model_space> const> get_vertices_normal(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_vertices_normal; }
+        gtl::span<face const> get_faces_index(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_faces_index; }
+        std::size_t number_of_submeshes() const { return m_submeshes.size(); }
     private:
-        std::vector<gmath::position<gmath::model_space>> m_vertices_position;
-        std::vector<gmath::direction<gmath::model_space>> m_vertices_normal;
-        std::vector<face> m_faces_index;
+        std::vector<submesh> m_submeshes;
         std::string m_filepath;
     };
 }

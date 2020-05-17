@@ -42,7 +42,7 @@ int main(int argc, const char** argv)
 
 
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
-    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -8.f))), std::move(lense), image_width_resolution, image_height_resolution);
+    grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -15.f))), std::move(lense), image_width_resolution, image_height_resolution);
     grender::blinn_phong_integrator integrator;
 
     gthread::job_manager job_manager(static_cast<unsigned int>(number_of_thread));

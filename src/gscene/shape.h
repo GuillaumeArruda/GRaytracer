@@ -24,6 +24,8 @@ namespace gscene
 
         virtual void resolve_resources(resource_library const&) {}
 
+        virtual void subdivide(object const&, std::vector<object>&) const {}
+
     protected:
         shape() noexcept = default;
         shape(shape const&) noexcept = default;

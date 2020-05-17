@@ -22,6 +22,17 @@ namespace gscene
         {
             obj.resolve_resources(m_resource_library);
         }
+        std::vector<object> new_objs;
+        for (object const& obj : m_objects)
+        {
+            obj.subdivide(new_objs);
+        }
+
+        for (object& obj : new_objs)
+        {
+            m_objects.push_back(std::move(obj));
+        }
+
         m_accelerator->build(*this);
     }
 }

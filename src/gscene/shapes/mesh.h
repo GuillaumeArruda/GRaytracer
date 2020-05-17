@@ -11,7 +11,7 @@ namespace gscene
     struct mesh_resource;
     struct mesh final : shape
     {
-        mesh(std::string mesh_name) noexcept : m_mesh_name(std::move(mesh_name)) {}
+        mesh(std::string mesh_name, mesh_resource const* data, std::size_t submesh_id) noexcept : m_mesh_name(std::move(mesh_name)), m_data(data), m_submesh_id(submesh_id) {}
         mesh() noexcept = default;
         mesh(mesh&&) noexcept = default;
         mesh(mesh const&) noexcept = default;
@@ -22,7 +22,9 @@ namespace gscene
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept final;
         gmath::axis_aligned_box<gmath::world_space> world_bounds(world_transform const& transform) const noexcept final;
-        void resolve_resources(resource_library const& res_lib) final;
+        void resolve_resources(resource_library const& res_lib) override final;
+
+        void subdivide(object const& obj, std::vector<object>& new_object) const override final;
 
         template<typename Archive>
         void serialize(Archive& ar)
@@ -33,6 +35,7 @@ namespace gscene
     private:
         std::string m_mesh_name;
         mesh_resource const* m_data = nullptr;
+        std::size_t m_submesh_id = 0;
     };
 }
 
