@@ -1,0 +1,136 @@
+{
+  "value0": {
+    "m_objects": [
+      {
+        "m_transform": {
+          "m_transform": {
+            "[0]": {
+              "x": 3.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 0.0
+            },
+            "[1]": {
+              "x": 0.0,
+              "y": 3.0,
+              "z": 0.0,
+              "w": 0.0
+            },
+            "[2]": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 3.0,
+              "w": 0.0
+            },
+            "[3]": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            }
+          }
+        },
+        "m_shape": {
+          "polymorphic_id": 2147483658,
+          "polymorphic_name": "gscene::mesh",
+          "ptr_wrapper": {
+            "valid": 1,
+            "data": {
+              "m_mesh_name": "teapot_mesh"
+            }
+          }
+        },
+        "m_material": {
+          "polymorphic_id": 2147483651,
+          "polymorphic_name": "gscene::blinn_phong_material",
+          "ptr_wrapper": {
+            "valid": 1,
+            "data": {
+              "m_diffuse_color": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              },
+              "m_specular_color": {
+                "x": 0.7,
+                "y": 0.0,
+                "z": 0.0
+              },
+              "m_specular_exponent": 4.0,
+              "m_reflection_coefficient": 0.0,
+              "m_refraction_coefficient": 0.0
+            }
+          }
+        }
+      }
+    ],
+    "m_lights": [
+      {
+        "ptr_wrapper": {
+          "valid": 1,
+          "data": {
+            "m_transform": {
+              "m_transform": {
+                "[0]": {
+                  "x": 1.0,
+                  "y": 0.0,
+                  "z": 0.0,
+                  "w": 0.0
+                },
+                "[1]": {
+                  "x": 0.0,
+                  "y": 1.0,
+                  "z": 0.0,
+                  "w": 0.0
+                },
+                "[2]": {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 1.0,
+                  "w": 0.0
+                },
+                "[3]": {
+                  "x": 0.0,
+                  "y": 30.0,
+                  "z": -5.0,
+                  "w": 1.0
+                }
+              }
+            }
+          }
+        }
+      }
+    ],
+    "m_accelerator": {
+      "polymorphic_id": 2147483654,
+      "polymorphic_name": "gscene::kd_accelerator",
+      "ptr_wrapper": {
+        "valid": 1,
+        "data": {
+          "m_max_depth": 8,
+          "m_max_cost": 4,
+          "m_isect_cost": 80.0,
+          "m_empty_bonus": 0.5,
+          "m_traversal_cost": 1.0
+        }
+      }
+    },
+    "m_resource_library": {
+      "m_resources": [
+        {
+          "key": "teapot_mesh",
+          "value": {
+            "polymorphic_id": 2147483655,
+            "polymorphic_name": "gscene::mesh_resource",
+            "ptr_wrapper": {
+              "valid": 1,
+              "data": {
+                "m_filepath": "./data/meshes/teapot.fbx"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

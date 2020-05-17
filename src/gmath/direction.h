@@ -37,8 +37,10 @@ namespace gmath
         friend constexpr bool operator==(direction const& lhs, direction const& rhs) noexcept { return lhs.m_direction == rhs.m_direction; }
         friend constexpr bool operator!=(direction const& lhs, direction const& rhs) noexcept { return !(lhs == rhs); }
 
-        constexpr float dot(direction const& rhs) const noexcept { return glm::dot(m_direction, rhs.m_direction); }
-        constexpr float distance(direction const& rhs) const noexcept { return glm::distance(direction, rhs.m_direction); }
+        template<template<typename> class VectorType>
+        constexpr float dot(VectorType<Space> const& vector) const noexcept { return glm::dot(m_direction, static_cast<typename VectorType<Space>::glm_vector_type>(vector)); }
+        template<template<typename> class VectorType>
+        constexpr float distance(VectorType<Space> const& vector) const noexcept { return glm::distance(direction, static_cast<typename VectorType<Space>::glm_vector_type>(vector)); }
 
         friend constexpr direction operator-(direction const& lhs) { return direction(garantee_normal_t::garantee_normal, -lhs.m_direction); }
 

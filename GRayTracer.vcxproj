@@ -27,8 +27,12 @@
     <ClInclude Include="src\gscene\accelerators\for_each_accelerator.h" />
     <ClInclude Include="src\gscene\accelerators\kd_accelerator.h" />
     <ClInclude Include="src\gscene\materials\blinn_phong_material.h" />
+    <ClInclude Include="src\gscene\resource.h" />
+    <ClInclude Include="src\gscene\resources\mesh_resource.h" />
+    <ClInclude Include="src\gscene\resource_library.h" />
     <ClInclude Include="src\gscene\serialization_headers.h" />
     <ClInclude Include="src\gscene\shapes\disk.h" />
+    <ClInclude Include="src\gscene\shapes\mesh.h" />
     <ClInclude Include="src\gscene\shapes\plane.h" />
     <ClInclude Include="src\gmath\direction.h" />
     <ClInclude Include="src\gmath\internal\units_helper.h" />
@@ -68,7 +72,10 @@
     <ClCompile Include="src\grender\sensor.cpp" />
     <ClCompile Include="src\gscene\accelerators\for_each_accelerator.cpp" />
     <ClCompile Include="src\gscene\accelerators\kd_accelerator.cpp" />
+    <ClCompile Include="src\gscene\resources\mesh_resource.cpp" />
+    <ClCompile Include="src\gscene\resource_library.cpp" />
     <ClCompile Include="src\gscene\shapes\disk.cpp" />
+    <ClCompile Include="src\gscene\shapes\mesh.cpp" />
     <ClCompile Include="src\gscene\shapes\plane.cpp" />
     <ClCompile Include="src\grender\camera.cpp" />
     <ClCompile Include="src\grender\lenses\pinhole_lense.cpp" />

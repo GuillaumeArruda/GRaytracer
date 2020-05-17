@@ -13,6 +13,7 @@
 namespace gscene
 {
     struct object;
+    struct resource_library;
     struct shape
     {
         virtual ~shape() = 0 {};
@@ -20,6 +21,8 @@ namespace gscene
         virtual std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept = 0;
 
         virtual gmath::axis_aligned_box<gmath::world_space> world_bounds(world_transform const& transform) const noexcept = 0;
+
+        virtual void resolve_resources(resource_library const&) {}
 
     protected:
         shape() noexcept = default;

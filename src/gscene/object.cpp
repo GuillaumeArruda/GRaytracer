@@ -19,5 +19,9 @@ namespace gscene
     {
         return m_shape->raycast(ray, *this);
     }
+    void object::resolve_resources(resource_library const& res_lib)
+    {
+        m_shape->resolve_resources(res_lib);
+    }
 }
 

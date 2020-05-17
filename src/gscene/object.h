@@ -12,6 +12,7 @@ namespace gscene
 {
     struct shape;
     struct material;
+    struct resource_library;
     struct object
     {
         object(world_transform const& transform, std::unique_ptr<shape> shape, std::unique_ptr<material> material);
@@ -27,10 +28,11 @@ namespace gscene
         model_transform const& get_inverse_transform() const noexcept { return m_inverseTransform; }
         gmath::axis_aligned_box<gmath::world_space> get_world_bounds() const noexcept;
 
-
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept;
     
         material const& get_material() const noexcept { return *m_material; }
+
+        void resolve_resources(resource_library const& res_lib);
 
         template<typename Archive>
         void serialize(Archive& ar)

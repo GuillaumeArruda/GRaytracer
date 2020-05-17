@@ -12,13 +12,19 @@
 #include "gscene/ray_hit.h"
 #include "gscene/object.h"
 #include "gscene/accelerator.h"
+#include "gscene/resource_library.h"
+
+namespace gthread
+{
+    struct job_manager;
+}
 
 namespace gscene
 {
     struct light;
     struct scene
     {
-        scene() noexcept = default;
+        scene() = default;
         scene(scene const&) = delete;
         scene(scene&&) noexcept = default;
         ~scene();
@@ -31,20 +37,17 @@ namespace gscene
         gtl::span<std::unique_ptr<light> const> get_lights() const noexcept { return m_lights; }
         gtl::span<object const> get_objects() const noexcept { return m_objects; }
 
-        template<typename Archive>
-        void save(Archive& ar) const
-        {
-            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
-        }
+        void prepare_scene(gthread::job_manager& jobs);
 
         template<typename Archive>
-        void load(Archive& ar)
+        void serialize(Archive& ar)
         {
-            ar(CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
-            m_accelerator->build(*this);
+            ar(CEREAL_NVP(m_resource_library), CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
         }
+
 
     private:
+        resource_library m_resource_library;
         std::vector<std::unique_ptr<light>> m_lights;
         std::vector<object> m_objects;
         std::unique_ptr<accelerator> m_accelerator;
