@@ -22,6 +22,8 @@ namespace gmath
 
         constexpr position& operator=(position const&) noexcept = default;
         constexpr position& operator=(position&&) noexcept = default;
+        constexpr position& operator=(glm_vector_type const& value) { m_position = value; return *this; }
+        constexpr position& operator=(glm_vector_type&& value) { m_position = std::move(value); return *this; }
 
         friend constexpr bool operator==(position const& lhs, position const& rhs) noexcept { return lhs.m_position == rhs.m_position; }
         friend constexpr bool operator!=(position const& lhs, position const& rhs) noexcept { return !(lhs == rhs); }
@@ -60,4 +62,7 @@ namespace gmath
     {
         return within_epsilon(lhs.x(), rhs.x(), epsilon) && within_epsilon(lhs.y(), rhs.y(), epsilon) && within_epsilon(lhs.z(), rhs.z(), epsilon);
     }
+
+    template<class Space> position(gmath::position<Space> const&)->position<Space>;
+    template<class Space> position(gmath::position<Space>&&)->position<Space>; 
 }

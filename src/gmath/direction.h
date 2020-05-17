@@ -72,4 +72,7 @@ namespace gmath
     {
         return within_epsilon(lhs.x(), rhs.x(), epsilon) && within_epsilon(lhs.y(), rhs.y(), epsilon) && within_epsilon(lhs.z(), rhs.z(), epsilon);
     }
+
+    template<class Space> direction(gmath::direction<Space> const&)->direction<Space>;
+    template<class Space> direction(gmath::direction<Space>&&)->direction<Space>;
 }
