@@ -92,7 +92,7 @@ namespace gscene
         for (std::size_t i = 1; i < m_data->number_of_submeshes(); ++i)
         {
             std::unique_ptr new_mesh = std::make_unique<mesh>(m_mesh_name, m_data, i);
-            new_object.emplace_back(obj.get_transform(), std::move(new_mesh), obj.get_material());
+            new_object.emplace_back(obj.get_transform(), std::move(new_mesh), &obj.get_material());
         }
     }
 }
