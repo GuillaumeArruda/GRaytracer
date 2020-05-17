@@ -54,15 +54,15 @@ namespace gscene
         }
         
     }
+    
     mesh_resource::face::face(std::uint32_t v0, std::uint32_t v1, std::uint32_t v2, std::vector<gmath::position<gmath::model_space>> const& vertices)
         : m_indices{ v0,v1,v2 }
-        , m_normal()
-        , m_area2()
+        , m_normal(compute_normal(vertices[m_indices[0]], vertices[m_indices[1]], vertices[m_indices[2]]))
+        , m_area2(m_normal.length2())
+        , m_d(-m_normal.dot(gmath::vector(vertices[m_indices[0]])))
     {
-        gmath::vector const norm = compute_normal(vertices[m_indices[0]], vertices[m_indices[1]], vertices[m_indices[2]]);
-        m_normal = norm;
-        m_area2 = norm.length2();
     }
+
     gmath::vector<gmath::model_space> mesh_resource::face::compute_normal(gmath::position<gmath::model_space> const& v0, gmath::position<gmath::model_space> const& v1, gmath::position<gmath::model_space> const& v2)
     {
         gmath::vector const a = v1 - v0;

@@ -30,6 +30,7 @@ namespace gscene
             std::array<std::uint32_t, 3> m_indices;
             gmath::vector<gmath::model_space> m_normal;
             float m_area2;
+            float m_d;
         };
 
         struct submesh

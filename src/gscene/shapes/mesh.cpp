@@ -7,7 +7,6 @@
 #include "gscene/resources/mesh_resource.h"
 #include "gscene/resource_library.h"
 
-
 namespace gscene
 {
     std::optional<ray_hit> mesh::raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept
@@ -26,15 +25,14 @@ namespace gscene
             if (std::abs(denom) < std::numeric_limits<float>::epsilon())
                 continue;
 
-            gmath::position const v0(vertices[face.m_indices[0]]);
-            gmath::vector const ray_to_plane = v0 - local_ray.start();
-            float const t = ray_to_plane.dot(normal) / denom;
+            float const t = -(normal.dot(gmath::vector(local_ray.start())) + face.m_d) / denom;
 
             if ((hit && hit->m_ray_hit.m_t < t) || !ray.is_valid_t(t))
                 continue;
 
             gmath::position const hit_pos = local_ray(t);
 
+            gmath::position const v0(vertices[face.m_indices[0]]);
             gmath::position const v1(vertices[face.m_indices[1]]);
             gmath::position const v2(vertices[face.m_indices[2]]);
 
