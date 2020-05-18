@@ -15,11 +15,13 @@ namespace gscene
 
         gtl::span<gmath::position<gmath::model_space> const> vertices = m_data->get_vertices_position(m_submesh_id);
         gtl::span<gmath::direction<gmath::model_space> const> normals = m_data->get_vertices_normal(m_submesh_id);
+        gtl::span<gmath::vector<gmath::model_space> const> edges = m_data->get_edges(m_submesh_id);
         gtl::span<mesh_resource::face const> faces = m_data->get_faces_index(m_submesh_id);
 
         std::optional<ray_hit> hit;
-        for (mesh_resource::face const& face : faces)
+        for (std::size_t i = 0; i < faces.size(); ++i)
         {
+            mesh_resource::face const& face = faces[i];
             gmath::vector<gmath::model_space> const& normal = face.m_normal;
             float const denom = normal.dot(local_ray.dir());
             if (std::abs(denom) < std::numeric_limits<float>::epsilon())
@@ -30,24 +32,26 @@ namespace gscene
             if ((hit && hit->m_ray_hit.m_t < t) || !ray.is_valid_t(t))
                 continue;
 
+
             gmath::position const hit_pos = local_ray(t);
 
             gmath::position const v0(vertices[face.m_indices[0]]);
             gmath::position const v1(vertices[face.m_indices[1]]);
             gmath::position const v2(vertices[face.m_indices[2]]);
 
-            gmath::vector const edge0 = v1 - v0;
+            std::size_t const edge_base_index = i * 3;
+            gmath::vector<gmath::model_space> const& edge0 = edges[edge_base_index];
             gmath::vector const vp0 = hit_pos - v0;
             if (edge0.cross(vp0).dot(normal) < 0)
                 continue;
 
-            gmath::vector const edge1 = v2 - v1;
+            gmath::vector<gmath::model_space> const& edge1 = edges[edge_base_index + 1];
             gmath::vector const vp1 = hit_pos - v1;
             float const unnormalized_u = edge1.cross(vp1).dot(normal);
             if (unnormalized_u < 0)
                 continue;
 
-            gmath::vector const edge2 = v0 - v2;
+            gmath::vector<gmath::model_space> const& edge2 = edges[edge_base_index + 2];
             gmath::vector const vp2 = hit_pos - v2;
             float const unnormalized_v = edge2.cross(vp2).dot(normal);
             if (unnormalized_v < 0)

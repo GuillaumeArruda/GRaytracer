@@ -37,6 +37,7 @@ namespace gscene
         {
             std::vector<gmath::position<gmath::model_space>> m_vertices_position;
             std::vector<gmath::direction<gmath::model_space>> m_vertices_normal;
+            std::vector<gmath::vector<gmath::model_space>> m_edges;
             std::vector<face> m_faces_index;
         };
 
@@ -58,6 +59,7 @@ namespace gscene
 
         gtl::span<gmath::position<gmath::model_space> const> get_vertices_position(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_vertices_position; }
         gtl::span<gmath::direction<gmath::model_space> const> get_vertices_normal(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_vertices_normal; }
+        gtl::span<gmath::vector<gmath::model_space> const> get_edges(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_edges; }
         gtl::span<face const> get_faces_index(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_faces_index; }
         std::size_t number_of_submeshes() const { return m_submeshes.size(); }
     private:

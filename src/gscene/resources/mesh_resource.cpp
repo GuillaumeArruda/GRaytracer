@@ -46,10 +46,17 @@ namespace gscene
             }
 
             submesh.m_faces_index.reserve(mesh.mNumFaces);
+            submesh.m_edges.reserve(static_cast<std::size_t>(mesh.mNumFaces) * 3);
             for (std::size_t i = 0; i < mesh.mNumFaces; ++i)
             {
                 auto const& triangle_face = mesh.mFaces[i];
                 submesh.m_faces_index.emplace_back(triangle_face.mIndices[0], triangle_face.mIndices[1], triangle_face.mIndices[2], submesh.m_vertices_position);
+                gmath::position v0 = submesh.m_vertices_position[triangle_face.mIndices[0]];
+                gmath::position v1 = submesh.m_vertices_position[triangle_face.mIndices[1]];
+                gmath::position v2 = submesh.m_vertices_position[triangle_face.mIndices[2]];
+                submesh.m_edges.push_back(v1 - v0);
+                submesh.m_edges.push_back(v2 - v1);
+                submesh.m_edges.push_back(v0 - v2);
             }
         }
         
