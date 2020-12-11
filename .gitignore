@@ -386,3 +386,4 @@ Blog
 About
 /GRayTracer_exe/output.bmp
 *.diagsession
+/GRayTracer-cppcheck-build-dir

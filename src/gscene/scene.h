@@ -45,7 +45,6 @@ namespace gscene
             ar(CEREAL_NVP(m_resource_library), CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
         }
 
-
     private:
         resource_library m_resource_library;
         std::vector<std::unique_ptr<light>> m_lights;

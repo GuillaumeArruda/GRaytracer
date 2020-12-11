@@ -25,6 +25,7 @@ namespace gthread
         ~thread_group();
 
         std::size_t size() const noexcept { return m_threads.size(); }
+        bool contains(std::thread::id thread_id) const noexcept { return std::find_if(m_threads.begin(), m_threads.end(), [&](std::thread const& thread) { return thread.get_id() == thread_id; }) != m_threads.end(); }
     private:
         std::vector<std::thread> m_threads;
     };

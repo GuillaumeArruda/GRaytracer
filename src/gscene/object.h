@@ -22,7 +22,7 @@ namespace gscene
         ~object();
         
         object& operator=(object const&) = delete;
-        object& operator=(object&&);
+        object& operator=(object&&) noexcept;
 
         world_transform const& get_transform() const noexcept { return m_transform; }
         model_transform const& get_inverse_transform() const noexcept { return m_inverseTransform; }

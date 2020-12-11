@@ -5,6 +5,8 @@
 #include "gscene/shapes/disk.h"
 #include "gscene/shapes/mesh.h"
 
+#include "gscene/lights/point_light.h"
+
 #include "gscene/resources/materials/blinn_phong_material.h"
 
 #include "gscene/accelerators/for_each_accelerator.h"

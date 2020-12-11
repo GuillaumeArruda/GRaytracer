@@ -1,11 +1,14 @@
 #include "stdafx.h"
 
-#include "assimp/Importer.hpp"
-#include "assimp/scene.h"
-#include "assimp/postprocess.h"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+
+#include <fmt/format.h>
 
 #include "gmath/vector.h"
 #include "gscene/resources/mesh_resource.h"
+
 
 namespace gscene
 {
@@ -13,16 +16,16 @@ namespace gscene
     {
         uint32_t const post_process_flag = aiProcess_JoinIdenticalVertices | aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FixInfacingNormals | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_PreTransformVertices;
         Assimp::Importer importer;
-        importer.SetPropertyInteger(AI_CONFIG_PP_SLM_TRIANGLE_LIMIT, 32);
+        importer.SetPropertyInteger(AI_CONFIG_PP_SLM_TRIANGLE_LIMIT, 33 );
         aiScene const* scene = importer.ReadFile(m_filepath.c_str(), post_process_flag);
         if (!scene)
         {
-            throw std::runtime_error("trying to load a mesh that doesnt exist");
+            throw std::runtime_error(fmt::format("Trying to load a mesh from a file that doesnt exist: {0}", m_filepath));
         }
 
         if (scene->mNumMeshes == 0)
         {
-            throw std::runtime_error("trying to load a scene without a mesh inside.");
+            throw std::runtime_error(fmt::format("Trying to load a scene without a mesh inside: {0}", m_filepath));
         }
         
         m_submeshes.reserve(scene->mNumMeshes);
@@ -31,7 +34,7 @@ namespace gscene
             aiMesh const& mesh = *scene->mMeshes[mesh_id];
             if (!mesh.HasPositions() || !mesh.HasNormals() || !mesh.HasFaces())
             {
-                throw std::runtime_error("trying to load a mesh that doesnt have all necessary info.");
+                throw std::runtime_error(fmt::format("Trying to load a mesh that doesnt have all necessary info: {0}", m_filepath));
             }
 
             submesh& submesh = m_submeshes.emplace_back();
@@ -51,9 +54,9 @@ namespace gscene
             {
                 auto const& triangle_face = mesh.mFaces[i];
                 submesh.m_faces_index.emplace_back(triangle_face.mIndices[0], triangle_face.mIndices[1], triangle_face.mIndices[2], submesh.m_vertices_position);
-                gmath::position v0 = submesh.m_vertices_position[triangle_face.mIndices[0]];
-                gmath::position v1 = submesh.m_vertices_position[triangle_face.mIndices[1]];
-                gmath::position v2 = submesh.m_vertices_position[triangle_face.mIndices[2]];
+                gmath::position const v0 = submesh.m_vertices_position[triangle_face.mIndices[0]];
+                gmath::position const v1 = submesh.m_vertices_position[triangle_face.mIndices[1]];
+                gmath::position const v2 = submesh.m_vertices_position[triangle_face.mIndices[2]];
                 submesh.m_edges.push_back(v1 - v0);
                 submesh.m_edges.push_back(v2 - v1);
                 submesh.m_edges.push_back(v0 - v2);

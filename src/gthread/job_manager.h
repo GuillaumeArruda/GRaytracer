@@ -63,6 +63,8 @@ namespace gthread
             return returnValue;
         }
 
+        bool is_currently_on_job_thread() const noexcept { return m_threads.contains(std::this_thread::get_id()); }
+        void try_run_job();
     private:
         void process_job(unsigned i);
         std::atomic<bool> m_stop_flag = false;

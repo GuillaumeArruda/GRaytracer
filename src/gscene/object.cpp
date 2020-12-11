@@ -12,7 +12,7 @@ namespace gscene
     object::object(object&&) noexcept = default;
     object::~object() = default;
 
-    object& object::operator=(object&&) = default;
+    object& object::operator=(object&&) noexcept = default;
     
     gmath::axis_aligned_box<gmath::world_space> object::get_world_bounds() const noexcept
     {

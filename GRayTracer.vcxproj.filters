@@ -147,6 +147,15 @@
     <ClInclude Include="src\gscene\resources\materials\blinn_phong_material.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gscene\lights\point_light.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gthread\task.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gthread\task_group.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
@@ -204,6 +213,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gscene\resources\mesh_resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\lights\point_light.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gthread\task_group.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

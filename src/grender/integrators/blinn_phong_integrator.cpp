@@ -83,13 +83,19 @@ namespace grender
     
     glm::vec3 blinn_phong_integrator::compute_blinn_phong(gscene::ray_hit const& hit, gscene::light const& light, gscene::scene const& scene, grender::camera const& camera) const noexcept
     {
+        constexpr glm::vec3 ambient_light(0.2f, 0.2f, 0.2f);
+        gscene::blinn_phong_material const& material = gtl::cast<gscene::blinn_phong_material const&>(hit.m_object->get_material());
+        glm::vec3 const ambient_color = ambient_light * material.m_diffuse_color;
+        float const light_ratio = light.light_ratio_at_position(hit.m_ray_hit.m_position);
+        if (light_ratio <= 0.f)
+        {
+            return ambient_color;
+        }
+
         gmath::vector<gmath::world_space> const world_light_vec = light.get_transform().get_translation() - hit.m_ray_hit.m_position;
         float const max_t = world_light_vec.length();
         gmath::direction<gmath::world_space> const world_light_dir(gmath::direction<gmath::world_space>::garantee_normal_t::garantee_normal, static_cast<glm::vec3>(world_light_vec / max_t));
         gmath::ray<gmath::world_space> const ray_to_light(hit.m_ray_hit.m_position + gmath::vector(hit.m_ray_hit.m_normal) * 0.0001f, world_light_dir, std::numeric_limits<float>::epsilon(), max_t, 0);
-        constexpr glm::vec3 ambient_light(0.05f, 0.05f, 0.05f);
-        gscene::blinn_phong_material const& material = gtl::cast<gscene::blinn_phong_material const&>(hit.m_object->get_material());
-        glm::vec3 const ambient_color = ambient_light * material.m_diffuse_color;
         if (scene.raycast(ray_to_light))
         {
             return ambient_color;
@@ -107,8 +113,8 @@ namespace grender
             specular_coefficient = std::pow(specular_angle, material.m_specular_exponent) * lambertian;
         }
 
-        glm::vec3 const diffuse_color = material.m_diffuse_color * lambertian;
-        glm::vec3 const specular_color = material.m_specular_color * specular_coefficient;
+        glm::vec3 const diffuse_color = light_ratio * material.m_diffuse_color * lambertian;
+        glm::vec3 const specular_color = light_ratio * material.m_specular_color * specular_coefficient;
 
         return diffuse_color + specular_color + ambient_color;
     }

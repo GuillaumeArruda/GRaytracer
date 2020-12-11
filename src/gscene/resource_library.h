@@ -4,9 +4,11 @@
 #include <unordered_map>
 #include <memory>
 
-#include "gscene/resource.h"
+#include <fmt/format.h>
 
 #include <cereal/types/unordered_map.hpp>
+
+#include "gscene/resource.h"
 
 namespace gthread
 {
@@ -44,7 +46,7 @@ namespace gscene
                 ResourceType const& ref = dynamic_cast<ResourceType const&>(*it->second.get());
                 return &ref;
             }
-            throw std::runtime_error("trying to get resource that doesn't exist");
+            throw std::runtime_error(fmt::format("Trying to get resource that doesn't exist: {0}", name));
         }
 
     private:

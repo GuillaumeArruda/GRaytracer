@@ -36,8 +36,6 @@ namespace gscene
             gmath::position const hit_pos = local_ray(t);
 
             gmath::position const v0(vertices[face.m_indices[0]]);
-            gmath::position const v1(vertices[face.m_indices[1]]);
-            gmath::position const v2(vertices[face.m_indices[2]]);
 
             std::size_t const edge_base_index = i * 3;
             gmath::vector<gmath::model_space> const& edge0 = edges[edge_base_index];
@@ -45,12 +43,14 @@ namespace gscene
             if (edge0.cross(vp0).dot(normal) < 0)
                 continue;
 
+            gmath::position const v1(vertices[face.m_indices[1]]);
             gmath::vector<gmath::model_space> const& edge1 = edges[edge_base_index + 1];
             gmath::vector const vp1 = hit_pos - v1;
             float const unnormalized_u = edge1.cross(vp1).dot(normal);
             if (unnormalized_u < 0)
                 continue;
 
+            gmath::position const v2(vertices[face.m_indices[2]]);
             gmath::vector<gmath::model_space> const& edge2 = edges[edge_base_index + 2];
             gmath::vector const vp2 = hit_pos - v2;
             float const unnormalized_v = edge2.cross(vp2).dot(normal);
