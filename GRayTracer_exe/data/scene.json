@@ -168,6 +168,8 @@
     ],
     "m_lights": [
       {
+        "polymorphic_id": 2147483654,
+        "polymorphic_name": "gscene::point_light",
         "ptr_wrapper": {
           "valid": 1,
           "data": {
@@ -198,7 +200,15 @@
                   "w": 1.0
                 }
               }
-            }
+            },
+            "m_color": {
+              "x": 1.0,
+              "y": 1.0,
+              "z": 1.0,
+              "w": 1.0
+            },
+            "m_fallout_min_distance": 10.0,
+            "m_fallout_max_distance": 20.0
           }
         }
       }
