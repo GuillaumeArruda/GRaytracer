@@ -11,6 +11,7 @@
 
 #include "gscene/ray_hit.h"
 #include "gscene/object.h"
+#include "gscene/light.h"
 #include "gscene/accelerator.h"
 #include "gscene/resource_library.h"
 

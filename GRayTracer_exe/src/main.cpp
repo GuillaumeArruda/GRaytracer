@@ -1,24 +1,14 @@
-#include <fstream>
-
 #include "gthread/job_manager.h"
 
 #include "gscene/scene.h"
-#include "gscene/light.h"
-#include "gscene/shape.h"
-
-#include "gscene/serialization_headers.h"
 
 #include "grender/lenses/pinhole_lense.h"
 #include "grender/camera.h"
 #include "grender/integrators/blinn_phong_integrator.h"
 
+#include "gserializer/serializers/json_serializer.h"
+
 #include "glm/gtc/matrix_transform.hpp"
-
-#include <fstream>
-#include <cereal/archives/json.hpp>
-#include <cereal/types/vector.hpp>
-#include <cereal/types/memory.hpp>
-
 int main(int argc, const char** argv)
 {
     std::size_t constexpr image_width_resolution = 1280;
@@ -26,7 +16,7 @@ int main(int argc, const char** argv)
     std::size_t constexpr image_resolution = image_width_resolution * image_height_resolution;
     std::size_t constexpr pixel_per_batch = 128;
 
-    bool constexpr display_image = false;
+    bool constexpr display_image = true;
 
     std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency()), 1ll);
     std::size_t const number_of_batch = image_resolution / pixel_per_batch + (image_resolution % pixel_per_batch > 0);
@@ -34,11 +24,9 @@ int main(int argc, const char** argv)
     
     gscene::scene scene;
     {
-        std::ifstream is("data/scene.json");
-        cereal::JSONInputArchive iarchive(is);
-        iarchive(scene);
+        gserializer::json_read_serializer serializer("data/scene.json");
+        serializer.process("value0", scene);
     }
-
 
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
     grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -4.f))), std::move(lense), image_width_resolution, image_height_resolution);

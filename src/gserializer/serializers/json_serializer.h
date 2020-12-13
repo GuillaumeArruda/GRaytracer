@@ -27,10 +27,14 @@ namespace gserializer
 
         void open_scope(const char* name) override;
         void close_scope(const char* name) override;
+
         void open_array(const char* name, std::size_t& element_count) override;
         void close_array(const char* name) override;
         bool open_array_element() override;
         void close_array_element() override;
+
+        void create_and_add_stack_value(const char* name, rapidjson::Type object_type);
+
         rapidjson::Document m_document;
         std::vector<std::reference_wrapper<rapidjson::Value>> m_stack;
     };
@@ -55,13 +59,17 @@ namespace gserializer
 
         void open_scope(const char* name) override;
         void close_scope(const char* name) override;
+        
         void open_array(const char* name, std::size_t& element_count) override;
         void close_array(const char* name) override;
         bool open_array_element() override;
         void close_array_element() override;
 
+        void create_and_add_stack_value(const char* name, rapidjson::Type object_type);
+
         rapidjson::Document m_document;
         std::vector<std::reference_wrapper<rapidjson::Value>> m_stack;
         std::vector<rapidjson::Value*> m_array_itr_stack;
+        std::vector<rapidjson::Value::MemberIterator> m_map_itr_stack;
     };
 }

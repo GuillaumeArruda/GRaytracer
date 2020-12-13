@@ -68,16 +68,7 @@ rapidjson::Value& gserializer::json_write_serializer::stack_top()
 
 void gserializer::json_write_serializer::open_scope(const char* name)
 {
-    if (m_stack.size() == 0)
-    {
-        m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kObjectType), m_document.GetAllocator());
-        m_stack.push_back(m_document[name]);
-    }
-    else
-    {
-        stack_top().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kObjectType), m_document.GetAllocator());
-        m_stack.push_back(stack_top()[name]);
-    }
+    create_and_add_stack_value(name, rapidjson::kObjectType);
 }
 
 void gserializer::json_write_serializer::close_scope(const char*)
@@ -87,16 +78,8 @@ void gserializer::json_write_serializer::close_scope(const char*)
 
 void gserializer::json_write_serializer::open_array(const char* name, std::size_t& element_count)
 {
-    if (m_stack.size() == 0)
-    {
-        m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kArrayType), m_document.GetAllocator());
-        m_stack.push_back(m_document[name]);
-    }
-    else
-    {
-        stack_top().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kArrayType), m_document.GetAllocator());
-        m_stack.push_back(stack_top()[name]);
-    }
+    create_and_add_stack_value(name, rapidjson::kArrayType);
+    stack_top().Reserve(static_cast<rapidjson::SizeType>(element_count), m_document.GetAllocator());
 }
 
 void gserializer::json_write_serializer::close_array(const char*)
@@ -114,6 +97,20 @@ bool gserializer::json_write_serializer::open_array_element()
 void gserializer::json_write_serializer::close_array_element()
 {
     m_stack.pop_back();
+}
+
+void gserializer::json_write_serializer::create_and_add_stack_value(const char* name, rapidjson::Type object_type)
+{
+    if (m_stack.size() == 0)
+    {
+        m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(object_type), m_document.GetAllocator());
+        m_stack.push_back(m_document[name]);
+    }
+    else
+    {
+        stack_top().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(object_type), m_document.GetAllocator());
+        m_stack.push_back(stack_top()[name]);
+    }
 }
 
 gserializer::json_read_serializer::json_read_serializer(const char* file_path)
@@ -202,20 +199,7 @@ rapidjson::Value& gserializer::json_read_serializer::stack_top()
 
 void gserializer::json_read_serializer::open_scope(const char* name)
 {
-    if (m_stack.size() == 0)
-    {
-        auto it = m_document.FindMember(name);
-        if(it == m_document.MemberEnd())
-            m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kObjectType), m_document.GetAllocator());
-        m_stack.push_back(m_document[name]);
-    }
-    else
-    {
-        auto it = m_stack.back().get().FindMember(name);
-        if (it == m_stack.back().get().MemberEnd())
-            stack_top().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kObjectType), m_document.GetAllocator());
-        m_stack.push_back(stack_top()[name]);
-    }
+    create_and_add_stack_value(name, rapidjson::kObjectType);
 }
 
 void gserializer::json_read_serializer::close_scope(const char*)
@@ -225,21 +209,9 @@ void gserializer::json_read_serializer::close_scope(const char*)
 
 void gserializer::json_read_serializer::open_array(const char* name, std::size_t& element_count)
 {
-    if (m_stack.size() == 0)
-    {
-        auto it = m_document.FindMember(name);
-        if (it == m_document.MemberEnd())
-            m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kArrayType), m_document.GetAllocator());
-        m_stack.push_back(m_document[name]);
-    }
-    else
-    {
-        auto it = m_stack.back().get().FindMember(name);
-        if (it == m_stack.back().get().MemberEnd())
-            m_stack.back().get().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(rapidjson::kArrayType), m_document.GetAllocator());
-        m_stack.push_back(m_stack.back().get()[name]);
-    }
+    create_and_add_stack_value(name, rapidjson::kArrayType);
     m_array_itr_stack.push_back(stack_top().Begin());
+    element_count = stack_top().Size();
 }
 
 void gserializer::json_read_serializer::close_array(const char* name)
@@ -263,6 +235,26 @@ bool gserializer::json_read_serializer::open_array_element()
 void gserializer::json_read_serializer::close_array_element()
 {
     m_stack.pop_back();
+}
+
+void gserializer::json_read_serializer::create_and_add_stack_value(const char* name, rapidjson::Type object_type)
+{
+    if (m_stack.size() == 0)
+    {
+        if (!m_document.IsObject())
+            m_document.SetObject();
+        auto it = m_document.FindMember(name);
+        if (it == m_document.MemberEnd())
+            m_document.AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(object_type), m_document.GetAllocator());
+        m_stack.push_back(m_document[name]);
+    }
+    else
+    {
+        auto it = m_stack.back().get().FindMember(name);
+        if (it == m_stack.back().get().MemberEnd())
+            m_stack.back().get().AddMember(rapidjson::Value(name, m_document.GetAllocator()), rapidjson::Value(object_type), m_document.GetAllocator());
+        m_stack.push_back(m_stack.back().get()[name]);
+    }
 }
 
 

@@ -31,13 +31,10 @@
           }
         },
         "m_shape": {
-          "polymorphic_id": 2147483658,
-          "polymorphic_name": "gscene::mesh",
-          "ptr_wrapper": {
-            "valid": 1,
-            "data": {
-              "m_mesh_name": "teapot_mesh"
-            }
+          "type_name": "gscene::mesh",
+          "is_valid": true,
+          "data": {
+            "m_mesh_name": "teapot_mesh"
           }
         },
         "m_material_name": "shiny_white_mat"
@@ -72,13 +69,10 @@
           }
         },
         "m_shape": {
-          "polymorphic_id": 2147483658,
-          "polymorphic_name": "gscene::mesh",
-          "ptr_wrapper": {
-            "valid": 1,
-            "data": {
-              "m_mesh_name": "teapot_mesh"
-            }
+          "type_name": "gscene::mesh",
+          "is_valid": true,
+          "data": {
+            "m_mesh_name": "teapot_mesh"
           }
         },
         "m_material_name": "shiny_white_mat"
@@ -113,13 +107,10 @@
           }
         },
         "m_shape": {
-          "polymorphic_id": 2147483658,
-          "polymorphic_name": "gscene::mesh",
-          "ptr_wrapper": {
-            "valid": 1,
-            "data": {
-              "m_mesh_name": "teapot_mesh"
-            }
+          "type_name": "gscene::mesh",
+          "is_valid": true,
+          "data": {
+            "m_mesh_name": "teapot_mesh"
           }
         },
         "m_material_name": "shiny_white_mat"
@@ -154,13 +145,10 @@
           }
         },
         "m_shape": {
-          "polymorphic_id": 2147483658,
-          "polymorphic_name": "gscene::mesh",
-          "ptr_wrapper": {
-            "valid": 1,
-            "data": {
-              "m_mesh_name": "teapot_mesh"
-            }
+          "type_name": "gscene::mesh",
+          "is_valid": true,
+          "data": {
+            "m_mesh_name": "teapot_mesh"
           }
         },
         "m_material_name": "shiny_white_mat"
@@ -168,102 +156,90 @@
     ],
     "m_lights": [
       {
-        "polymorphic_id": 2147483654,
-        "polymorphic_name": "gscene::point_light",
-        "ptr_wrapper": {
-          "valid": 1,
-          "data": {
+        "type_name": "gscene::point_light",
+        "is_valid": true,
+        "data": {
+          "m_transform": {
             "m_transform": {
-              "m_transform": {
-                "[0]": {
-                  "x": 1.0,
-                  "y": 0.0,
-                  "z": 0.0,
-                  "w": 0.0
-                },
-                "[1]": {
-                  "x": 0.0,
-                  "y": 1.0,
-                  "z": 0.0,
-                  "w": 0.0
-                },
-                "[2]": {
-                  "x": 0.0,
-                  "y": 0.0,
-                  "z": 1.0,
-                  "w": 0.0
-                },
-                "[3]": {
-                  "x": 0.0,
-                  "y": 30.0,
-                  "z": -5.0,
-                  "w": 1.0
-                }
+              "[0]": {
+                "x": 1.0,
+                "y": 0.0,
+                "z": 0.0,
+                "w": 0.0
+              },
+              "[1]": {
+                "x": 0.0,
+                "y": 1.0,
+                "z": 0.0,
+                "w": 0.0
+              },
+              "[2]": {
+                "x": 0.0,
+                "y": 0.0,
+                "z": 1.0,
+                "w": 0.0
+              },
+              "[3]": {
+                "x": 0.0,
+                "y": 30.0,
+                "z": -5.0,
+                "w": 1.0
               }
-            },
-            "m_color": {
-              "x": 1.0,
-              "y": 1.0,
-              "z": 1.0,
-              "w": 1.0
-            },
-            "m_fallout_min_distance": 10.0,
-            "m_fallout_max_distance": 20.0
-          }
+            }
+          },
+          "m_color": {
+            "x": 1.0,
+            "y": 1.0,
+            "z": 1.0,
+            "w": 1.0
+          },
+          "m_fallout_min_distance": 100.0,
+          "m_fallout_max_distance": 200.0
         }
       }
     ],
     "m_accelerator": {
-      "polymorphic_id": 2147483654,
-      "polymorphic_name": "gscene::kd_accelerator",
-      "ptr_wrapper": {
-        "valid": 1,
-        "data": {
-          "m_max_depth": 8,
-          "m_max_cost": 4,
-          "m_isect_cost": 80.0,
-          "m_empty_bonus": 0.5,
-          "m_traversal_cost": 1.0
-        }
+      "type_name": "gscene::kd_accelerator",
+      "is_valid": true,
+      "data": {
+        "m_max_depth": 8,
+        "m_max_cost": 4,
+        "m_isect_cost": 80.0,
+        "m_empty_bonus": 0.5,
+        "m_traversal_cost": 1.0
       }
     },
     "m_resource_library": {
       "m_resources": [
         {
           "key": "teapot_mesh",
-          "value": {
-            "polymorphic_id": 2147483655,
-            "polymorphic_name": "gscene::mesh_resource",
-            "ptr_wrapper": {
-              "valid": 1,
-              "data": {
-                "m_filepath": "./data/meshes/teapot.fbx"
-              }
+          "data": {
+            "type_name": "gscene::mesh_resource",
+            "is_valid": true,
+            "data": {
+              "m_filepath": "./data/meshes/teapot.fbx"
             }
           }
         },
         {
           "key": "shiny_white_mat",
-          "value": {
-            "polymorphic_id": 2147483651,
-            "polymorphic_name": "gscene::blinn_phong_material",
-            "ptr_wrapper": {
-              "valid": 1,
-              "data": {
-                "m_diffuse_color": {
-                  "x": 1.0,
-                  "y": 1.0,
-                  "z": 1.0
-                },
-                "m_specular_color": {
-                  "x": 1.0,
-                  "y": 1.0,
-                  "z": 1.0
-                },
-                "m_specular_exponent": 4.0,
-                "m_reflection_coefficient": 0.2,
-                "m_refraction_coefficient": 0.0
-              }
+          "data": {
+            "type_name": "gscene::blinn_phong_material",
+            "is_valid": true,
+            "data": {
+              "m_diffuse_color": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              },
+              "m_specular_color": {
+                "x": 1.0,
+                "y": 1.0,
+                "z": 1.0
+              },
+              "m_specular_exponent": 4.0,
+              "m_reflection_coefficient": 0.2,
+              "m_refraction_coefficient": 0.0
             }
           }
         }

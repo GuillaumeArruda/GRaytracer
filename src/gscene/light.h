@@ -15,7 +15,7 @@ namespace gscene
     {
         GSERIALIZER_DECLARE_FACTORY_BASE(light);
 
-        light(world_transform const& transform) : m_transform(transform), m_color(0.f) {}
+        light(world_transform const& transform) : m_transform(transform) {}
         light() noexcept = default;
         virtual ~light() = 0 {};
 
@@ -33,6 +33,6 @@ namespace gscene
         virtual void process(gserializer::serializer& serializer);
     private:
         world_transform m_transform;
-        glm::vec3 m_color;
+        glm::vec3 m_color = glm::vec3(0.f);
     };
 }

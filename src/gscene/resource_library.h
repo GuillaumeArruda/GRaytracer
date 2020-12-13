@@ -10,6 +10,11 @@
 
 #include "gscene/resource.h"
 
+namespace gserializer
+{
+    struct serializer;
+}
+
 namespace gthread
 {
     struct job_manager;
@@ -33,6 +38,8 @@ namespace gscene
         {
             ar(CEREAL_NVP(m_resources));
         }
+
+        void process(gserializer::serializer& serializer);
 
         void load(gthread::job_manager& threading_pool);
 

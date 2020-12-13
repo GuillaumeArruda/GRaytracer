@@ -6,6 +6,11 @@
 
 namespace gscene
 {
+    void resource_library::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_resources", m_resources, resource::factory());
+    }
+
     void resource_library::load(gthread::job_manager& jobs)
     {
         std::vector<std::future<void>> load_handles;

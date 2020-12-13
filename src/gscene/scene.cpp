@@ -3,7 +3,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "gscene/scene.h"
-#include "gscene/light.h"
 #include "gscene/shape.h"
 #include "gscene/object.h"
 
@@ -43,5 +42,6 @@ namespace gscene
         serializer.process("m_objects", m_objects);
         serializer.process("m_lights", m_lights, light::factory());
         serializer.process("m_accelerator", m_accelerator, accelerator::factory());
+        serializer.process("m_resource_library", m_resource_library);
     }
 }

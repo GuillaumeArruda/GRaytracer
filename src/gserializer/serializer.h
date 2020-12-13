@@ -73,6 +73,37 @@ namespace gserializer
             close_array(name);
         }
 
+        template<class Key, class TypeToSerialize, class ...ExtraType>
+        void process(const char* name, std::unordered_map<Key, TypeToSerialize>& container, ExtraType&&... extras)
+        {
+            using gserializer::process;
+            std::size_t element_count = container.size();
+            open_array(name, element_count);
+            if (is_writing())
+            {
+                for (auto& value : container)
+                {
+                    open_array_element();
+                    Key key = value.first;
+                    this->process("key", key);
+                    this->process("data", value.second, std::forward<ExtraType>(extras)...);
+                    close_array_element();
+                }
+            }
+            else
+            {
+                container.reserve(element_count);
+                while (open_array_element())
+                {
+                    Key key;
+                    this->process("key", key);
+                    this->process("data", container[key], std::forward<ExtraType>(extras)...);
+                    close_array_element();
+                }
+            }
+            close_array(name);
+        }
+
     private:
         virtual void open_scope(const char* name) = 0;
         virtual void close_scope(const char* name) = 0;
