@@ -4,12 +4,10 @@
 #include <vector>
 #include <array>
 
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "gtl/span.h"
 #include "gmath/position.h"
 #include "gmath/direction.h"
+#include "gmath/vector.h"
 #include "gscene/resource.h"
 
 
@@ -50,12 +48,6 @@ namespace gscene
         mesh_resource(mesh_resource const&) = delete;
         mesh_resource& operator=(mesh_resource const&) = delete;
 
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_filepath));
-        }
-
         void process(gserializer::serializer& serializer) override;
 
         void load() final;
@@ -72,6 +64,3 @@ namespace gscene
         GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
-
-CEREAL_REGISTER_TYPE(gscene::mesh_resource);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::resource, gscene::mesh_resource);

@@ -41,13 +41,6 @@ namespace gmath
         constexpr explicit operator glm::vec4() const noexcept { return m_position; }
         constexpr float operator[](std::size_t index) const noexcept { return m_position[static_cast<glm_vector_type::length_type>(index)]; }
         constexpr float& operator[](std::size_t index) noexcept { return m_position[static_cast<glm_vector_type::length_type>(index)]; }
-
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_position));
-        }
-
         glm::vec4 get_internal_position() { return m_position; }
 
     private:

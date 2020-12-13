@@ -51,13 +51,6 @@ namespace gmath
         constexpr float x() const noexcept { return m_direction[0]; }
         constexpr float y() const noexcept { return m_direction[1]; }
         constexpr float z() const noexcept { return m_direction[2]; }
-
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_direction));
-            normalize();
-        }
     private:
         constexpr void normalize() noexcept { m_direction = glm::normalize(m_direction); }
         glm_vector_type m_direction;

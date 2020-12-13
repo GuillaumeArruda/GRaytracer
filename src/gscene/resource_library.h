@@ -6,8 +6,6 @@
 
 #include <fmt/format.h>
 
-#include <cereal/types/unordered_map.hpp>
-
 #include "gscene/resource.h"
 
 namespace gserializer
@@ -32,12 +30,6 @@ namespace gscene
 
         resource_library(resource_library&&) noexcept = default;
         resource_library& operator=(resource_library&&) = default;
-
-        template<class Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_resources));
-        }
 
         void process(gserializer::serializer& serializer);
 

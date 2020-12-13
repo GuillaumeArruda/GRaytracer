@@ -1,8 +1,4 @@
 #pragma once
-
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "gscene/shape.h"
 
 namespace gscene
@@ -18,12 +14,6 @@ namespace gscene
         plane& operator=(plane const&) noexcept = default;
         plane& operator=(plane&&) noexcept = default;
 
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_normal));
-        }
-
         void process(gserializer::serializer& serializer) override;
 
         std::optional<ray_hit> raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept final;
@@ -34,6 +24,3 @@ namespace gscene
         GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
-
-CEREAL_REGISTER_TYPE(gscene::plane);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::shape, gscene::plane);

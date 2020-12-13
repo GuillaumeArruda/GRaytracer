@@ -105,9 +105,6 @@
     <ClInclude Include="src\gtl\cast.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\gscene\serialization_headers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>

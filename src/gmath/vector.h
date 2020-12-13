@@ -72,11 +72,6 @@ namespace gmath
 
         constexpr float operator[](std::size_t index) const noexcept { return m_vector[static_cast<glm_vector_type::length_type>(index)]; }
 
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_vector));
-        }
     private:
         glm_vector_type m_vector;
     };

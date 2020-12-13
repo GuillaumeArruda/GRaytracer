@@ -1,9 +1,5 @@
 #pragma once
 #include <type_traits>
-
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "gtl/span.h"
 
 #include "gmath/axis_aligned_box.h"
@@ -28,9 +24,6 @@ namespace gscene
 
         virtual std::optional<gscene::ray_hit> raycast(gmath::ray<gmath::world_space> const& ray) const noexcept final;
         virtual void build(gscene::scene const& scene) final;
-
-        template<class Archive>
-        void serialize(Archive& ar) {}
 
         void process(gserializer::serializer& serializer) override;
     private:
@@ -89,11 +82,6 @@ namespace gscene
             intermediate_data& get_intermediate_data() noexcept;
             intermediate_data const& get_intermediate_data() const noexcept;
 
-            template<class Archive>
-            void serialize(Archive& ar)
-            {
-                ar(CEREAL_NVP(m_max_depth), CEREAL_NVP(m_max_cost), CEREAL_NVP(m_isect_cost), CEREAL_NVP(m_empty_bonus), CEREAL_NVP(m_traversal_cost));
-            }
         private:
             static_assert(alignof(leaf_data) == alignof(intermediate_data));
             alignas(8) unsigned char m_storage[std::max(sizeof(leaf_data), sizeof(intermediate_data))];
@@ -116,6 +104,3 @@ namespace gscene
         GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
-
-CEREAL_REGISTER_TYPE(gscene::kd_accelerator);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::accelerator, gscene::kd_accelerator);

@@ -1,10 +1,6 @@
 #pragma once
 
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "gtl/span.h"
-
 #include "gscene/accelerator.h"
 #include "gscene/object.h"
 
@@ -14,9 +10,6 @@ namespace gscene
     {
         std::optional<gscene::ray_hit> raycast(gmath::ray<gmath::world_space> const&) const noexcept final;
         void build(scene const& scene) final;
-        
-        template<class Archive>
-        void serialize(Archive& ar) {}
 
         void process(gserializer::serializer&) override {}
     private:
@@ -25,6 +18,3 @@ namespace gscene
         GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
-
-CEREAL_REGISTER_TYPE(gscene::for_each_accelerator);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::accelerator, gscene::for_each_accelerator);

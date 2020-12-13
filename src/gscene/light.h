@@ -24,12 +24,6 @@ namespace gscene
 
         virtual float light_ratio_at_position(gmath::position<gmath::world_space> const& position) const = 0;
 
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_color));
-        }
-
         virtual void process(gserializer::serializer& serializer);
     private:
         world_transform m_transform;

@@ -1,5 +1,6 @@
 #include "stdafx.h"
 
+#include <iostream>
 #include "gthread/job_manager.h"
 
 namespace gthread

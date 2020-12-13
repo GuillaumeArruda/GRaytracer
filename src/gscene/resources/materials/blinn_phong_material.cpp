@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "blinn_phong_material.h"
+#include "gscene/resources/materials/blinn_phong_material.h"
 
 #include "gserializer/serializer.h"
 

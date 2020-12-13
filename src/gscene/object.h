@@ -40,13 +40,6 @@ namespace gscene
         void resolve_resources(resource_library const& res_lib);
         void subdivide(std::vector<object>& new_object) const;
 
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material_name));
-            m_inverseTransform = m_transform.inverse();
-        }
-
         void process(gserializer::serializer& serializer);
 
     private:

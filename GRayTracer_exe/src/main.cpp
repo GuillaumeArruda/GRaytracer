@@ -9,6 +9,7 @@
 #include "gserializer/serializers/json_serializer.h"
 
 #include "glm/gtc/matrix_transform.hpp"
+
 int main(int argc, const char** argv)
 {
     std::size_t constexpr image_width_resolution = 1280;

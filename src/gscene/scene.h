@@ -39,13 +39,6 @@ namespace gscene
         gtl::span<object const> get_objects() const noexcept { return m_objects; }
 
         void prepare_scene(gthread::job_manager& jobs);
-
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_resource_library), CEREAL_NVP(m_objects), CEREAL_NVP(m_lights), CEREAL_NVP(m_accelerator));
-        }
-
         void process(gserializer::serializer& serializer);
 
     private:

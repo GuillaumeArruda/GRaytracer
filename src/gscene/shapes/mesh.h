@@ -1,9 +1,5 @@
 #pragma once
 
-#include <memory>
-#include <cereal/types/polymorphic.hpp>
-#include <cereal/archives/json.hpp>
-
 #include "gscene/shape.h"
 
 namespace gscene
@@ -25,13 +21,6 @@ namespace gscene
         void resolve_resources(resource_library const& res_lib) override final;
 
         void subdivide(object const& obj, std::vector<object>& new_object) const override final;
-
-        template<typename Archive>
-        void serialize(Archive& ar)
-        {
-            ar(CEREAL_NVP(m_mesh_name));
-        }
-
         void process(gserializer::serializer& serializer) override;
 
     private:
@@ -42,6 +31,3 @@ namespace gscene
         GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
-
-CEREAL_REGISTER_TYPE(gscene::mesh);
-CEREAL_REGISTER_POLYMORPHIC_RELATION(gscene::shape, gscene::mesh);
