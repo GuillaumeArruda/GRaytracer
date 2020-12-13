@@ -2,6 +2,7 @@
 #include "gscene/resources/materials/blinn_phong_material.h"
 
 #include "gserializer/serializer.h"
+#include "gserializer/gmath_serialization.h"
 
 GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::blinn_phong_material);
 

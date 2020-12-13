@@ -1,5 +1,6 @@
 #pragma once
 #include "gmath/transform.h"
+
 namespace gscene
 {
     using world_transform = gmath::transform<gmath::world_space, gmath::model_space>;

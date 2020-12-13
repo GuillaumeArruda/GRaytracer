@@ -1,10 +1,8 @@
 #pragma once
+
 #include <vector>
-
 #include "gmath/ray.h"
-
 #include "gscene/common.h"
-
 #include "grender/camera.h"
 
 namespace grender

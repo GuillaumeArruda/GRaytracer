@@ -17,9 +17,7 @@ int main(int argc, const char** argv)
     std::size_t constexpr image_resolution = image_width_resolution * image_height_resolution;
     std::size_t constexpr pixel_per_batch = 128;
 
-    bool constexpr display_image = true;
-
-    std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency()), 1ll);
+    std::size_t const number_of_thread = std::max(static_cast<long long>(std::thread::hardware_concurrency()) - 2, 1ll);
     std::size_t const number_of_batch = image_resolution / pixel_per_batch + (image_resolution % pixel_per_batch > 0);
     std::size_t const batch_size = pixel_per_batch;
     
@@ -47,17 +45,5 @@ int main(int argc, const char** argv)
         }
         );
     }
-
-    if (display_image)
-    {
-        cimg_library::CImgDisplay display(camera.get_sensor().get_image());
-        display.set_normalization(2);
-        while (!display.is_closed())
-        {
-            display.display(camera.get_sensor().get_image());
-            display.wait(10);
-        }
-    }
-
     return 0;
 }

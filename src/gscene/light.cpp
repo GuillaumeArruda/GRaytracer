@@ -2,6 +2,7 @@
 #include "gscene/light.h"
 
 #include "gserializer/serializer.h"
+#include "gserializer/gmath_serialization.h"
 
 namespace gscene
 {

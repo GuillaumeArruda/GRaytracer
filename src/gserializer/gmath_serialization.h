@@ -4,44 +4,21 @@
 #include "gmath/position.h"
 #include "gmath/direction.h"
 #include "gmath/transform.h"
-#include "gmath/units.h"
 
-#include "gserializer/serializer.h"
+namespace gmath
+{
+    struct radian;
+    struct degree;
+}
 
 namespace gserializer
 {
-    inline void process(serializer& serializer, glm::vec3& vector)
-    {
-        serializer.process("x", vector.x);
-        serializer.process("y", vector.y);
-        serializer.process("z", vector.z);
-    }
-
-    inline void process(serializer& serializer, glm::vec4& vector)
-    {
-        serializer.process("x", vector.x);
-        serializer.process("y", vector.y);
-        serializer.process("z", vector.z);
-        serializer.process("w", vector.w);
-    }
-
-    inline void process(serializer& serializer, glm::mat4& matrix)
-    {
-        serializer.process("[0]", matrix[0]);
-        serializer.process("[1]", matrix[1]);
-        serializer.process("[2]", matrix[2]);
-        serializer.process("[3]", matrix[3]);
-    }
-
-    inline void process(serializer& serializer, gmath::radian& radian)
-    {
-        serializer.process("m_value", radian.value());
-    }
-
-    inline void process(serializer& serializer, gmath::degree& degree)
-    {
-        serializer.process("m_value", degree.value());
-    }
+    struct serializer;
+    void process(serializer& serializer, glm::vec3& vector);
+    void process(serializer& serializer, glm::vec4& vector);
+    void process(serializer& serializer, glm::mat4& matrix);
+    void process(serializer& serializer, gmath::radian& radian);
+    void process(serializer& serializer, gmath::degree& degree);
 
     template<class Space>
     void process(serializer& serializer, gmath::position<Space>& position)

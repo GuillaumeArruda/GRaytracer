@@ -6,6 +6,7 @@
 #include "gscene/resource_library.h"
 
 #include "gserializer/serializer.h"
+#include "gserializer/gmath_serialization.h"
 
 namespace gscene
 {

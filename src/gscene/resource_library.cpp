@@ -4,6 +4,8 @@
 
 #include "gthread/job_manager.h"
 
+#include "gserializer/serializer.h"
+
 namespace gscene
 {
     void resource_library::process(gserializer::serializer& serializer)

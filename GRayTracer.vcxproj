@@ -91,6 +91,7 @@
     <ClCompile Include="src\gscene\object.cpp" />
     <ClCompile Include="src\gscene\scene.cpp" />
     <ClCompile Include="src\gscene\shapes\sphere.cpp" />
+    <ClCompile Include="src\gserializer\gmath_serialization.cpp" />
     <ClCompile Include="src\gserializer\serializers\json_serializer.cpp" />
     <ClCompile Include="src\gthread\job_manager.cpp" />
     <ClCompile Include="src\gthread\latch.cpp" />

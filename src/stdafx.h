@@ -14,5 +14,3 @@
 #include <vector>
 
 #include <glm/glm.hpp>
-
-#include "gserializer/gmath_serialization.h"

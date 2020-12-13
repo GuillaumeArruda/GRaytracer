@@ -7,6 +7,9 @@
 #include "gscene/resources/mesh_resource.h"
 #include "gscene/resource_library.h"
 
+#include "gserializer/serializer.h"
+#include "gserializer/gmath_serialization.h"
+
 GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::mesh);
 
 namespace gscene

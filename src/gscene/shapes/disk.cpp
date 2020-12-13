@@ -4,6 +4,9 @@
 #include "gscene/resources/material.h"
 #include "gscene/object.h"
 
+#include "gserializer/serializer.h"
+#include "gserializer/gmath_serialization.h"
+
 GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::disk);
 
 namespace gscene

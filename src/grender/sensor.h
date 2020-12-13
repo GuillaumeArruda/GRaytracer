@@ -1,7 +1,5 @@
 #pragma once
 
-#include <CImg\CImg.h>
-
 namespace grender
 {
     struct sensor
@@ -16,12 +14,11 @@ namespace grender
 
         void set_pixel(std::size_t x_index, std::size_t y_index, float red, float green, float blue) noexcept;
 
-        cimg_library::CImg<float> const& get_image() const noexcept { return m_image; };
-
-        std::size_t get_width() const noexcept { return m_image.width(); }
-        std::size_t get_height() const noexcept { return m_image.height(); }
+        std::size_t get_width() const noexcept { return m_width; }
+        std::size_t get_height() const noexcept { return m_height; }
 
     private:
-        cimg_library::CImg<float> m_image;
+        std::size_t m_width;
+        std::size_t m_height;
     };
 }
