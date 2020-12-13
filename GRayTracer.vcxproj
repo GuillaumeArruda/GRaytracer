@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -55,6 +55,7 @@
     <ClInclude Include="src\gscene\scene.h" />
     <ClInclude Include="src\gscene\shape.h" />
     <ClInclude Include="src\gscene\shapes\sphere.h" />
+    <ClInclude Include="src\gserializer\serializers\json_serializer.h" />
     <ClInclude Include="src\gthread\concurrent_queue.h" />
     <ClInclude Include="src\gthread\concurrent_bounded_queue.h" />
     <ClInclude Include="src\gthread\job_manager.h" />
@@ -63,8 +64,10 @@
     <ClInclude Include="src\gthread\task.h" />
     <ClInclude Include="src\gthread\task_group.h" />
     <ClInclude Include="src\gthread\thread_group.h" />
+    <ClInclude Include="src\gserializer\serializer.h" />
     <ClInclude Include="src\gtl\span.h" />
     <ClInclude Include="src\gtl\cast.h" />
+    <ClInclude Include="src\gserializer\type_factory.h" />
     <ClInclude Include="src\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +89,7 @@
     <ClCompile Include="src\gscene\object.cpp" />
     <ClCompile Include="src\gscene\scene.cpp" />
     <ClCompile Include="src\gscene\shapes\sphere.cpp" />
+    <ClCompile Include="src\gserializer\serializers\json_serializer.cpp" />
     <ClCompile Include="src\gthread\job_manager.cpp" />
     <ClCompile Include="src\gthread\latch.cpp" />
     <ClCompile Include="src\gthread\task_group.cpp" />

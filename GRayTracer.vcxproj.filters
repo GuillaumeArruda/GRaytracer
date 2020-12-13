@@ -156,6 +156,15 @@
     <ClInclude Include="src\gthread\task_group.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gserializer\serializers\json_serializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gserializer\serializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\gserializer\type_factory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
@@ -219,6 +228,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gthread\task_group.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gserializer\serializers\json_serializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
