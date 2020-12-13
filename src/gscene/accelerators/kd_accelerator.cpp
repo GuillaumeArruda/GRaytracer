@@ -219,7 +219,7 @@ namespace gscene
         gmath::position<gmath::world_space> above_new_min = node_bound.min();
         above_new_min[*best_axis] = t_split;
         gmath::axis_aligned_box<gmath::world_space> const above_box(node_bound.min(), below_new_max);
-        recursive_build(all_objects, below_box, all_objects_bounds, above_indexes, depth - 1, edges);
+        recursive_build(all_objects, above_box, all_objects_bounds, above_indexes, depth - 1, edges);
     }
 
     void kd_accelerator::create_leaf(gtl::span<object const> all_objects, gtl::span<std::size_t const> indexes)
