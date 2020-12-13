@@ -16,3 +16,5 @@
 #include <glm/glm.hpp>
 
 #include <cereal\cereal.hpp>
+
+#include "gserializer/gmath_serialization.h"

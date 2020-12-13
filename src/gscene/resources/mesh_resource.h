@@ -12,6 +12,7 @@
 #include "gmath/direction.h"
 #include "gscene/resource.h"
 
+
 namespace gscene
 {
     struct mesh_resource : resource
@@ -55,6 +56,8 @@ namespace gscene
             ar(CEREAL_NVP(m_filepath));
         }
 
+        void process(gserializer::serializer& serializer) override;
+
         void load() final;
 
         gtl::span<gmath::position<gmath::model_space> const> get_vertices_position(std::size_t submesh_id) const { return m_submeshes[submesh_id].m_vertices_position; }
@@ -65,6 +68,8 @@ namespace gscene
     private:
         std::vector<submesh> m_submeshes;
         std::string m_filepath;
+
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 

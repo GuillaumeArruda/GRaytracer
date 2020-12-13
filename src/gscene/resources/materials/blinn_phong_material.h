@@ -21,11 +21,14 @@ namespace gscene
             , CEREAL_NVP(m_reflection_coefficient)
             , CEREAL_NVP(m_refraction_coefficient));
         }
+
+        void process(gserializer::serializer& serializer) override;
         glm::vec3 m_diffuse_color = {};
         glm::vec3 m_specular_color = {};
         float m_specular_exponent = 1.f;
         float m_reflection_coefficient = 0.f;
         float m_refraction_coefficient = 0.f;
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 

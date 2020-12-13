@@ -43,11 +43,11 @@ namespace gserializer
         std::unordered_map<std::size_t, std::string> m_type_id_hash_to_name;
     };
 
-#define GSERIALIZER_DECLARE_FACTORY_BASE(BaseType)                                                                                      \
-    static gserializer::type_factory<BaseType>& factory() { static gserializer::type_factory<BaseType> factory_##BaseType; return factory_##BaseType; }
+#define GSERIALIZER_DECLARE_FACTORY_BASE(BaseType)                                                                                                      \
+    static gserializer::type_factory<BaseType>& factory() { static gserializer::type_factory<BaseType> factory_##BaseType; return factory_##BaseType; } 
 
 #define GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION()         \
-    static bool ms_registered;
+    static bool ms_registered;                                      
 
 #define GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(Type)      \
     bool Type::ms_registered = Type::factory().register_type<Type>(#Type);

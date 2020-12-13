@@ -165,6 +165,9 @@
     <ClInclude Include="src\gserializer\type_factory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\gserializer\gmath_serialization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Natvis Include="src\GRayTracer.natvis" />
@@ -231,6 +234,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\gserializer\serializers\json_serializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\resources\materials\blinn_phong_material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gscene\light.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

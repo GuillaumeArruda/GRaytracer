@@ -6,6 +6,8 @@
 
 #include <glm/gtx/compatibility.hpp>
 
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::point_light);
+
 namespace gscene
 {
     float point_light::light_ratio_at_position(gmath::position<gmath::world_space> const& position) const
@@ -17,5 +19,12 @@ namespace gscene
             return 0.f;
         float const lerpFactor = (distance - m_fallout_min_distance) / (m_fallout_max_distance - m_fallout_min_distance);
         return glm::lerp(1.f, 0.f, lerpFactor);
+    }
+
+    void point_light::process(gserializer::serializer& serializer)
+    {
+        light::process(serializer);
+        serializer.process("m_fallout_min_distance", m_fallout_min_distance);
+        serializer.process("m_fallout_max_distance", m_fallout_max_distance);
     }
 }

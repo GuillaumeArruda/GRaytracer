@@ -4,7 +4,8 @@
 
 #include "gscene/scene.h"
 #include "gscene/light.h"
-
+#include "gscene/shape.h"
+#include "gscene/object.h"
 
 namespace gscene
 {
@@ -36,5 +37,11 @@ namespace gscene
         }
 
         m_accelerator->build(*this);
+    }
+    void scene::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_objects", m_objects);
+        serializer.process("m_lights", m_lights, light::factory());
+        serializer.process("m_accelerator", m_accelerator, accelerator::factory());
     }
 }

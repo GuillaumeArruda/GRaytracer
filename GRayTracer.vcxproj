@@ -55,6 +55,7 @@
     <ClInclude Include="src\gscene\scene.h" />
     <ClInclude Include="src\gscene\shape.h" />
     <ClInclude Include="src\gscene\shapes\sphere.h" />
+    <ClInclude Include="src\gserializer\gmath_serialization.h" />
     <ClInclude Include="src\gserializer\serializers\json_serializer.h" />
     <ClInclude Include="src\gthread\concurrent_queue.h" />
     <ClInclude Include="src\gthread\concurrent_bounded_queue.h" />
@@ -78,7 +79,9 @@
     <ClCompile Include="src\grender\sensor.cpp" />
     <ClCompile Include="src\gscene\accelerators\for_each_accelerator.cpp" />
     <ClCompile Include="src\gscene\accelerators\kd_accelerator.cpp" />
+    <ClCompile Include="src\gscene\light.cpp" />
     <ClCompile Include="src\gscene\lights\point_light.cpp" />
+    <ClCompile Include="src\gscene\resources\materials\blinn_phong_material.cpp" />
     <ClCompile Include="src\gscene\resources\mesh_resource.cpp" />
     <ClCompile Include="src\gscene\resource_library.cpp" />
     <ClCompile Include="src\gscene\shapes\disk.cpp" />

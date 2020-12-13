@@ -58,6 +58,8 @@ namespace gmath
         {
             ar(CEREAL_NVP(m_transform));
         }
+
+        glm::mat4& get_internal_matrix() { return m_transform; }
     private:
         glm::mat4 m_transform;
     };

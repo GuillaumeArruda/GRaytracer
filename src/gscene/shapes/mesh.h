@@ -32,10 +32,14 @@ namespace gscene
             ar(CEREAL_NVP(m_mesh_name));
         }
 
+        void process(gserializer::serializer& serializer) override;
+
     private:
         std::string m_mesh_name;
         mesh_resource const* m_data = nullptr;
         std::size_t m_submesh_id = 0;
+
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 

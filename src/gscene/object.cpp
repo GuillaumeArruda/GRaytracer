@@ -5,6 +5,8 @@
 #include "gscene/resources/material.h"
 #include "gscene/resource_library.h"
 
+#include "gserializer/serializer.h"
+
 namespace gscene
 {
     object::object(world_transform const& transform, std::unique_ptr<shape> shape, material const* material)
@@ -32,6 +34,17 @@ namespace gscene
     void object::subdivide(std::vector<object>& new_object) const
     {
         m_shape->subdivide(*this, new_object);
+    }
+
+    void object::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_transform", m_transform);
+        serializer.process("m_shape", m_shape, shape::factory());
+        serializer.process("m_material_name", m_material_name);
+        if (serializer.is_reading())
+        {
+            m_inverseTransform = m_transform.inverse();
+        }
     }
 }
 

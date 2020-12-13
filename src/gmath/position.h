@@ -47,6 +47,9 @@ namespace gmath
         {
             ar(CEREAL_NVP(m_position));
         }
+
+        glm::vec4 get_internal_position() { return m_position; }
+
     private:
         glm::vec4 m_position;
     };

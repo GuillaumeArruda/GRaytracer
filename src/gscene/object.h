@@ -8,6 +8,11 @@
 #include "gscene/common.h"
 #include "gscene/ray_hit.h"
 
+namespace gserializer
+{
+    struct serializer;
+}
+
 namespace gscene
 {
     struct shape;
@@ -41,6 +46,9 @@ namespace gscene
             ar(CEREAL_NVP(m_transform), CEREAL_NVP(m_shape), CEREAL_NVP(m_material_name));
             m_inverseTransform = m_transform.inverse();
         }
+
+        void process(gserializer::serializer& serializer);
+
     private:
         std::unique_ptr<shape> m_shape;
         world_transform m_transform;

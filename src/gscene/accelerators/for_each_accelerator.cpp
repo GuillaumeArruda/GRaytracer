@@ -4,6 +4,8 @@
 
 #include "gscene/scene.h"
 
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::for_each_accelerator);
+
 namespace gscene
 {
     std::optional<gscene::ray_hit> for_each_accelerator::raycast(gmath::ray<gmath::world_space> const& ray) const noexcept

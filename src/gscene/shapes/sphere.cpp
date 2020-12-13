@@ -4,8 +4,15 @@
 #include "gscene/resources/material.h"
 #include "gscene/object.h"
 
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::sphere);
+
 namespace gscene
 {
+    void sphere::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_radius2", m_radius2);
+    }
+
     std::optional<ray_hit> sphere::raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept
     {
         const gmath::ray<gmath::model_space> local_ray = obj.get_inverse_transform() * ray;

@@ -8,6 +8,10 @@
 #include "gscene/accelerators/kd_accelerator.h"
 #include "gscene/scene.h"
 
+#include "gserializer/serializer.h"
+
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::kd_accelerator);
+
 namespace gscene
 {
     kd_accelerator::kd_accelerator() noexcept
@@ -120,6 +124,15 @@ namespace gscene
             indexes.emplace_back(i);
 
         recursive_build(objects, m_bound, bounds, indexes, m_max_depth, edges);
+    }
+
+    void kd_accelerator::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_max_depth", m_max_depth);
+        serializer.process("m_max_cost", m_max_cost);
+        serializer.process("m_isect_cost", m_isect_cost);
+        serializer.process("m_empty_bonus", m_empty_bonus);
+        serializer.process("m_traversal_cost", m_traversal_cost);
     }
 
     void kd_accelerator::recursive_build(gtl::span<object const> all_objects, gmath::axis_aligned_box<gmath::world_space> const& node_bound, std::vector<gmath::axis_aligned_box<gmath::world_space>> const& all_objects_bounds, gtl::span<std::size_t const> indexes, std::uint32_t depth, std::array<std::vector<bound_edge>, 3>& edges)

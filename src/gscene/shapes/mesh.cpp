@@ -7,6 +7,8 @@
 #include "gscene/resources/mesh_resource.h"
 #include "gscene/resource_library.h"
 
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::mesh);
+
 namespace gscene
 {
     std::optional<ray_hit> mesh::raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept
@@ -96,5 +98,10 @@ namespace gscene
             std::unique_ptr new_mesh = std::make_unique<mesh>(m_mesh_name, m_data, i);
             new_object.emplace_back(obj.get_transform(), std::move(new_mesh), &obj.get_material());
         }
+    }
+
+    void mesh::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_mesh_name", m_mesh_name);
     }
 }

@@ -4,9 +4,16 @@
 #include "gscene/resources/material.h"
 #include "gscene/object.h"
 
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::disk);
 
 namespace gscene
 {
+    void disk::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_normal", m_normal);
+        serializer.process("radius", m_radius2);
+    }
+
     std::optional<ray_hit> disk::raycast(gmath::ray<gmath::world_space> const& ray, object const& obj) const noexcept
     {
         float const denom = m_normal.dot(ray.dir());

@@ -17,8 +17,12 @@ namespace gscene
         
         template<class Archive>
         void serialize(Archive& ar) {}
+
+        void process(gserializer::serializer&) override {}
     private:
         gtl::span<object const> m_objects;
+
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 

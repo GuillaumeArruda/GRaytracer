@@ -10,6 +10,7 @@ namespace gscene
 {
     struct point_light : light
     {
+        
         template<typename Archive>
         void serialize(Archive& ar)
         {
@@ -18,10 +19,12 @@ namespace gscene
         }
 
         float light_ratio_at_position(gmath::position<gmath::world_space> const& position) const override;
-
+        void process(gserializer::serializer& serializer) override;
     private:
         float m_fallout_min_distance;
         float m_fallout_max_distance;
+
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 

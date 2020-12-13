@@ -9,9 +9,17 @@
 #include "gmath/vector.h"
 #include "gscene/resources/mesh_resource.h"
 
+#include "gserializer/serializer.h"
+
+GSERIALIZER_DEFINE_SUBCLASS_FACTORY_REGISTRATION(gscene::mesh_resource);
 
 namespace gscene
 {
+    void mesh_resource::process(gserializer::serializer& serializer)
+    {
+        serializer.process("m_filepath", m_filepath);
+    }
+
     void gscene::mesh_resource::load()
     {
         uint32_t const post_process_flag = aiProcess_JoinIdenticalVertices | aiProcess_Triangulate | aiProcess_GenSmoothNormals | aiProcess_FixInfacingNormals | aiProcess_SplitLargeMeshes | aiProcess_ImproveCacheLocality | aiProcess_PreTransformVertices;

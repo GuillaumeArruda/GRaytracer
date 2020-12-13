@@ -145,7 +145,9 @@ namespace gserializer
                 serializer.process("type_name", type_name);
                 value = factory.create(type_name);
                 if (value)
+                {
                     serializer.process("data", *value);
+                }
             }
         }
     }

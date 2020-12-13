@@ -31,6 +31,8 @@ namespace gscene
 
         template<class Archive>
         void serialize(Archive& ar) {}
+
+        void process(gserializer::serializer& serializer) override;
     private:
         struct bound_edge
         {
@@ -110,6 +112,8 @@ namespace gscene
         float m_isect_cost = 80.f;
         float m_empty_bonus = 0.5f; 
         float m_traversal_cost = 1.f;
+
+        GSERIALIZER_DECLARE_SUBCLASS_FACTORY_REGISTRATION();
     };
 }
 
