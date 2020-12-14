@@ -54,6 +54,7 @@
     <ClInclude Include="src\gscene\scene.h" />
     <ClInclude Include="src\gscene\shape.h" />
     <ClInclude Include="src\gscene\shapes\sphere.h" />
+    <ClInclude Include="src\gserializer\enum.h" />
     <ClInclude Include="src\gserializer\gmath_serialization.h" />
     <ClInclude Include="src\gserializer\serializers\json_serializer.h" />
     <ClInclude Include="src\gthread\concurrent_queue.h" />

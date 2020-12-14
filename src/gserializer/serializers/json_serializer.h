@@ -27,6 +27,7 @@ namespace gserializer
 
         void open_scope(const char* name) override;
         void close_scope(const char* name) override;
+        bool enum_as_string() const override { return true; }
 
         void open_array(const char* name, std::size_t& element_count) override;
         void close_array(const char* name) override;
@@ -59,7 +60,8 @@ namespace gserializer
 
         void open_scope(const char* name) override;
         void close_scope(const char* name) override;
-        
+        bool enum_as_string() const override { return true; }
+
         void open_array(const char* name, std::size_t& element_count) override;
         void close_array(const char* name) override;
         bool open_array_element() override;

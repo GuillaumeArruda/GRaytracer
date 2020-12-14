@@ -9,7 +9,7 @@ namespace gserializer
 {
     struct serializer;
     template<class TypeToSerialize>
-    void process(serializer& serializer, TypeToSerialize& value)
+    auto process(serializer& serializer, TypeToSerialize& value) -> decltype(value.process(serializer))
     {
         value.process(serializer);
     }
@@ -104,9 +104,38 @@ namespace gserializer
             close_array(name);
         }
 
+
+        template<class EnumToSerialize>
+        auto process(const char* name, EnumToSerialize& value) -> std::enable_if_t<std::is_enum_v<EnumToSerialize>>
+        {
+            if (enum_as_string())
+            {
+                std::string temp;
+                if (is_reading())
+                {
+                    process(name, temp);
+                    from_string(temp.c_str(), value);
+                }
+                else
+                {
+                    temp = to_string(value);
+                    process(name, temp);
+                }
+            }
+            else
+            {
+                std::underlying_type_t<EnumToSerialize> int_value = static_cast<std::underlying_type_t<EnumToSerialize>>(value);
+                process(name, int_value);
+                if (is_reading())
+                    value = static_cast<EnumToSerialize>(int_value);
+            }
+        }
+
     private:
         virtual void open_scope(const char* name) = 0;
         virtual void close_scope(const char* name) = 0;
+        
+        virtual bool enum_as_string() const = 0;
 
         virtual void open_array(const char* name, std::size_t& element_count) = 0;
         virtual void close_array(const char* name) = 0;

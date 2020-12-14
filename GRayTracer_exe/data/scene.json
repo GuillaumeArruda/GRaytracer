@@ -1,249 +1,248 @@
 {
-  "value0": {
-    "m_objects": [
-      {
-        "m_transform": {
-          "m_transform": {
-            "[0]": {
-              "x": 1.0,
-              "y": 0.0,
-              "z": 0.0,
-              "w": 0.0
+    "value0": {
+        "m_objects": [
+            {
+                "m_transform": {
+                    "m_transform": {
+                        "[0]": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "[1]": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "[2]": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 1.0,
+                            "w": 0.0
+                        },
+                        "[3]": {
+                            "x": 0.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
+                    }
+                },
+                "m_shape": {
+                    "is_valid": true,
+                    "type_name": "gscene::mesh",
+                    "data": {
+                        "m_mesh_name": "teapot_mesh"
+                    }
+                },
+                "m_material_name": "shiny_white_mat"
             },
-            "[1]": {
-              "x": 0.0,
-              "y": 1.0,
-              "z": 0.0,
-              "w": 0.0
+            {
+                "m_transform": {
+                    "m_transform": {
+                        "[0]": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "[1]": {
+                            "x": 0.0,
+                            "y": 0.5253220200538635,
+                            "z": -0.8509035110473633,
+                            "w": 0.0
+                        },
+                        "[2]": {
+                            "x": 0.0,
+                            "y": 0.8509035110473633,
+                            "z": 0.5253220200538635,
+                            "w": 0.0
+                        },
+                        "[3]": {
+                            "x": 3.0,
+                            "y": 2.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
+                    }
+                },
+                "m_shape": {
+                    "is_valid": true,
+                    "type_name": "gscene::mesh",
+                    "data": {
+                        "m_mesh_name": "teapot_mesh"
+                    }
+                },
+                "m_material_name": "shiny_white_mat"
             },
-            "[2]": {
-              "x": 0.0,
-              "y": 0.0,
-              "z": 1.0,
-              "w": 0.0
+            {
+                "m_transform": {
+                    "m_transform": {
+                        "[0]": {
+                            "x": 1.0,
+                            "y": 0.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "[1]": {
+                            "x": 0.0,
+                            "y": -0.5253220200538635,
+                            "z": 0.8509035110473633,
+                            "w": 0.0
+                        },
+                        "[2]": {
+                            "x": 0.0,
+                            "y": -0.8509035110473633,
+                            "z": -0.5253220200538635,
+                            "w": 0.0
+                        },
+                        "[3]": {
+                            "x": -3.0,
+                            "y": 2.0,
+                            "z": 0.0,
+                            "w": 1.0
+                        }
+                    }
+                },
+                "m_shape": {
+                    "is_valid": true,
+                    "type_name": "gscene::mesh",
+                    "data": {
+                        "m_mesh_name": "teapot_mesh"
+                    }
+                },
+                "m_material_name": "shiny_white_mat"
             },
-            "[3]": {
-              "x": 0.0,
-              "y": 0.0,
-              "z": 0.0,
-              "w": 1.0
+            {
+                "m_transform": {
+                    "m_transform": {
+                        "[0]": {
+                            "x": -0.5253220200538635,
+                            "y": 0.0,
+                            "z": -0.8509035110473633,
+                            "w": 0.0
+                        },
+                        "[1]": {
+                            "x": 0.0,
+                            "y": 1.0,
+                            "z": 0.0,
+                            "w": 0.0
+                        },
+                        "[2]": {
+                            "x": 0.8509035110473633,
+                            "y": 0.0,
+                            "z": -0.5253220200538635,
+                            "w": 0.0
+                        },
+                        "[3]": {
+                            "x": 0.0,
+                            "y": 3.0,
+                            "z": 1.0,
+                            "w": 1.0
+                        }
+                    }
+                },
+                "m_shape": {
+                    "is_valid": true,
+                    "type_name": "gscene::mesh",
+                    "data": {
+                        "m_mesh_name": "teapot_mesh"
+                    }
+                },
+                "m_material_name": "shiny_white_mat"
             }
-          }
-        },
-        "m_shape": {
-          "type_name": "gscene::mesh",
-          "is_valid": true,
-          "data": {
-            "m_mesh_name": "teapot_mesh"
-          }
-        },
-        "m_material_name": "shiny_white_mat"
-      },
-      {
-        "m_transform": {
-          "m_transform": {
-            "[0]": {
-              "x": 1.0,
-              "y": 0.0,
-              "z": 0.0,
-              "w": 0.0
-            },
-            "[1]": {
-              "x": 0.0,
-              "y": 0.5253220,
-              "z": -0.8509035,
-              "w": 0.0
-            },
-            "[2]": {
-              "x": 0.0,
-              "y": 0.8509035,
-              "z": 0.5253220,
-              "w": 0.0
-            },
-            "[3]": {
-              "x": 3.0,
-              "y": 2.0,
-              "z": 0.0,
-              "w": 1.0
+        ],
+        "m_lights": [
+            {
+                "is_valid": true,
+                "type_name": "gscene::point_light",
+                "data": {
+                    "m_transform": {
+                        "m_transform": {
+                            "[0]": {
+                                "x": 1.0,
+                                "y": 0.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "[1]": {
+                                "x": 0.0,
+                                "y": 1.0,
+                                "z": 0.0,
+                                "w": 0.0
+                            },
+                            "[2]": {
+                                "x": 0.0,
+                                "y": 0.0,
+                                "z": 1.0,
+                                "w": 0.0
+                            },
+                            "[3]": {
+                                "x": 0.0,
+                                "y": 30.0,
+                                "z": -5.0,
+                                "w": 1.0
+                            }
+                        }
+                    },
+                    "m_color": {
+                        "x": 1.0,
+                        "y": 1.0,
+                        "z": 1.0
+                    },
+                    "m_fallout_min_distance": 100.0,
+                    "m_fallout_max_distance": 200.0
+                }
             }
-          }
-        },
-        "m_shape": {
-          "type_name": "gscene::mesh",
-          "is_valid": true,
-          "data": {
-            "m_mesh_name": "teapot_mesh"
-          }
-        },
-        "m_material_name": "shiny_white_mat"
-      },
-      {
-        "m_transform": {
-          "m_transform": {
-            "[0]": {
-              "x": 1.0,
-              "y": 0.0,
-              "z": 0.0,
-              "w": 0.0
-            },
-            "[1]": {
-              "x": 0.0,
-              "y": -0.5253220,
-              "z": 0.8509035,
-              "w": 0.0
-            },
-            "[2]": {
-              "x": 0.0,
-              "y": -0.8509035,
-              "z": -0.5253220,
-              "w": 0.0
-            },
-            "[3]": {
-              "x": -3.0,
-              "y": 2.0,
-              "z": 0.0,
-              "w": 1.0
-            }
-          }
-        },
-        "m_shape": {
-          "type_name": "gscene::mesh",
-          "is_valid": true,
-          "data": {
-            "m_mesh_name": "teapot_mesh"
-          }
-        },
-        "m_material_name": "shiny_white_mat"
-      },
-      {
-        "m_transform": {
-          "m_transform": {
-            "[0]": {
-              "x": -0.5253220,
-              "y": 0.0,
-              "z": -0.8509035,
-              "w": 0.0
-            },
-            "[1]": {
-              "x": 0.0,
-              "y": 1,
-              "z": 0,
-              "w": 0.0
-            },
-            "[2]": {
-              "x": 0.8509035,
-              "y": 0,
-              "z": -0.5253220,
-              "w": 0.0
-            },
-            "[3]": {
-              "x": 0.0,
-              "y": 3.0,
-              "z": 1.0,
-              "w": 1.0
-            }
-          }
-        },
-        "m_shape": {
-          "type_name": "gscene::mesh",
-          "is_valid": true,
-          "data": {
-            "m_mesh_name": "teapot_mesh"
-          }
-        },
-        "m_material_name": "shiny_white_mat"
-      }
-    ],
-    "m_lights": [
-      {
-        "type_name": "gscene::point_light",
-        "is_valid": true,
-        "data": {
-          "m_transform": {
-            "m_transform": {
-              "[0]": {
-                "x": 1.0,
-                "y": 0.0,
-                "z": 0.0,
-                "w": 0.0
-              },
-              "[1]": {
-                "x": 0.0,
-                "y": 1.0,
-                "z": 0.0,
-                "w": 0.0
-              },
-              "[2]": {
-                "x": 0.0,
-                "y": 0.0,
-                "z": 1.0,
-                "w": 0.0
-              },
-              "[3]": {
-                "x": 0.0,
-                "y": 30.0,
-                "z": -5.0,
-                "w": 1.0
-              }
-            }
-          },
-          "m_color": {
-            "x": 1.0,
-            "y": 1.0,
-            "z": 1.0,
-            "w": 1.0
-          },
-          "m_fallout_min_distance": 100.0,
-          "m_fallout_max_distance": 200.0
-        }
-      }
-    ],
-    "m_accelerator": {
-      "type_name": "gscene::kd_accelerator",
-      "is_valid": true,
-      "data": {
-        "m_max_depth": 8,
-        "m_max_cost": 4,
-        "m_isect_cost": 80.0,
-        "m_empty_bonus": 0.5,
-        "m_traversal_cost": 1.0
-      }
-    },
-    "m_resource_library": {
-      "m_resources": [
-        {
-          "key": "teapot_mesh",
-          "data": {
-            "type_name": "gscene::mesh_resource",
+        ],
+        "m_accelerator": {
             "is_valid": true,
+            "type_name": "gscene::kd_accelerator",
             "data": {
-              "m_filepath": "./data/meshes/teapot.fbx"
+                "m_max_depth": 8,
+                "m_max_cost": 4,
+                "m_isect_cost": 80.0,
+                "m_empty_bonus": 0.5,
+                "m_traversal_cost": 1.0
             }
-          }
         },
-        {
-          "key": "shiny_white_mat",
-          "data": {
-            "type_name": "gscene::blinn_phong_material",
-            "is_valid": true,
-            "data": {
-              "m_diffuse_color": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-              },
-              "m_specular_color": {
-                "x": 1.0,
-                "y": 1.0,
-                "z": 1.0
-              },
-              "m_specular_exponent": 4.0,
-              "m_reflection_coefficient": 0.2,
-              "m_refraction_coefficient": 0.0
-            }
-          }
+        "m_resource_library": {
+            "m_resources": [
+                {
+                    "key": "teapot_mesh",
+                    "data": {
+                        "is_valid": true,
+                        "type_name": "gscene::mesh_resource",
+                        "data": {
+                            "m_filepath": "./data/meshes/teapot.fbx"
+                        }
+                    }
+                },
+                {
+                    "key": "shiny_white_mat",
+                    "data": {
+                        "is_valid": true,
+                        "type_name": "gscene::blinn_phong_material",
+                        "data": {
+                            "m_diffuse_color": {
+                                "x": 1.0,
+                                "y": 1.0,
+                                "z": 1.0
+                            },
+                            "m_specular_color": {
+                                "x": 1.0,
+                                "y": 1.0,
+                                "z": 1.0
+                            },
+                            "m_specular_exponent": 4.0,
+                            "m_reflection_coefficient": 0.20000000298023225,
+                            "m_refraction_coefficient": 0.0
+                        }
+                    }
+                }
+            ]
         }
-      ]
     }
-  }
 }

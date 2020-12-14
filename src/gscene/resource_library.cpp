@@ -6,6 +6,8 @@
 
 #include "gserializer/serializer.h"
 
+#include <fmt/format.h>
+
 namespace gscene
 {
     void resource_library::process(gserializer::serializer& serializer)
@@ -28,6 +30,10 @@ namespace gscene
         {
             load_handle.get();
         }
+    }
+    void resource_library::throw_error_resource_does_not_exist(std::string const& name) const
+    {
+        throw std::runtime_error(fmt::format("Trying to get resource that doesn't exist: {0}", name));
     }
 }
 

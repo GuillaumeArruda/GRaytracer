@@ -4,8 +4,6 @@
 #include <unordered_map>
 #include <memory>
 
-#include <fmt/format.h>
-
 #include "gscene/resource.h"
 
 namespace gserializer
@@ -45,10 +43,13 @@ namespace gscene
                 ResourceType const& ref = dynamic_cast<ResourceType const&>(*it->second.get());
                 return &ref;
             }
-            throw std::runtime_error(fmt::format("Trying to get resource that doesn't exist: {0}", name));
+            throw_error_resource_does_not_exist(name);
+            return nullptr;
         }
 
     private:
+        void throw_error_resource_does_not_exist(std::string const& name) const;
+
         std::unordered_map<std::string, std::unique_ptr<resource>> m_resources;
     };
 }

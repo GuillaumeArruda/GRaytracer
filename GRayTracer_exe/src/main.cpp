@@ -26,6 +26,11 @@ int main(int argc, const char** argv)
         gserializer::json_read_serializer serializer("data/scene.json");
         serializer.process("value0", scene);
     }
+    {
+        gserializer::json_write_serializer serializer;
+        serializer.process("value0", scene);
+        serializer.write_to_file("data/scene.json");
+    }
 
     auto lense = std::make_unique<grender::pinhole_lense>(70.0_d, 1.f, std::numeric_limits<float>::max());
     grender::camera const camera(gscene::world_transform(glm::translate(glm::mat4(1.f), glm::vec3(0.f, 2.5f, -4.f))), std::move(lense), image_width_resolution, image_height_resolution);
